@@ -185,4 +185,11 @@ for(集合/数组的数据类型 变量名 : 集合名/数组名)，只能是数
 E e : Element 元素  
 T t ：Type类型  
 集合在定义时不知道使用什么类型所以使用E
-![image](https://github.com/lieycheng987/JAVA-/blob/main/2.png)
+![image](https://github.com/lieycheng987/JAVA-/blob/main/2.png)  
+>> 创建集合对象，不使用泛型
+>>>好处：集合不使用泛型，默认类型就是object类型，可存储任意类型数据  
+>>>弊端：不安全，会引发异常  
+>>集合对象使用泛型  
+>>>好处：避免了类型转换的麻烦，存储的什么类型，取出的就是什么类型  
+>>>弊端：反省是什么类型，只能存储什么类型  
+#### 
