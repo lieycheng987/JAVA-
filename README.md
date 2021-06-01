@@ -1,4 +1,9 @@
-# JAVA-
+# JAVA- 
+- [局部变量和成员变量的区别](#------------)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+<a href="### 局部变量和成员变量的区别">内容</a>
 ### 局部变量和成员变量的区别
 1.定义位置不一样
 局部变量：在方法的内部， 
@@ -176,7 +181,10 @@ add() remove() clear() contain() isEmpty() size() toArray()返回一个object的
 1.boolean hasNext()如果有元素可以迭代则返回true   
 2.next（）
 ### forEach循环
-
-
-
+for(集合/数组的数据类型 变量名 : 集合名/数组名)，只能是数组或者collection
+### 泛型 
+泛型是一种未知的数据类型，当我们不知道是用什么数据类型时可以使用泛型，反省也可以是一个变量，来接受数据类型
+E e : Element 元素  
+T t ：Type类型  
+集合在定义时不知道使用什么类型所以使用E
 
