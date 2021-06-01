@@ -170,7 +170,7 @@ list接口
 set接口  
 1.不允许重复的元素  
 2.没有索引不能通过for循环便利，可以用迭代器访问
-![image](https://github.com/lieycheng987/JAVA-/blob/main/2.png)  
+![image](https://github.com/lieycheng987/JAVA-/blob/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210601173852.png)  
 
 collection中提供的常用方法
 add() remove() clear() contain() isEmpty() size() toArray()返回一个object的数组  
@@ -185,4 +185,4 @@ for(集合/数组的数据类型 变量名 : 集合名/数组名)，只能是数
 E e : Element 元素  
 T t ：Type类型  
 集合在定义时不知道使用什么类型所以使用E
-![image](https://github.com/lieycheng987/JAVA-/blob/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210601173852.png)
+![image](https://github.com/lieycheng987/JAVA-/blob/main/2.png)
