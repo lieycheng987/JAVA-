@@ -1,7 +1,6 @@
 # JAVA- 
 - [局部变量和成员变量的区别](#------------)
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 <a href="### 局部变量和成员变量的区别">内容</a>
 ### 局部变量和成员变量的区别
