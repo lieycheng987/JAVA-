@@ -194,4 +194,27 @@ T t ：Type类型
 >>>弊端：反省是什么类型，只能存储什么类型  
 泛型也可以用在方法上，定义在修饰符和返回值类型之间
 泛型方法如下`public <E> void method1(E m)`
-泛型接口
+泛型接口 接口写法第一种使用方式：我可以指定接口实现的类型
+`public interface iterfa <E>{
+  public abstract void method2(E e);
+}`
+抽象接口方法
+实现方法：可以选择直接实现类或继续使用泛型
+第一种实现方法`public class impl implements iterfa<String> {
+
+  @Override
+  public void method2(String s) {
+    // TODO Auto-generated method stub
+    System.out.println(s);
+  }
+`
+第二种实现方法： 
+`public class impl1<E> implements iterfa<E>{
+
+  @Override
+  public void method2(E e) {
+    // TODO Auto-generated method stub
+    System.out.println(e);
+  }
+  
+}`
