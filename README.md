@@ -226,6 +226,8 @@ T t ：Type类型
  泛型通配符的高级用法：泛型的上限和下限。  
  上限：？ extends E 代表只能是E类型的子类或者本身
  下限：？ super E 代表只能是E类型的父类或者本身（工作中用的不是很多）
+### 集合
+若集合中不重写tostring方法则返回集合对象就是对象存在的地址
 ### Linklist集合
 查询慢增删快，底层是链表实现的，里面包含了大量的操作首位的方法，
 ### set
@@ -251,3 +253,13 @@ T t ：Type类型
  collections中有addall方法可添加多个元素
  sort方法排序。静态方法，默认升序，第一种方法要重写排序方法compareTo。  
                                  第二种方法自己new 一个compartor，然后直接覆盖重写方法
+### map
+键值对，k必须唯一，及键唯一值可重复，键相当于坐标而值相对与数值，不同步多线程的。可以通过get（key）找v
+方法：  
+1.put方法把指定的键值对添加到map中 put（k，v）返回值v，若key不重复，返回null，若key重复返回被替换的v  
+2.remove方法把指定的建所对应的键值对元素在map中删除，返回删除元素  
+3.containskey 方法判断键值对中有无这个key，有返回true，没有返回false  
+4.keysey方法 遍历map集合，把map集合中的所有key取出来放到set集合中 set<k>keyset() 该方法返回一个set<k>类  增强for循环遍历即可
+5.Entry<k，v> 映射项，在map接口中有个内部接口entry,作用，党map集合一创建，在map集合中回创建一个Entry对象，用来记录键与值（键值对象，键与值的映射关系）  
+  可以用他来遍历map集合，该方法把map的entry对象取出放到set集合中
+  
