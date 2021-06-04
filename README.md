@@ -261,5 +261,6 @@ T t ：Type类型
 3.containskey 方法判断键值对中有无这个key，有返回true，没有返回false  
 4.keysey方法 遍历map集合，把map集合中的所有key取出来放到set集合中 set<k>keyset() 该方法返回一个set<k>类  增强for循环遍历即可
 5.Entry<k，v> 映射项，在map接口中有个内部接口entry,作用，党map集合一创建，在map集合中回创建一个Entry对象，用来记录键与值（键值对象，键与值的映射关系）  
-  可以用他来遍历map集合，该方法把map的entry对象取出放到set集合中
-  
+  可以用他来遍历map集合，该方法把map的Entry对象取出放到set集合中Entry是map类中的静态方法，会绑定map中的所有键值对，entryset是将返回的键值对存储到set中
+ ### hashmap
+  hashmap中如果要用自己定义的类作为key，就必须重写equal和hashcode方法。
