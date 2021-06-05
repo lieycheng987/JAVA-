@@ -283,3 +283,14 @@ T t ：Type类型
   ### java中的异常  
   异常体系机制中有个公共父类叫Throwable类
  ![image](https://github.com/lieycheng987/JAVA-/blob/main/throw%E7%B1%BB.png)
+ throwable类：是所有错误或者异常的超类。
+  exception和erro是throwable下的两个子类  
+  Exception：编译器异常，进行编译时出现的问题。  
+  Error：错误，相当于无法治愈的问题，必须修改源代码，程序才能继续执行。 
+  处理异常thow抛出给虚拟机，try{}catch{}，能查看异常也能执行后续代码   
+  异常产生过程分析：jvm检测到程序出现异常后，  
+ **1.jvm会根据异常的原因创建一个对象，这个对象包含了异常的产生（内容，原因，位置）  
+  `new ArrayIndexOutOfBoundsException`（"3"）  
+  2. 在方法中没有异常处理逻辑如（try catch），那么JVM会把异常对象抛出给方法的调用者，若调用者也没有，就在网上调用，最终返回给JVM，jvm接受这个异常对象（原因，位置，内容）打印到控制台  
+  然后中断当前执行的程序**  
+  #### 异常的处理
