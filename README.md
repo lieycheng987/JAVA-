@@ -282,4 +282,4 @@ T t ：Type类型
           console：切换到控制台
   ### java中的异常  
   异常体系机制中有个公共父类叫Throwable类
-  
+ ![image](https://github.com/lieycheng987/JAVA-/blob/main/throw%E7%B1%BB.png)
