@@ -374,3 +374,18 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   主线程（执行main方法的线程）。
   JVM执行main方法是，main方法会进入到栈内存，JVM会找操作系统开辟一条main方法通向cpu的执行路径，cpu就可以通过这个路径来执行main方法，而这个路径有个名字叫主线程  
   ![image](https://github.com/lieycheng987/JAVA-/blob/main/%E4%B8%BB%E7%BA%BF%E7%A8%8B.png)
+  
+  创建多线程执行方法有两种，一种是将类声明为Thread的子类。该子类应重写Thread类的run方法  
+  实现步骤创建子类，覆盖重写run方法，调用thread类中的方法，开启新的线程调用start方法，执行run方法  
+  void start（）是该线程程序开始执行，java虚拟机调用该线程的run方法。结果是两个线程并发运行，当前线程和另一个线程  
+  （创建的新线程，执行其run方法）多次启动一个线程是非法的，特别是当线程已经结束执行后，不能再重新启动  
+  java属于抢占式调度，哪个线程优先级高，哪个先执行，同优先级随机执行  
+  `  public static void main(String[] args) {
+    text t = new text();
+    t.start();
+    for(int i=0;i<20;i++)
+    {
+      System.out.println("main" + " " + i);
+    }
+  }//随机抢占谁抢到谁执行,随机打印`
+    ![image](https://github.com/lieycheng987/JAVA-/blob/main/%E7%BA%BF%E7%A8%8B%E9%9A%8F%E6%9C%BA%E5%8E%9F%E7%90%86.png)
