@@ -393,7 +393,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
 一旦调用xx.start,开辟新的空间新的栈，执行新的方法
  ![image](https://github.com/lieycheng987/JAVA-/blob/main/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.png)
    #### Thread类中的方法
-        ![image](https://github.com/lieycheng987/JAVA-/blob/main/Thread%E7%B1%BB%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.png)
+ ![image](https://github.com/lieycheng987/JAVA-/blob/main/Thread%E7%B1%BB%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.png)
    ##### 获取当前名称    
         1.使用Thread类的方法getName  返回名称  
         2.可以获取到当前正在执行的线程使用线程中的方法currentThread.getName方法获取线程的名称
