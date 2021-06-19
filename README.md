@@ -340,3 +340,23 @@ T t ：Type类型
   4.父类没有抛出异常，子类重写父类方法时，不能声明式抛出，只能捕获异常（try catch）
   
 #### 自定义异常  
+java提供的异常类，不够使用时，需要进行自己定义异常类格式
+  `public class xxxxx extends Exception||RuntimeException
+  { 添加空参数构造方法,
+    添加一个带异常信息的构造方法
+  }
+  `
+  继承exception，那么自定义的一场就是编译异常，如果方法内部抛出编译异常，就必须进行处理，要么throws，要么try，catch
+  继承RuntimeException，那么自定义类就是个运行异常，交给jvm处理即可例子   
+  `public class index extends Exception {
+
+  public index() {
+  }
+
+  public index(String message) {
+    super(message);
+  }//查看源码发现，所有异常类都会有一个带异常信息的构造方法，方法内部会调用父类带异常信息的构造方法，交给父类来处理
+  
+}
+`
+  
