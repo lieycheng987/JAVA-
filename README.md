@@ -170,7 +170,7 @@ list接口
 set接口  
 1.不允许重复的元素  
 2.没有索引不能通过for循环便利，可以用迭代器访问
-![image](https://github.com/lieycheng987/JAVA-/blob/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210601173852.png)  
+![image](https://github.com/lieycheng987/JAVA-/blob/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210601173852.png)  
 
 collection中提供的常用方法
 add() remove() clear() contain() isEmpty() size() toArray()返回一个object的数组  
@@ -185,7 +185,7 @@ for(集合/数组的数据类型 变量名 : 集合名/数组名)，只能是数
 E e : Element 元素  
 T t ：Type类型  
 集合在定义时不知道使用什么类型所以使用E
-![image](https://github.com/lieycheng987/JAVA-/blob/main/2.png)  
+![image](https://github.com/lieycheng987/JAVA-/blob/master/2.png)  
 >> 创建集合对象，不使用泛型
 >>>好处：集合不使用泛型，默认类型就是object类型，可存储任意类型数据  
 >>>弊端：不安全，会引发异常  
@@ -282,7 +282,7 @@ T t ：Type类型
           console：切换到控制台
   ### java中的异常  
   异常体系机制中有个公共父类叫Throwable类
- ![image](https://github.com/lieycheng987/JAVA-/blob/main/throw%E7%B1%BB.png)
+ ![image](https://github.com/lieycheng987/JAVA-/blob/master/throw%E7%B1%BB.png)
  throwable类：是所有错误或者异常的超类。
   exception和erro是throwable下的两个子类  
   Exception：编译器异常，进行编译时出现的问题。  
@@ -330,7 +330,7 @@ T t ：Type类型
   3.多个异常一次捕获一次处理  
   2. 一个try可以对应多个catch  （一次捕获多次处理）**  catch定义的异常类中如果有父子关系，子类必须写在上面，父类在下面  
   原因（多态性）抛出异常对象是会从上倒下一次赋值给catch中定义的异常变量 如下图  
-  ![image](https://github.com/lieycheng987/JAVA-/blob/main/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.png)    
+  ![image](https://github.com/lieycheng987/JAVA-/blob/master/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.png)    
   
   3. 只要catch定义的异常可以处理任何try中的，即可，例如expection异常可以处理一切异常
   #### 父子类异常  
@@ -373,7 +373,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
  #### Thread类
   主线程（执行main方法的线程）。
   JVM执行main方法是，main方法会进入到栈内存，JVM会找操作系统开辟一条main方法通向cpu的执行路径，cpu就可以通过这个路径来执行main方法，而这个路径有个名字叫主线程  
-  ![image](https://github.com/lieycheng987/JAVA-/blob/main/%E4%B8%BB%E7%BA%BF%E7%A8%8B.png)
+  ![image](https://github.com/lieycheng987/JAVA-/blob/master/%E4%B8%BB%E7%BA%BF%E7%A8%8B.png)
   创建多线程执行方法有两种，一种是将类声明为Thread的子类。该子类应重写Thread类的run方法  
   实现步骤创建子类，覆盖重写run方法，调用thread类中的方法，开启新的线程调用start方法，执行run方法  
   void start（）是该线程程序开始执行，java虚拟机调用该线程的run方法。结果是两个线程并发运行，当前线程和另一个线程  
@@ -387,12 +387,12 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
       System.out.println("main" + " " + i);
     }
   }//随机抢占谁抢到谁执行,随机打印  `
-    ![image](https://github.com/lieycheng987/JAVA-/blob/main/%E7%BA%BF%E7%A8%8B%E9%9A%8F%E6%9C%BA%E5%8E%9F%E7%90%86.png)
+    ![image](https://github.com/lieycheng987/JAVA-/blob/master/%E7%BA%BF%E7%A8%8B%E9%9A%8F%E6%9C%BA%E5%8E%9F%E7%90%86.png)
   #### 多线程原理，多线程内存图
 一旦调用xx.start,开辟新的空间新的栈，执行新的方法
- ![image](https://github.com/lieycheng987/JAVA-/blob/main/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.png)
+ ![image](https://github.com/lieycheng987/JAVA-/blob/master/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.png)
    #### Thread类中的方法
- ![image](https://github.com/lieycheng987/JAVA-/blob/main/Thread%E7%B1%BB%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.png)
+ ![image](https://github.com/lieycheng987/JAVA-/blob/master/Thread%E7%B1%BB%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.png)
    ##### 获取当前名称    
         1.使用Thread类的方法getName  返回名称  
         2.可以获取到当前正在执行的线程使用线程中的方法currentThread.getName方法获取线程的名称
