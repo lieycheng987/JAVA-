@@ -424,3 +424,78 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
                3.在结束时调用unlock（就是操作系统的pv操作）（放在finally操作中） 
   #### 线程的状态  
   ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E6%A6%82%E8%BF%B0.png)
+  #### 等待唤醒两种方法  
+  1.`synchronized(obj)`在需要等待的程序调用`object`的`wait`方法进入等待状态，在需要唤醒时调用`object`的`notify`方法
+  2.继续采用lock方法
+  `    Lock lock = new ReentrantLock();
+    Condition condition = lock.newCondition();`
+  在需要等待的程序中调用 `condition.await`在需要唤醒的地方调用`newCondition`的`signal`或`signalAll`方法  
+  列子
+  ` public static void main(String[] args) {
+    Object obj = new Object();
+    Lock lock = new ReentrantLock();
+    Condition condition = lock.newCondition();
+    new Thread(new Runnable() {
+
+      @Override
+      public void run() {
+        synchronized (obj) {
+          System.out.println("包子数量");
+          try {
+            obj.wait();
+          } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+          }
+          System.out.println("吃包子");
+        }
+        // lock.lock();
+        // try
+        // {
+        // try {
+        // System.out.println("要5个包子");
+        // condition.await();
+        // } catch (InterruptedException e) {
+        // // TODO Auto-generated catch block
+        // e.printStackTrace();
+        // }
+        // condition.signal();
+        // System.out.println("付钱吃包子");
+        // }
+        // finally{lock.unlock();}
+
+      }
+
+    }, "客户").start();
+    new Thread(new Runnable() {
+      @Override
+      public void run() {
+        // lock.lock();
+        // // TODO Auto-generated method stub
+        // try
+        // {
+        // try {
+        // Thread.sleep(500);
+        // } catch (InterruptedException e) {
+        // // TODO Auto-generated catch block
+        // e.printStackTrace();
+        // }
+        // System.out.println("包子做好了");
+        // condition.signal();
+        // }
+        // finally{lock.unlock();}
+           try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+        synchronized(obj)   //一定要用锁对象来唤醒他
+        {
+          System.out.println("包子好了");
+          obj.notify();
+        }
+      }
+    }, "boss").start();
+  }`
+  
