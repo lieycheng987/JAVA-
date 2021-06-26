@@ -517,14 +517,18 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   2.创建runnable接口实现run方法重写   
   3.调用ExecutorService中的submit方法，传递线程任务，开启线程，执行run方法   
   4.调用ExecutorService中的方法shutdown销毁  
-  例子
-  `  public static void main(String[] args) {
-    ExecutorService se = Executors.newFixedThreadPool(2);
-    se.submit(new runnableimpl());//线程池会一直开启，使用万会归还个线程所以可以继续使用
-    se.submit(new runnableimpl());
-    se.submit(new runnableimpl());
+  例子   
+  
+  
+  `  public static void main(String[] args) {  
+    ExecutorService se = Executors.newFixedThreadPool(2);  
+   ` se.submit(new runnableimpl());   //线程池会一直开启，使用万会归还个线程所以可以继续使用`
+    se.submit(new runnableimpl());  
+    se.submit(new runnableimpl());  
   }`
   
+  
+     
   ### Lambda表达式
   面向对象强调必须通过对象的心事来做事情，而函数式思想则尽量忽略面向对象的复杂语法--强调做什么而不是什么形式
   lambda标准格式有三部分组成
