@@ -534,8 +534,16 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   lambda标准格式有三部分组成
   1.一些参数2.一个箭头3.一段代码
   （参数列表）->{一些重写方法}例如排序题  
-  `    Arrays.sort(arr,
+
+  `   Arrays.sort(arr,
       (Person p1,Person p2)->{
         return p1.age-p2.age;
       }
-    );`正常要new Comparator从写campare排序方法
+    )`
+  
+  正常要new Comparator从写campare排序方法
+  lambda表达式省略规则，要代码只有一行return {}和;都可以省略要省略都省略  
+ 注意：使用lambda语法是必须要有接口，并且要求接口中有抽象方法，接口方法存在且唯一时才能使用。  
+  ### File类
+  主要用于查找、创建、删除、判断存在否文件夹
+  path中windows下时\而linux下是/路径中的\\要写两个，一个转意一个
