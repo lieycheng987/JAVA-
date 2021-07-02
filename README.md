@@ -547,3 +547,23 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   ### File类
   主要用于查找、创建、删除、判断存在否文件夹
   path中windows下时\而linux下是/路径中的\\要写两个，一个转意一个
+  createNewFile（）创建空文件，delete（）删除文件或者目录  
+  mkdir（）创建文件夹mkdirs创建多级文件夹
+  file遍历，两个list和listfiles方法便利的是构造方法中给出的目录，如果构造方法中给出的目录不存在会抛出空指针异常  
+  对目录遍得到的是名称前一个是返回名称，后一个返回file对象  
+  file类filter方法，过滤器有两个接口需要自己定义实现类，filenamefilter和filef  ilter
+  ### io流
+  顶层父类： InputStream（字节输入流）、Reader字符输入流
+            OutputStream 字节输出流  Writer 字符输出流
+  
+  字节输入流的使用步骤  
+  1.创建FileOutputStream对象 
+  2.会根据构造方法中传递的文件，创建一个空文件  
+  3.会把该对象指向创建好的文件写入数据
+  write方法写入数据
+  再用close方法关闭流
+  
+  ## 网络编程  
+  c/s结构客户端和服务结构，B/S浏览器和服务器结构
+  网络通信协议：Tcp/Ip协议
+  ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/tcpip%E5%8D%8F%E8%AE%AE.png)
