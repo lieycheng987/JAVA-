@@ -587,3 +587,24 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   2. 第一个客户端与服务器交互，就需要使用多个IO流对象  
   服务器没有IO流，可以获取到请求的客户端对象Socket使用每个客户端socket中提供的Io流和客户端进行交互 
   server.accpet（）可以获取到请求的对像
+  客戶端实现步骤： 
+  1.创建一个客户端对象`Socket`，构造方法绑定为ip地址和端口号  
+  2.使用Socket对象中的getOutputStream方法获取网络字节输出流OutputStream
+  3.使用网络字节输出流Outputstream对象中的write方法给服务器发送数据  
+  4.使用socket对象中的方法getInputStream获取网络字节输入流InputStream对象  
+  5.使用网络字节输入流对象的read方法，读取服务器回写的数据  
+  6.释放资源  
+  注意事项：
+  1.客户端和服务器端进行交互，必须使用socket中提供的网络流不能使用自己创建的流对象  
+  2当我们创建客户端对象socket的时候，就会去请求服务器和服务器经过3粗握手建连接通路只是后如果服务器没有启动就会抛出异常  
+  
+  服务器端实现步骤：  
+  1.创建服务器serversocket对象和系统要制定的端口号  
+  2.使用serversocket对象中的方法accept，获取到请求的客户端对象socket  
+  3.使用socket对象红的getinputStream方法获取网络字节输入流对象  
+  4.使用网络字节输入流对象中的read方法，读取客户端发送的信息  
+  5.使用socket对象中的方法getOutputstream获取网络字节输出流
+  6.使用网络字节输出流对象方法中的write方法给客户端回复  
+  7.释放资源  
+  
+  
