@@ -617,7 +617,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   7释放资源  
   注意：客户端和服务器和本地硬盘进行读写，需要使用自己创建的字节流对象  
   客户端和u武器之间进行读写，必须使用socket中提供的紫萼流对象  
-  文件上传的原理，就是文件的复制 
+  文件上传的原理，就是文件的复制 （客户端）
   明确：数据源  和目的地
         ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210717205330.png)
   实现步骤 ：
@@ -629,4 +629,19 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   6.使用socket中的getinputstream，获取网络字节输入流  
   7.使用网络字节输入流的方法read读取服务器的数据  
   8.释放资源  
+  
+  服务端  
+  文件上传原理 ：
+  明确：数据源，服务器目的地  
+  实现步骤 ：
+  1.创建一个服务器serversocket对象和系统指定的端口号  
+  2.使用serversocket对象的accpet方法，获取请求的客户端socket对象  
+  3.使用socket对象中的方法getinputstream，获取到网络字节输入流inputstream对象  
+  4.判断文件夹是否存在，不存在创建  
+  5.创建一个本地字节输出流对象构造方法绑定输出目的地  
+  6.使用网络字节输入流Input stream对象中的read方法读取客户端文件
+  7.使用本地字节输出流fileoutputstream中的write方法，把读取到的文件保存到服务器的硬盘上  
+  8.使用socket对象中的getoutputstream方法获取网络字节输出流对象  
+  9.使用网络字节输出流对象的outputstream对象中的方法write，给客户端回写上传成功  
+  10.释放资源  
   
