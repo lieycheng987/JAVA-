@@ -654,4 +654,49 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   可以使用String类的方法split切割字符串，获取中间的部分  arr[l] 使用Stringsubstring方法获取html文件的路径
   服务器创建本地的字节输入流根据获取到的文件路径，读取html文件  
   服务器端使用网络字节输出流把读取到的文件，写道客户端（浏览器）显示
+  `public class htmlServe {
+    public static void main(String[] args) throws IOException {
+        ServerSocket serve = new ServerSocket(8080);
+        while (true) {
+            Socket socket = serve.accept();
+            System.out.println(111);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        InputStream is = socket.getInputStream();
+                        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                        String line = br.readLine();
+                        System.out.println(line);
+                        String[] arr = line.split(" ");
+                        String htmlpath = arr[1].substring(1);
+                        FileInputStream fis = new FileInputStream(htmlpath);
+                        OutputStream os = socket.getOutputStream();
+                        //http协议固定写法
+                        os.write("HTTP/1.1 200 OK\r\n".getBytes(StandardCharsets.UTF_8));
+                        os.write("Content-Type:text/html\r\n".getBytes(StandardCharsets.UTF_8));
+                        os.write("\r\n".getBytes(StandardCharsets.UTF_8));
+                        int len = 0;
+                        byte[] bytes = new byte[1024];
+                        while ((len=fis.read(bytes))!=-1) {
+                            os.write(bytes,0,len);
+                        }
+                        fis.close();
+                        socket.close();
+                    }catch (IOException e){
+                        System.out.println(e);
+                    }
+                }
+            });
+        }
+    }
+
+    }`
   
+  ### 函数式接口  
+  函数式接口在java中指：有且只有一个抽象接口  
+  函数式接口，适用于函数式编程场景的接口。而java中的函数式编程体现就是Lambda，有意函数式接口就是可以适用于Lambda的接口，只有确保   
+  接口中有且仅有一个抽象方法，Java中的Lambda才能顺利进行推导  
+  Lambda表达式可以被当作匿名内部类的语法糖  
+  格式：只要保证接口中有且只有一个抽象方法即可
+  ### Lambda表达式延迟执行的
