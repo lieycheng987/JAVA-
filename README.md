@@ -711,3 +711,5 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
         System.out.println(getstring(()-> "sssss"));
     }`
   
+### Consumer接口（消费型接口）
+  使用accept方法吧置顶泛型的数据消费
