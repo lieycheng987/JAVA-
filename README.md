@@ -701,3 +701,13 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   格式：只要保证接口中有且只有一个抽象方法即可
   ### Lambda表达式延迟执行的
  由于Lambda表达式延迟执行，所以满足条件时才执行相关方法
+  ### Supplier接口  
+  生产型接口，指定泛型是什么类型，get方法就会生产什么类型的数据名字叫什么就可以用Lambda优化什么
+  `    private static String getstring( Supplier<String>sup){
+        return sup.get();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getstring(()-> "sssss"));
+    }`
+  
