@@ -693,10 +693,10 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
 
     }`
   
-  ### 函数式接口  
+  ## 函数式接口  
   函数式接口在java中指：有且只有一个抽象接口  
   函数式接口，适用于函数式编程场景的接口。而java中的函数式编程体现就是Lambda，有意函数式接口就是可以适用于Lambda的接口，只有确保   
-  接口中有且仅有一个抽象方法，Java中的Lambda才能顺利进行推导  
+  ***接口中有且仅有一个抽象方法***，Java中的Lambda才能顺利进行推导  
   Lambda表达式可以被当作匿名内部类的语法糖  
   格式：只要保证接口中有且只有一个抽象方法即可
   ### Lambda表达式延迟执行的
@@ -713,3 +713,17 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   
 ### Consumer接口（消费型接口）
   使用accept方法吧置顶泛型的数据消费
+ andThen 方法把两个consumer类型的对象组合在一起在进行同时消费还是要用accept方法返回 
+ ### Predicate接口对某种类型的数据进行判断，从而得到一个Boolean值
+  `    public static boolean check(String s, Predicate<String> pre){
+        return pre.test(s);
+    }
+
+    public static void main(String[] args) {
+        String s = "aasssssss";
+        System.out.println(check(s, s1->s1.length()>111));
+    }`
+  and方法`pre.test(s)&&pre.text(s)`==`pre.and(pre2).test(s)`
+  同理还有 or方法和negate方法也就是或和非
+  ### Function接口抽象发发为apply方法，用来根据一个类型的数据的到另一个类型的数据，前者称为前置条件，后者成为后置条件  
+  使用
