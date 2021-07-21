@@ -726,4 +726,105 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   and方法`pre.test(s)&&pre.text(s)`==`pre.and(pre2).test(s)`
   同理还有 or方法和negate方法也就是或和非
   ### Function接口抽象发发为apply方法，用来根据一个类型的数据的到另一个类型的数据，前者称为前置条件，后者成为后置条件  
-  使用
+  使用`    public static  void change(String s , Function<String,Integer> fun){
+        int i = fun.apply(s);
+        System.out.println(i);
+    }
+
+    public static void main(String[] args) {
+        String s = "123456";
+        change(s,(s1)-> Integer.parseInt(s1));
+    }`
+  同样function接口中也有默认方法andThen，用来组合。
+  ### Stream流 
+  集合数据的过滤例如
+  `    public static void main(String[] args) {
+        List<String> l = new ArrayList<>();
+        l.add("Messi");
+        l.add("Xavi");
+        l.add("Namyer");
+        l.add("Rondla");
+        l.add("Mubapa");
+        l.add("mudiniao");
+        //stream中有个方法叫做filter可以进行判断类似与javascript中的filter
+        l.stream().filter(name->name.startsWith("M")).filter(name->name.length()<7).forEach(name->
+                System.out.println(name.getClass().equals(new String().getClass())));//类型检测
+
+    }`
+  流式思想：拼接流式模型
+  ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E6%B5%81%E5%BC%8F%E6%80%9D%E6%83%B3%E4%B8%BE%E4%BE%8B.png)
+  ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E6%B5%81%E5%BC%8F%E6%80%9D%E6%83%B3%E7%A4%BA%E6%84%8F%E5%9B%BE.png) 
+  
+  这里的filter、map都不是立即执行因为用到了map只有到cout后才执行
+  注意**java中的stream并不会存储元素而是按照需要进行计算，其中流的数据来源可以是集合数组等。。。。
+  与Collection中不同stream操作还有两个特征，
+  1.Pipelining 中间的操作都会返回流对象本身，这样有利于链式编程，可以对操作进行优化例如延迟执行或者短路  
+  2.内部迭代，以前对集合遍历都是通过迭代器或者增强for循环的方式，显示的在集合外部进行迭代这样叫做外部迭代，  
+  而Stream流提供了内部迭代方式，流可以直接调用遍历的方式 
+  当使用流时，有三个步骤，
+  1.获取数据源  
+  2.数据转换  
+  3.执行想要的结果  并且每次转换Stream对象不改变，返回一个新的Stream对象，这就有利于链式编程
+  
+  jdk9.1后所有集合都可以通过默认Stream方法获取流对象可以将一个集合转换为一个流 （map不能直接这样用）必须是单列集合
+  `        Stream<String> s = l.stream();
+        Set<String> s1 = new HashSet<>();
+        Stream<String> s2 = s1.stream();
+        Map<String,String> m = new HashMap<>();
+        Stream<String>s3 = m.keySet().stream();
+        Collection<String> l2 = m.values();
+        Stream<String> s4 = l2.stream();
+        Set<Map.Entry<String,String>> en = m.entrySet();
+        Stream<Map.Entry<String,String>> s5 = en.stream();`
+  #### Stream常用方法  
+  延迟方法：返回值任然是Stream是支持链式调用  
+  终结方法：返回值不再是Stream接口自身的类型方法，及不再支持StringBuilder那样的链式调用包括forEach和cout
+  ##### forEach
+  forEach方法中传递的是Consumer接口所以可以用Lambda表达式优化是终结方法返回的不是Stream对象
+  ##### filter返回的是predicate接口判断对象如果结果为true那么stream对象会留用如果为false那么就会删掉
+  注意***Stream流类似与流水线，第一个流调用完毕方法并且赋值到其他管道流上那么所有的是数据就会转流到下个Stream对象上，而这是第一个Stream流就会关闭  
+  所以第一个流不能再此使用了
+  ##### map 方法如果需要将流中的元素映射到另一个流中可以使用map方法
+  其中map方法中传递的参数是Function接口 
+  `        Stream<String> s = Stream.of("1","2","3","4");
+        s.map(s1->Integer.parseInt(s1)).forEach(intt-> System.out.println(intt));`
+  ##### count 
+  相当于集合中的size统计Stream中流元素的个数，终结方法，返回值是long类型的整数，所以不能再调用任何Stream中的方法了
+  ##### limit 方法可以对流进行截取  
+  是一个延迟方法所以还是可以继续调用Stream中的方法，只是对流中元素截取，返回新的流
+  `stream.limit(3)`意思是只要前三个
+  ##### skip 
+  跳过六种的前几个元素，返回一个新的截取流作用基本与limi相似
+  ##### concat 
+  静态方法：可以将两个流合并为一个流
+  
+  ### 方法引用  （只是对Lambda的再次简化）
+  对Lambda表达式的简化我们实际传递进去的代码是一种解决方案，所以如果我们在Lambda表达式中所指定的方法，已经有了相同方案  
+  那么是没有必要重复逻辑的 
+  `    public  static  void printString (String s,Printable p){
+        p.print(s);
+    }
+
+    public static void main(String[] args) {
+        printString("hellow",s-> System.out.println(s));
+    }`
+  Lambda表达式的目的，打印参数传递的字符串，把参数s传递给了cout对象，调用out对象中的方法println对字符串进行输出  
+  注意  ：
+  1.system.out对象已经存在  
+  2.println方法也是存在的  
+  所以我们可以优化方法，使用system.out方法 
+  #### `::`双冒号为引用运算符
+  他所在的表达式被称为方法引用，如果Lambda表达式的函数方案已经存在于某个方法的实现中，那么则可以通过双冒号来引用该方法作为Lambda的代替者
+  注意：*** Lambda表达式中传递的参数一定是方法引用中的哪个方法可以接受的类型，否则会抛出异常  
+  #### 通过对象名引用成员方法
+  对象名存在，成员方法也存在，那么就可以使用对象名来引用成员方法 ，对象存在方法存在既可以优化Lambda表达式
+ `printStr(obj::printUpper)`
+  #### 通过类名引用静态方法  
+  类存在，静态成员方法存在，即可以继续使用
+  ` int i= method(222,Math::abs)`
+  #### 通过super来调用父类的成员方法  
+  `method(super::sayhellow);`
+  #### 通过this来调用子类的成员方法
+  `method(this::sayhellow);`
+  #### 类的构造器引用
+  由于构造器名称与类名称完全一直，所以可以类的名称::new 的格式表示
