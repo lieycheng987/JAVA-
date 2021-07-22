@@ -828,3 +828,86 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   `method(this::sayhellow);`
   #### 类的构造器引用
   由于构造器名称与类名称完全一直，所以可以类的名称::new 的格式表示
+  #### 数组构造器引用首先必须满足是函数接口，其次才可以简化Lambda表达式
+  `//        int arr = createArray(10,length -> new int[length]).length;
+        //方法引用优化Lambda表达式
+        int arr = createArray(8,int[]::new).length;`
+  
+  
+  # Java Web 
+  内容：
+  1.Junit单元测试  2.反射  3.注解  
+  ## Junit单元测试  
+  测试分类 ：黑盒测试和白盒测试
+  黑盒测试：不用关注过程，只需要看输入输出是否一致,不需要写代码  
+  白盒测试：不光看输入输出，还要关注程序执行的具体过程  
+  ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E9%BB%91%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95.png)  
+  Junit属于白盒测试的一种  
+  Junit使用：
+  步骤：
+  1.定义一个测试类名+Test  
+  2.定义测试方法，可以独立运行 
+    *建议方法名+test 例如 testadd（）
+    *建议无返回值，建议空参  
+  3.给方法加注解@Test（加入注解）
+  4.导入Junit的依赖环境
+  `    @Test
+    public  void  testAdd(){
+        Assert.assertEquals(3,new Calculator().add(2,3));
+    }`
+   * 红色代表成功绿色代表失败 注意要用断言方法Assert（期望的，实际的）而不是输出 
+  对于重复操作，通过注解before和after来完成  
+  before初始化方法：所有测试方法之前都执行这个方法
+  after释放资源方法：在所有测试方法执行完后都会自动执行该方法
+  无论上述方法是否出错，这两个方法一定执行  
+  `    @Before
+    public  void init (){
+        System.out.println("用于资源申请");
+    }
+    /* 测试方法 */
+    @After
+    public  void close(){
+        System.out.println("用于资源释放");
+    }
+    @Test
+    public  void  testAdd(){
+        Assert.assertEquals(3,new Calculator().add(2,3));
+    }
+    @Test
+    public  void testSub(){
+        Assert.assertEquals(3,new Calculator().sub(5,2));
+    }`
+  ## 反射：框架设计的灵魂  
+   * 框架：半成品软件。可以在框架的基础上进行软件开发，简化编码  
+     主要用于框架 
+   ### 概念 
+  将类的各个组成部分封装为其他对象
+  source源代码阶段还在硬盘上，，将字节码文件加载进内存通过类加载器将class的字节码文件加入内存，在内存中会用对象描述字节码文件 
+  Class类（描述自解码文件）其中由三部分重要东西（成员变量，构造方法，成员方法） 
+  功能：获取成员变量，获取构造方法，获取成员方法，获取类名
+  将成员变量封装为Field对象，将构造方法封装为Constraints对象  ，成员方法封装为Method，每个都通过数组来描述所有的变量或者方法
+  ，后面再通过类对象的行为赖创建所需要的对象，所有对象都是通过类对象来创建的。其中将各种变量封装成其他对象，这就是反射机制 
+  new的对象属于运行时阶段Runtime对象属于第三阶段 
+  反射的好处：
+  1.在程序运行过程中，操作这些对象  
+  2.内获取成员方法：（列入定义字符串，那么会将字符串对象字节码文件加载入内存，内存中有class对象 ，将所有方法封装为对象，将在数组中的方法展示出来即可）
+  3.解耦，降低程序的耦合度，增加扩展性
+  
+  ### Field
+  getFIelds获取所有public修饰的成员变量  
+  操作get或者set
+  `        Class person = Person.class;
+//        Field[] fields = person.getFields();
+        Field a = person.getField("s");
+        Person p = new Person();
+         Object va = a.get(p);
+         a.set(p,"ssssw");
+        System.out.println(p+" "+va);`
+  getfiled（对象名字） getDeclareFields（）获取所有成员变量
+  反射面前没有私有公用，都可一访问修改（很重要）在需要访问不是public的需要忽略访问权限修饰符的安全检查  
+  `的。setAccessible（true ）`
+  setAccessible（true）不管是反射的那几个对象都拥有几个方法
+    ### 构造方法  
+  根据传递的参数判断根据不同参数的class对象进行判别
+  创建对象：用构造器 newInstance
+  
