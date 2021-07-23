@@ -909,5 +909,60 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   setAccessible（true）不管是反射的那几个对象都拥有几个方法
     ### 构造方法  
   根据传递的参数判断根据不同参数的class对象进行判别
-  创建对象：用构造器 newInstance
+  （构造方法就是用来创建对象的）创建对象：用构造器 newInstance
+  `        Class person = Person.class;
+        Constructor con = person.getConstructor(String.class);
+        Constructor con1 = person.getConstructor();
+        System.out.println(con);
+        System.out.println("---------------------------->");
+        System.out.println(con1);
+        var p = con.newInstance("zhangsan");
+        System.out.println(con1.newInstance());
+        System.out.println(p);`
+  若用空参数方法构造创建对象，操作可以进行简化可以使用Class对象的newInstance不需要在通过Class类的getConstruct方法获取构造器方法了
+  ### 获取成员方法  
+  不带Declared只能获取公共的，带的可以通过setAccessible访问私有的
+  #### invoke
+  获取成员方法的目的也是为了执行，所以invoke方法可以执行方法  
+  invoke（Objet obj，Object ...args）
+  `        Method method = person.getMethod("eat");
+        method.invoke(new Person());
+        Method method1 = person.getMethod("eat",String.class);
+        method1.invoke(new Person(),"饭");`
+  #### getName
+  可以获取方法名称，返回字符串的方法名称 
+  ## 实现框架技术  
+  实现：
+  1.配置文件 
+  2.反射  
+  步骤：
+  1.将需要创建的全类名和需要执行的方法定义在配置文件中  
+  2.在程序中加载读取配置文件 
+  3.使用反射技术来加载类文件进入内存  
+  4.创建对象  
+  5.执行方法
+  框架的基本思路 
+  `        //加载配置文件
+        //1.创建Properties对象
+        Properties pro = new Properties();//Properties是map的一个子类，所以是一个双链集合
+        //加载配置文件，转换为一个集合
+        //1.2.1获取class目录下的配置文件
+        ClassLoader classloader = IndexReflect.class.getClassLoader();
+         var io = classloader.getResourceAsStream("pro.properties");
+        pro.load(io);
+
+        //2.获取配置文件中定义的数据
+        String className = pro.getProperty("classNamess");
+        String methodName = pro.getProperty("methodNamess");
+        // 3.加载改类进内存
+        Class cls = Class.forName(className);
+        //4.创建对象
+        var obj = cls.newInstance();
+        Method method = cls.getMethod(methodName);
+        method.invoke(obj);`
+  ### 反射中获取class类对象的三种方式
+  1.在源代码阶段，如果还没有进内存需要手动加载进内存生成字节码对象需要通过Class.forName("传全类名")该方法会将字节码文件加入内存并返回一个class  
+  2.当已经加载进内存了，已经有了这个对象，那么在加载进内存后会有一个类名，可以通过类名的属性获取class类对象  类.class  
+  3.通过对象的getclass的方法获取class对象
+  
   
