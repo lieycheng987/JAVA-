@@ -1011,8 +1011,8 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   ### 元注解  
   来描述注解的注解  
   jdk定义好的  
-  *@Target：描述注解能够作用的位置 (TYPE表示作用于类上,Method表示作用域方法上,FIELD作用于成员变量上) 
-  *Retention：描述注解被保留的阶段  (被保留的阶段)(对应于到底是保留到source,class,runtime三个阶段)
+  *@Target：描述注解能够作用的位置 (TYPE表示作用于类上,Method表示作用域方法上,FIELD作用于成员变量上)   
+  *Retention：描述注解被保留的阶段  (被保留的阶段)(对应于到底是保留到source,class,runtime三个阶段)  
   *@Doucument：描述注解是否被抽取到api文档中  
   *@Inherited：描述注解是否被子类继承  
   
