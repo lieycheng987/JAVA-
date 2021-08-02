@@ -931,7 +931,20 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
         method1.invoke(new Person(),"饭");`
   #### getName
   可以获取方法名称，返回字符串的方法名称 
-  ## 实现框架技术  
+  
+  #### Properties 类  
+  Properties 类位于 java.util.Properties ，是Java 语言的配置文件所使用的类， Xxx.properties 为Java 语言常见的配置文件，如数据库的配置 jdbc.properties,  
+  系统参数配置 system.properties。 这里，讲解一下Properties 类的具体使用。以key=value 的 键值对的形式进行存储值。 key值不能重复。JVM 中可以获取Properties, 
+  来打印输出 JVM 所了解的属性值。
+用list() 方法，打印到控制台。
+  
+  `@Test
+	public void printTest(){
+		Properties properties=System.getProperties();
+		properties.list(System.out);
+	}
+`
+
   实现：
   1.配置文件 
   2.反射  
@@ -968,6 +981,10 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   
   
   ### class对象  
+  调用构造方法的newInstance来创建对象
+  ` Factory factory = new Factory();
+Object obj = factory.newInstance();`
+ 如今被getDeclaredConstructor().newInstance()代替
   大部分是获取功能   
   1.获取成员变量们    getFields和getField  获取成员变量们 getDeclareFields（）获取所有的  
   2.获取构造方法们    getconstructor获取单个加s返回数组的  getDeckareFields获取所有的   
@@ -1012,7 +1029,35 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   来描述注解的注解  
   jdk定义好的  
   *@Target：描述注解能够作用的位置 (TYPE表示作用于类上,Method表示作用域方法上,FIELD作用于成员变量上)   
-  *Retention：描述注解被保留的阶段  (被保留的阶段)(对应于到底是保留到source,class,runtime三个阶段)  
-  *@Doucument：描述注解是否被抽取到api文档中  
-  *@Inherited：描述注解是否被子类继承  
+  *Retention：描述注解被保留的阶段  (被保留的阶段)(对应于到底是保留到source,class,runtime三个阶段，一般自定义注解只作用
+  于runtime，class时当前描述的注解会保留到class字节码文件中，并被jvm读取)  
   
+  *@Doucument：描述注解是否被抽取到api文档中  
+  *@Inherited：描述注解是否被子类继承  （如果加入回子类会自动继承）
+  
+通过注解来生成框架模型  
+  不需要通过Properties通过加载进内存获取字符流，可以通过注解的方式进行配置   
+  首先配置自定注解  
+  1.获取class字节码文件
+  2.拿到字节码文件上方的注解，通过class对象的getAnnotation方法拿到指定的注解对象，同时该方法会在内存中生成该注解类的子类的实现对象  
+  3.调用对象的抽象方法获取返回值  
+  4.通过classforName方法将该类加载到内存
+  5.通过反射的构造方法下的newInstance生成新的该类对象  
+  6.通过getmethod方法获取该方法
+  7.通过method类中的invoke（）方法将对象放入后实现
+  代码案例  
+  `@Pro(className = "ReflectText.Student",methodName = "sleep")
+public class annotation {
+    public static void main(String[] args) throws Exception {
+        Class<annotation> clss = annotation.class;
+        Pro pp = clss.getAnnotation(Pro.class);//获取该类上定义的注解类型PRO该语句其实就是在内存中生成了注解接口的子类实现对象
+        //调用注解对象中定义的抽象方法，获取返回值
+        String className = pp.className();
+        String methodName = pp.methodName();
+        Class cls = Class.forName(className);
+        Object obj = cls.getDeclaredConstructor().newInstance();
+        Method method = cls.getMethod(methodName);
+        method.invoke(obj);
+    }
+}
+`
