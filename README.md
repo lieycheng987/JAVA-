@@ -1062,6 +1062,21 @@ public class annotation {
 }
 `
 ### mysql
+	my.ini配置  
+	`[client]
+# 设置mysql客户端默认字符集
+default-character-set=utf8
+[mysqld]
+#设置3306端口
+port = 3306
+# 设置mysql的安装目录 这块换成自己解压的路径
+basedir=D:\\mysql\\mysql-5.7.13-winx64
+# 允许最大连接数
+max_connections=200
+# 服务端使用的字符集默认为8比特编码的latin1字符集
+character-set-server=utf8
+# 创建新表时将使用的默认存储引擎
+default-storage-engine=INNODB`
 安装详情见网上 
-	原因：在my.ini中加入skip-grant-tables在mysql8.0中已失效。Mysql 8.X的方法是在命令行中使用mysqld --console --skip-grant-tables --shared-memory启动服务器然后root就可以免密登录了（需要开2个CMD窗口）。
+	原因：在my.ini中加入skip-grant-tables在mysql8.0中已失效。Mysql 8.X的方法是在命令行中使用`mysqld --console --skip-grant-tables --shared-memory`启动服务器然后root就可以免密登录了（需要开2个CMD窗口）。
 	该窗口使用mysql -uroot -p回车登录即可,`UPDATE mysql.user SET authentication_string='' WHERE user='root' and host='localhost';`再次登录就可以无密码登录
