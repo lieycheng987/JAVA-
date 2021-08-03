@@ -1064,4 +1064,4 @@ public class annotation {
 ### mysql
 安装详情见网上 
 	原因：在my.ini中加入skip-grant-tables在mysql8.0中已失效。Mysql 8.X的方法是在命令行中使用mysqld --console --skip-grant-tables --shared-memory启动服务器然后root就可以免密登录了（需要开2个CMD窗口）。
-	
+	该窗口使用mysql -uroot -p回车登录即可,`UPDATE mysql.user SET authentication_string='' WHERE user='root' and host='localhost';`再次登录就可以无密码登录
