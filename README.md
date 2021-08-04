@@ -1104,6 +1104,6 @@ show datebase;
   2.DML数据操作语言,用来对数据库中表的数据进行增删改查,关键字insert,delet,update    
   3.DQL数据库查询语言,用来查询数据库表中的记录,关键字:select,where等  
   4.DCL数据库控制语言,用来定义数据库访问权限的安全级别,即创建用户关键字,CRANT,REVOKE  
-!image(https://github.com/lieycheng987/JAVA-/blob/master/picture/mysql%E5%85%B3%E7%B3%BB%E5%9B%BE.png)
+![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/mysql%E5%85%B3%E7%B3%BB%E5%9B%BE.png)
 	
 	
