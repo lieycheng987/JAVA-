@@ -1082,6 +1082,7 @@ default-storage-engine=INNODB`
 	该窗口使用mysql -uroot -p回车登录即可,`UPDATE mysql.user SET authentication_string='' WHERE user='root' and host='localhost';`再次登录就可以无密码登录
 启动mysql服务  `net start mysql`
 	sql登录 `mysql -uroot root-p`
+       mysql更改密码`alter user 'root'@'localhost' identified by '1234567';`
         离开:`quit`
 mysql语句:quit离开命令
 操纵别的主机:-hip -uroot -proot或者--hostip --user-root --password-密码
