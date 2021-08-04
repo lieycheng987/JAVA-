@@ -1106,4 +1106,13 @@ show datebase;
   4.DCL数据库控制语言,用来定义数据库访问权限的安全级别,即创建用户关键字,CRANT,REVOKE  
 ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/mysql%E5%85%B3%E7%B3%BB%E5%9B%BE.png)
 	
+DateBase:
+information:描述mysql信息的,并不是真正的表,是视图  
+mysql:核心数据库,存放的表  
+performance:提升性能  
+test:一张表都没有,空的数据库  
+查看某个数据库的创建 show create database   
+#### create   
+创建数据库  create database 名称;也可以判断if not exist在创建  
+同时创建的也可以不是utf8的 用 creat database db3 character set gbk;来创建gbk的
 	
