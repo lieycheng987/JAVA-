@@ -1115,4 +1115,56 @@ test:一张表都没有,空的数据库
 #### create   
 创建数据库  create database 名称;也可以判断if not exist在创建  
 同时创建的也可以不是utf8的 用 creat database db3 character set gbk;来创建gbk的
-	
+#### 查询  
+  查询所有数据库 show database;  
+#### 修改 
+  修改数据库字符集 alter database 数据库名称 charater set 字符集;  
+#### 删除
+  drop database 数据库名称; 用if exists判断是否存在存在再删出  
+使用数据库 查询当前使用数据库的名称  select database()  
+#### 使用数据库 
+  use 数据库名称;  
+
+### DDL操作表  
+  查询表名称  show tables;  
+  查询表的结构  desc 表名;  
+  复制表,create table stu like student; 创建一个像谁的表   
+创建:create 表名();括号内写的是列明  
+    `create table student(
+     id int,   
+     name varchar,
+     age int,
+     score double(4,1),
+     birthdat date,
+     insert_time  timestamp
+	)`
+#### sql的数据类型  
+1.int类型 表示整数  
+2.小数类型 float单精度,double类型双精度例如  
+score double(5,2)(表示总共5为,小数后面保留2为有效数字)   
+3.date日期类型只包含年月日  
+ yyyy-MM-dd  
+4.datetime 包含年月日时分秒  
+yyyy-MM-dd-HH:mm:ss  
+5.时间戳类型timestamp  类型与datetime一致如果不给这个字段赋值,或者为空,默认为当前系统时间自动赋值   
+6.varchar:字符串  name varchar(20) 表示最大20个字符  
+7.BLOB类型 字节为单位存放大型东西  
+8.CLOB  
+9.BINARY(M)存放二进制东西M为支持的字节长度  
+7-9一般很少用大型文件一般存在磁盘上将路径存入数据库通过io流拿出即可
+#### 删除表  
+drop table if exists 表明;  
+#### 修改表  
+1.修改表名  
+`alter table 表名 rename to 新表名`  
+2.修改表的字符集  
+show create table 名称;   
+alter table 表名 character set 字符集名称;  
+3.添加一列   
+alter table 表名 add 列名  数据类型  ;  
+4.修改列名称  类型  
+`alter table 表名 change 列名 新列名 类型;`即改名字又该又该类型  
+`alter table stu modify 表名  类型名` 只改类型   
+5.删除列  
+`alter table stu drop 列名;`
+
