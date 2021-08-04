@@ -1080,4 +1080,30 @@ default-storage-engine=INNODB`
 安装详情见网上 
 	原因：在my.ini中加入skip-grant-tables在mysql8.0中已失效。Mysql 8.X的方法是在命令行中使用`mysqld --console --skip-grant-tables --shared-memory`启动服务器然后root就可以免密登录了（需要开2个CMD窗口）。
 	该窗口使用mysql -uroot -p回车登录即可,`UPDATE mysql.user SET authentication_string='' WHERE user='root' and host='localhost';`再次登录就可以无密码登录
+启动mysql服务  `net start mysql`
+	sql登录 `mysql -uroot root-p`
+        离开:`quit`
 mysql语句:quit离开命令
+操纵别的主机:-hip -uroot -proot或者--hostip --user-root --password-密码
+mysql安装目录结构:    
+bin放的2进制可执行文件   
+date放的记录信息    
+include 放的c的头文件  
+share放的错误信息       
+my.ini放的配置文件   
+frm文件放的数据表的文件
+sql structured query lanuguage  
+定义了所以操作所有关系型数据库的规则每一种数据库操作方式不一定一样,存在方言情况
+	
+sql通用语句:  
+show datebase;
+数据库并不区分大小写 
+注释内容 --必须加空格  #可以不加空格多行注释/**/   
+### sql分类
+  1.DDL数据定义语言,用来定义数据库对象:数据库,表,列等 create,drop,alter等  
+  2.DML数据操作语言,用来对数据库中表的数据进行增删改查,关键字insert,delet,update    
+  3.DQL数据库查询语言,用来查询数据库表中的记录,关键字:select,where等  
+  4.DCL数据库控制语言,用来定义数据库访问权限的安全级别,即创建用户关键字,CRANT,REVOKE  
+!image(https://github.com/lieycheng987/JAVA-/blob/master/picture/mysql%E5%85%B3%E7%B3%BB%E5%9B%BE.png)
+	
+	
