@@ -1169,3 +1169,50 @@ alter table 表名 add 列名  数据类型  ;
 5.删除列  
 `alter table stu drop 列名;`
 
+### DML
+1.添加数据  
+`insert into 表名 （列明1，列明2，列明3）values （值1，值2，值3）`
+需要查询时可以  
+`select * from stu`
+注意：列名和值要一一对应，若表名后面不跟列明则表示所有数据，出数字类型外其他都要加引号   
+2.删除数据   
+`delete from 表名[where 条件]`（当条件满足时从表中删除数据） 
+注意：如果没有条件就删除整个表的所有记录   
+也可用truncate table stu; 删除表，然后再创建一个空表相当于 drop table 和create table的综合
+3.修改数据  
+`update 表名 set 列明1 =值 1 [where 条件]` 
+注意事项：如果不加任何条件，会将表中所有记录全部修改  
+
+### DQL 查  
+DQL查询语句  
+1.排序查询  
+* 排序语法  
+`order by 排序字段1，排序字段2 排序方式1，排序方式2`  
+ 注意：如果不写排序方式默认为升序序列  ASE升序默认 DESC降序  
+      排序字段的先后表明了排序的优先顺序，优先级越高约在前面
+	
+	
+2.聚合查询  
+将一列数据作为整体，进行纵向计算  
+1.count 计算个数  `selet count（ifNULL(列名,0)）from 表名`  如果不为0
+2.max计算最大值  `selet max（ifNULL(列名,0)）from 表名`
+3.min计算最小值  
+4sum计算和  
+5avge 平均值  
+所有聚合函数回排除null值 所以两种解决方法 1.可以加上 if语句将null替换城0  2.不计算非空列
+	
+3.分组查询   
+`select 组 或者聚合函数 from 表名 group by 分组字段`  group by相当于分组可以再前面加where 条件或者用having都可以 
+#### where和having区别  
+where在分组之前，如果不满足条件不参与分组 
+having 在分组之后限定，如果不满足条件不会被查询  
+where不能用于判断聚合函数，而having可以用来判断聚合函数 
+
+列子`SELECT id,AVG(age) FROM stu GROUP BY id;`
+注意：分组之后查询的字段：分组字段，或者聚合函数 
+4.分页查询 
+
+###约束
+### 多表关系  
+###范式设计数据库  
+### 数据库的备份及还原
