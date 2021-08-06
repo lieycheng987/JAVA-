@@ -1190,7 +1190,7 @@ DQL查询语句
 `order by 排序字段1，排序字段2 排序方式1，排序方式2`  
  注意：如果不写排序方式默认为升序序列  ASE升序默认 DESC降序  
       排序字段的先后表明了排序的优先顺序，优先级越高约在前面
-	
+	`SELECT * FROM stu ORDER BY id,age DESC  ;`
 	
 2.聚合查询  
 将一列数据作为整体，进行纵向计算  
@@ -1211,7 +1211,46 @@ where不能用于判断聚合函数，而having可以用来判断聚合函数
 列子`SELECT id,AVG(age) FROM stu GROUP BY id;`
 注意：分组之后查询的字段：分组字段，或者聚合函数 
 4.分页查询 
+语法：limit 开始的索引，每页查询的条数；  
+公式：开始的索引 = （当前页码 - 1 ）*每页显示的条数
+`SELECT * FROM stu LIMIT 6,3;`
+注意：分页操作是方言，是mysql的一个方言，limit只能再mysql用，并不能再其他上用
 
+5.基础查询
+select * from 表名；查全表  
+综合查询  select+（字段名多个字段）+from+（表名，可以多个表以逗号分隔）+where+条件+group by（分组字段）+having+分组之后的条件限定+order by（排序方式）+limit（分页限定）  
+1.多个字段查询你  
+`SELECT NAME,age FROM stu;`--查名字和年龄
+	
+2.去重    
+在字段前加入 distinct 来取宠 
+`SELECT NAME,age FROM stu;`
+如果有多组去重，必须保持两个列的结果全部一样才可以达到
+3.计算列  
+ 可以把两个列直接相加生成新的列 与聚合函数不太一样  
+`SELECT NAME,MATH,ENGLIST,MATH+ENGLIST FROM STU;`
+4.起别名   
+AS + 别名 
+ `SELECT NAME,MATH,ENGLIST,MATH+ENGLIST 总分 FROM STU;`
+`SELECT NAME,MATH,ENGLIST,MATH+ENGLIST FROM STU;`
+
+6.条件查询  
+where子句后面跟条件  
+运算符：between...and  
+       in  
+       like
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 ###约束
 ### 多表关系  
 ###范式设计数据库  
