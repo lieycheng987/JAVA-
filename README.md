@@ -1235,23 +1235,36 @@ AS + 别名
 `SELECT NAME,MATH,ENGLIST,MATH+ENGLIST FROM STU;`
 
 6.条件查询  
-where子句后面跟条件  
-运算符：between...and  
-       in  
-       like
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+where子句后面跟条件
+sql等于就是= ，不等号可以用<>来表示
+注意null不能用等号，需要用is null
+运算符：between...and   `SELECT * FROM stu WHERE age BETWEEN 20 AND 30 ORDER BY age;`年龄20-30查询
+       in  只要列表又就可以，类似于or `SELECT * FROM stu WHERE age IN(22,25,30);`
+       like 模糊查询 （比如姓马的） 
+       like占位符_下划线：单个任意字符  
+       %百分号：多个任意字符
+        `SELECT * FROM stu WHERE age LIKE "3_";`查询30岁以上的
+	`SELECT * FROM stu WHERE NAME LIKE "___";`查询名字三个字的
+	%马%可以查到所有包含马的
+
 	
 ###约束
+概念：对表中的数据进行限定，保证数据的正确性、有效性、完整性
+分类：  
+    主键约束：primary key，   
+	
+	
+	
+    非空约束：not null，
+    在创建表时候，可加not null
+	
+	
+    唯一约束：unique，  
+    外键约束：foreign key（多表应用）
+
+	
+	
+	
 ### 多表关系  
 ###范式设计数据库  
 ### 数据库的备份及还原
