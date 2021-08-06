@@ -1252,19 +1252,40 @@ sql等于就是= ，不等号可以用<>来表示
 概念：对表中的数据进行限定，保证数据的正确性、有效性、完整性
 分类：  
     主键约束：primary key，   
-	
-	
+     注意：含义非空并且唯一，并且一张表只能有一个字段是主键，主键就是一张表中记录的唯一标识（一般都是id）
+      在创建表时添加  
+      创建完添加  `ALTER TABLE iphone MODIFY phone_number VARCHAR(13) PRIMARY KEY;`
+      删除主键 `alter table 表名 drop primary key;`
+    自动增长：如果某一列时数值类型的，使用auto_increment 可以来完成值的自动增长 ，一般配合int类型的主键来用 
+    必须在主键会根据上一条记录再自增  
+    删除自动增长`alter table 表名 modify 列名 类型`因为主键无法这样删除所以相当于删了自动增长
 	
     非空约束：not null，
     在创建表时候，可加not null
+    再创建后添加`ALTER TABLE stu MODIFY NAME VARBINARY(32) NOT NULL;`   
+    删除约束`ALTER TABLE stu MODIFY NAME VARBINARY(32) ;`   
 	
+    唯一约束：unique，  null还是可以多个     
+    创建表时，添加唯一约束创建时删除，    
+    删除唯一约束 不能用 modify只能用drop index`ALTER TABLE iphone DROP INDEX phone_number; `   
+    创建后添加唯一约束 `ALTER TABLE iphone MODIFY phone_number VARCHAR(13) UNIQUE;`  
 	
-    唯一约束：unique，  
     外键约束：foreign key（多表应用）
+    添加表时候可以添加外键  
+    注意外键必须被关联到主键的列，如果不是会报错
+    `create table（
+	...
+        外键列
+        constraint 外键名称 foreign （外键列名） references 主要名称
+	）;`
+     删除外键名称：`alter table 表名 drop foreign key 外键名称`
+     创建后添加`ALTER TABLE stu ADD CONSTRAINT 外键名字（随意起） FOREIGN KEY (主建列名) REFERENCES 关联表（列名）;`    
+     ##### 外键的级联操作 
+	![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E7%BA%A7%E8%81%94%E6%9E%B6%E6%9E%84%E5%9B%BE.png)
+        其中一对无穷表示一对多关系
+     普通改法：：外键绑定后不可以直接改数据，应为又可能关联表并没有值，所以需要设置为null再从null改为需要的值
+	
 
-	
-	
-	
 ### 多表关系  
 ###范式设计数据库  
 ### 数据库的备份及还原
