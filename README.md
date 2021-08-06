@@ -1281,7 +1281,7 @@ sql等于就是= ，不等号可以用<>来表示
      删除外键名称：`alter table 表名 drop foreign key 外键名称`
      创建后添加`ALTER TABLE stu ADD CONSTRAINT 外键名字（随意起） FOREIGN KEY (主建列名) REFERENCES 关联表（列名）;`    
      ##### 外键的级联操作 
-	![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E7%BA%A7%E8%81%94%E6%9E%B6%E6%9E%84%E5%9B%BE.png)
+	
         其中一对无穷表示一对多关系
      普通改法：：外键绑定后不可以直接改数据，应为又可能关联表并没有值，所以需要设置为null再从null改为需要的值
 	
