@@ -1317,5 +1317,35 @@ sql等于就是= ，不等号可以用<>来表示
       码：如果在一张表上，一个属性或者属性组，被其他所有属性完全依赖，则称这个属性为该表的码  
       主属性：码属性组中的所有属性   
       非主属性：出码属性组的属性  
-  第三范式：再第二范式的基础上，任何非主属性不依赖于其他非主属性
+  第三范式：再第二范式的基础上，任何非主属性不依赖于其他非主属性  
+	
+	
 ### 数据库的备份及还原
+备份：命令行方式或者图形画界面  
+命令行：mysqldump -u用户名 -p 密码 》 保存的路径  
+	
+       还原：登录，创建，使用执行文件。 source文件路径
+	
+### 多表查询    	
+查询语法  
+    sleect 列名 列表   from 表名列表  where
+    笛卡尔集 逗号查询可出现组合情况  
+    多表查询分类：  
+    1.内敛查询    
+    隐式内连查询：用where消除无用数据 
+	`select * from emp,dept where emp.id=dept.id;`
+        `SELECT emp.name,salary,dept.name FROM emp,dept WHERE emp.id=dept.id;`
+    同理可以用起别名的方法  
+	
+	`SELECT 
+	t1.name,salary,t2.name
+	FROM 
+	emp t1 ,dept t2
+	WHERE
+	t1.id = t2.id;` 
+	
+    2.外连接查询  
+    3.子查询
+	
+### 事物  
+### DCL	
