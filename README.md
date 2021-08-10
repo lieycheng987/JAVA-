@@ -1331,10 +1331,10 @@ sql等于就是= ，不等号可以用<>来表示
     sleect 列名 列表   from 表名列表  where
     笛卡尔集 逗号查询可出现组合情况  
     多表查询分类：  
-    1.内敛查询    
+   #### 1.内敛查询    
     隐式内连查询：用where消除无用数据 
 	`select * from emp,dept where emp.id=dept.id;`
-        `SELECT emp.name,salary,dept.name FROM emp,dept WHERE emp.id=dept.id;`
+        `SELECT emp.name,salary,dept.name FROM emp,dept WHERE emp.id=dept.id;`  
     同理可以用起别名的方法  
 	
 	`SELECT 
@@ -1343,9 +1343,38 @@ sql等于就是= ，不等号可以用<>来表示
 	emp t1 ,dept t2
 	WHERE
 	t1.id = t2.id;` 
+   
+    显式内连接： 语法  
+	`select 字段列表 from 表名1 ineer ioin 表名2  on 条件`  
 	
-    2.外连接查询  
-    3.子查询
+	` SELECT  t1.id, t2.name FROM emp t1 INNER JOIN dept t2 ON t1.id = t2.id;`
+    内连接查询总结： 
+      1.从奶协表查询数据  
+      2.条件是什么  
+      3.查询哪些字段
 	
+	
+	
+   #### 2.外连接查询    
+	1.左外链接查询的是左表所有数据以及其交集部分   
+	 语法：
+	`select 字段列表 from 表1 left[outer] join 表2 on 条件`
+	2.右外链接   
+        右外链接同理，查询右表所有记，将left 换成right即可  left左边是左表
+   #### 3.子查询   
+        查询中嵌套查询，并且称嵌套的查询为子查询    
+        例如查询工资最高的人，这时候要先查最高是多少，再判断谁是这个   
+	` SELECT NAME FROM emp WHERE salary=(SELECT MAX(salary) FROM emp);`   
+       不同种情况    
+	1.子查询结果是单行单列      
+        * 子查询可以作为条件，使用运算符进行判断  例如使用in这种集合来判断   
+	
+	2.子查询结果是多行的单列的   
+         子查询的结果有两个可以用 in等运算符包含
+	
+	3.子查询的结果时多行多列
+	 *查询工资大于1900的所有员工名字俱乐部，和工资  
+        将一个表作为虚拟秒（）用来查询
+	`SELECT t1.name,t2.name,salary FROM dept t1,(SELECT * FROM emp WHERE salary>1900) t2 WHERE t1.id = t2.id;`
 ### 事物  
 ### DCL	
