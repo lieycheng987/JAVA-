@@ -1061,7 +1061,7 @@ public class annotation {
     }
 }
 `
-### mysql
+## mysql
 	my.ini配置  
 	`[client]
 # 设置mysql客户端默认字符集
@@ -1443,3 +1443,13 @@ show gants for '用户名'@'主机名';
 grant 权限列表 on 数据库名.表名 to "用户名"@'主机名'
 例子`GRANT SELECT,INSERT,UPDATE,CREATE,DELETE ON db1.account TO 'lyc'@'localhost';`授予lyc查询插入更新    
 创建删除db1数据库中account表的权限  
+如果想赋予所有权限  
+`grant all on *.* to 名字@主机名`
+撤销权限  
+revoke 权限列表 on 数据库.表名 from '用户名'@'主机名'
+	
+	
+## JDBC  
+1.jdbc基本概念    
+2.快速入门  
+3.对jdbc中各个接口和类的详解  
