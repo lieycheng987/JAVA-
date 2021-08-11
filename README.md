@@ -1,4 +1,4 @@
-# JAVA- 
+## JAVA - 
 - [局部变量和成员变量的区别](#局部变量和成员变量的区别)
 - [collection集合集合是java中提供的一种容器可以用来存储多个数据](#collection集合集合是java中提供的一种容器可以用来存储多个数据)
 
@@ -1452,6 +1452,9 @@ revoke 权限列表 on 数据库.表名 from '用户名'@'主机名'
 ## JDBC  
 1.jdbc基本概念      
 概念  ：java DataBase Connectivity java 用java操作数据库 
-等于是用统一的一套java代码可以操作所用的数据型关系
+等于是用统一的一套java代码可以操作所用的数据型关系 
+本质:其实时官方sun公司定义的一套操作所有关系型数据库的规则,即接口,各个数据库厂商去实现这套接口,提供数据库驱动jar包,我们可以  
+使用这套接口(jdbc)编程,真正执行的时驱动jar包中的实现类   
+![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/jdbc%E6%A6%82%E5%BF%B5.png)
 2.快速入门  
 3.对jdbc中各个接口和类的详解  
