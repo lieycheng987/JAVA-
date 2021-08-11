@@ -1450,6 +1450,8 @@ revoke 权限列表 on 数据库.表名 from '用户名'@'主机名'
 	
 	
 ## JDBC  
-1.jdbc基本概念    
+1.jdbc基本概念      
+概念  ：java DataBase Connectivity java 用java操作数据库 
+等于是用统一的一套java代码可以操作所用的数据型关系
 2.快速入门  
 3.对jdbc中各个接口和类的详解  
