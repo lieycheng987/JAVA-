@@ -1450,7 +1450,7 @@ revoke 权限列表 on 数据库.表名 from '用户名'@'主机名'
 	
 	
 ## JDBC  
-1.jdbc基本概念      
+###  1.jdbc基本概念      
 概念  ：java DataBase Connectivity java 用java操作数据库 
 等于是用统一的一套java代码可以操作所用的数据型关系 
 本质:其实时官方sun公司定义的一套操作所有关系型数据库的规则,即接口,各个数据库厂商去实现这套接口,提供数据库驱动jar包,我们可以  
@@ -1458,5 +1458,19 @@ revoke 权限列表 on 数据库.表名 from '用户名'@'主机名'
 ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/jdbc%E6%A6%82%E5%BF%B5.png)    
 	
 
-2.快速入门  
-3.对jdbc中各个接口和类的详解  
+###  2.快速入门    
+* 步骤:
+1.导入驱动jar包     
+** 复制到目录下  
+   右键 add as libaray
+2.注册驱动  
+3.获取数据库链接对象 connection对象  
+4.定义sql语句  
+5.获取执行sql语句的对象 Statement  
+6.执行sql,接受返回结果   
+7.处理结果  
+8.释放资源
+	
+	
+	
+###  3.对jdbc中各个接口和类的详解  
