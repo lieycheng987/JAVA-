@@ -1418,8 +1418,28 @@ sql等于就是= ，不等号可以用<>来表示
 管理用户授权   
  1.管理用户   
  添加用户  
- 删除用户  
+`create user ’用户名‘@”主机名 indentified by 密码`  
+例如  
+`
+CREATE USER 'lyc'@'localhost' IDENTIFIED BY '1234567';
+CREATE USER 'public'@'%' IDENTIFIED BY '1234567';`
+其中'%'表示主机通配符任何主机都可以，网络方面可以填写ip地址
+ 删除用户     
+	
+drop user '用户名'@'主机名字'；
  修改用户密码   
+update user set password = password('密码') where user ="用户名";  
+或者  
+set password for "用户名"@"主机名" = password（“密码”）；
+	
 查询用户    
- 首先的切换到mysql数据库
+ 首先的切换到mysql数据库  
+`use mysql;`  
+*查询user表 `select * from user`
  2.对用户授权   
+查询权限   
+show gants for '用户名'@'主机名';  
+授予权限  
+grant 权限列表 on 数据库名.表名 to "用户名"@'主机名'
+例子`GRANT SELECT,INSERT,UPDATE,CREATE,DELETE ON db1.account TO 'lyc'@'localhost';`授予lyc查询插入更新    
+创建删除db1数据库中account表的权限  
