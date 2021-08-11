@@ -1455,6 +1455,8 @@ revoke 权限列表 on 数据库.表名 from '用户名'@'主机名'
 等于是用统一的一套java代码可以操作所用的数据型关系 
 本质:其实时官方sun公司定义的一套操作所有关系型数据库的规则,即接口,各个数据库厂商去实现这套接口,提供数据库驱动jar包,我们可以  
 使用这套接口(jdbc)编程,真正执行的时驱动jar包中的实现类   
-![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/jdbc%E6%A6%82%E5%BF%B5.png)
+![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/jdbc%E6%A6%82%E5%BF%B5.png)    
+	
+
 2.快速入门  
 3.对jdbc中各个接口和类的详解  
