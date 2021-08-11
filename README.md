@@ -1406,7 +1406,7 @@ sql等于就是= ，不等号可以用<>来表示
        隔离级别从小大大安全性越来越高，但效率越来越低
        read uncommit ：读未提交  
 	*产生的问题：（若设置隔离级别为这个）三个问题都有可能发生  
-       read commit ：读已提交    oracle数据库  
+       read commit ：读已提交    oracle数据库  当对方提交后就可一看到更改的数据
        * 产生的问题不可重复读，欢读  
        repeatable read ：可重复读  mysql数据库就是这样只有当自己也提交后才能看到别的事物更改的情况
 	*产生的问题：幻读  
@@ -1415,3 +1415,11 @@ sql等于就是= ，不等号可以用<>来表示
       数据库查询隔离级别：  select @@tx_isolation 8.0版本已经弃用了 新的为`SELECT  @@transaction_isolation;`
       数据库设置隔离级别： set global transaction isolation level 所需级别;
 ### DCL	
+管理用户授权   
+ 1.管理用户   
+ 添加用户  
+ 删除用户  
+ 修改用户密码   
+查询用户    
+ 首先的切换到mysql数据库
+ 2.对用户授权   
