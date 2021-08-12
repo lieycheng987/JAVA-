@@ -1474,3 +1474,19 @@ revoke 权限列表 on 数据库.表名 from '用户名'@'主机名'
 	
 	
 ###  3.对jdbc中各个接口和类的详解  
+1.DriverManager :驱动管理对象   
+用于管理一组jdbc驱动程序的基本服务   
+功能:注册驱动,获取数据库连接,将他加载进内存,因为存在静态代码块所以可以自动执行,也可以直接new DriverManager类调用registerDriver方法来注册
+其中registerDrivcer需要一个Driver类的参数,mysql5之后的驱动jar包可以省略
+DriverManager有getconnection方法可以连接数据库"jdbc:mysql://localhost:3306/db1"   如果本机地址是域名可不写
+	
+	
+2.Connection:数据库连接对象  
+	
+	
+	
+	
+	
+3.Statement:执行sql对象  
+4.ResultSet:结果集对象  
+5.PreparedStatement:statement对象的子类 功能更强大
