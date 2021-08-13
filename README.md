@@ -1566,5 +1566,15 @@ rs.getMetaData().getColumnCount()可以获得列数
 classloader类中有getResource方法返回URL对象，通过url对象的getpath方法可以进行绝对定位   
 其中pro对象的put方法可以将值作为map数组存放如pro对象，而getproperty方法可以根据键找值
 	
+#### 登录  
+再jdbc判断登录密码时要进行字符串拼接其中 username = '"+username+"'注意两端的单引号
 	
-5.PreparedStatement:statement对象的子类 功能更强大
+	
+5.PreparedStatement:statement对象的子类 功能更强大是statement的子接口
+ 1.SQL注入问题，拼接sql时有sql关键字参与拼接会造成问题     
+1.输入用户随便，输入密码学一个恒等式，可以导致这个这个登录成功，会影响使用  
+2.预编译sql：参数使用？作为占位符   
+步骤：再定义sql时候参数使用sql的参数用？作为占位符
+      connection中需要调用getpreparedstatement方法需要传递sql参数  
+      给？赋值：方法setXxx（参数1，参数2）其中参数1是问号的位置，参数二是参数的值  
+      而再执行sql时候preparedstatement是不需要传递sql语句的
