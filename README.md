@@ -1549,7 +1549,14 @@ DriverManager有getconnection方法可以连接数据库"jdbc:mysql://localhost:
 
 
 rs.getMetaData().getColumnCount()可以获得列数
+#### jdbc工具类  
+1.抽取注册驱动 
+2.抽取一个方法链接   
+3.抽取方法释放资源
 
-
-	
+获取当前路径下的文件方式 --->classLoader可以加载字节码文件进内存，同时也可以获取src文件下的路径 
+`   ClassLoader classLoader = util.class.getClassLoader();
+            URL resource = classLoader.getResource("jdbc.properties");//统一资源定位符
+            String path = resource.getPath();`
+classloader类中有getResource方法返回URL对象可以进行绝对定位	
 5.PreparedStatement:statement对象的子类 功能更强大
