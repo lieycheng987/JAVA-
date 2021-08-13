@@ -1482,11 +1482,74 @@ DriverManager有getconnection方法可以连接数据库"jdbc:mysql://localhost:
 	
 	
 2.Connection:数据库连接对象  
-	
-	
-	
+功能：  1.获取执行sql的对象
+        createstatement（）方法返回一个statement类的对象
+        preparestatement（string sql）
+	2.管理事物   
+         *开启事务：setAutocommit（boolean autoCommit）调用该方法设置参数为false开启事务
+	 *回滚事物 rollback（）
+	 *提交事务 commit方法提交事物
 	
 	
 3.Statement:执行sql对象  
-4.ResultSet:结果集对象  
+  用于执行静态（里面参数给定值）sql语句并返回其生成结果的对象，而perparestatement是动态sql语句
+	*1.boolean execute（string sql） 可以执行任意的sql语句 ture如果第一个结果是一个resultset对象，false如果是更新计数或没成功  
+	*2. int executeUpadte(String sql) 执行DML和DDl  返回值是受影响的行数，可以通过返回值判断Dml语句是否成功>0成功
+	*如果执行dml语句是没有返回的
+	
+	
+	
+	
+	
+	
+4.ResultSet:结果集对象  resultset本身就是封装查询结果的情况
+	*1.executeQuery（String sql）执行Dql语句（select）语句，返回的是结果集对象    
+	*游标概念返回的结果集对象有游标默认指向0层数据再第一层需要用next方法向下移动一行
+	*getXxx获取数据类型（xxx表示类型）其中get方法还需要参数参数是获取那一列  
+	    1.int类型表示列的编号从1开始  
+	    2.string类型表示列名
+      DQL查询代码
+	` public static void main(String[] args) {
+        Connection ctn = null;
+        Statement sttm = null;
+        ResultSet res = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");//加载类进内存执行方法
+            ctn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db1", "root", "1234567");
+            sttm = ctn.createStatement();
+            String sql = "select * from emp ORDER BY id ";//排序查询sql表
+            res = sttm.executeQuery(sql);
+            while (res.next()){
+                int id =res.getInt("id");
+                String name = res.getString("name");
+                String sex = res.getString("sex");
+                int salary = res.getInt("salary");
+                System.out.println(id+"  "+name+"  "+sex+"  "+salary);
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            try {
+                ctn.close();
+                sttm.close();
+                res.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+    }`
+    一般这种可以封装为泛型类然后继承object类，用方法来引入增加可复用性
+	ResultSetMetaData rsmt=rs.getMetaData();
+
+得到结果集(rs)的结构信息，比如字段数、字段名等。
+
+使用rs.getMetaData().getTableName(1))就可以返回表名
+
+
+rs.getMetaData().getColumnCount()可以获得列数
+
+
+	
 5.PreparedStatement:statement对象的子类 功能更强大
