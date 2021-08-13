@@ -1557,6 +1557,14 @@ rs.getMetaData().getColumnCount()可以获得列数
 获取当前路径下的文件方式 --->classLoader可以加载字节码文件进内存，同时也可以获取src文件下的路径 
 `   ClassLoader classLoader = util.class.getClassLoader();
             URL resource = classLoader.getResource("jdbc.properties");//统一资源定位符
-            String path = resource.getPath();`
-classloader类中有getResource方法返回URL对象可以进行绝对定位	
+            String path = resource.getPath();           
+	    url = pro.getProperty("url");
+            System.out.println(resource);
+            user = pro.getProperty("user");
+            password = pro.getProperty("password");
+            driver = pro.getProperty("driver");`
+classloader类中有getResource方法返回URL对象，通过url对象的getpath方法可以进行绝对定位   
+其中pro对象的put方法可以将值作为map数组存放如pro对象，而getproperty方法可以根据键找值
+	
+	
 5.PreparedStatement:statement对象的子类 功能更强大
