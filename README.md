@@ -1576,5 +1576,49 @@ classloader类中有getResource方法返回URL对象，通过url对象的getpath
 2.预编译sql：参数使用？作为占位符   
 步骤：再定义sql时候参数使用sql的参数用？作为占位符
       connection中需要调用getpreparedstatement方法需要传递sql参数  
-      给？赋值：方法setXxx（参数1，参数2）其中参数1是问号的位置，参数二是参数的值  
+      给？赋值：方法setXxx（参数1，参数2）其中参数1是？的位置，参数二是参数的值  
       而再执行sql时候preparedstatement是不需要传递sql语句的
+案列
+	` public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("请输入账号");
+        String s = scanner.nextLine();
+        Scanner scn = new Scanner(System.in);
+        System.out.println("请输入密码");
+        String s1 = scn.nextLine();
+        boolean log = new login().log(s,s1);
+        if(log)
+            System.out.println("登陆成功");
+        else
+            System.out.println("登陆失败");
+
+    }
+
+
+    /**
+     * 登录
+     */
+    public boolean log(String username,String password){
+        if(username==null||password==null){
+            return false;
+        }
+        Connection con = null;
+        PreparedStatement pre = null;
+        ResultSet res  = null;
+        try {
+            con = util.getConnection();
+            String sql = "select * from login where username = ?and password = ?";
+            pre = con.prepareStatement(sql);
+            pre.setString(1,username);
+            pre.setString(2,password);
+            res = pre.executeQuery();
+            return res.next();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        finally {
+            util.close(res,pre,con);
+        }
+        return false;
+    }`
+	
