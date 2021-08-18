@@ -1663,7 +1663,7 @@ maxWait = 3000`
 工具类列子应用    
 	
 	
-` public static void main(String[] args) {
+``` public static void main(String[] args) {
         Connection con = poolutils.getconnection();
         String sql = "INSERT INTO account VALUES(NULL,?,?)";
         PreparedStatement pstm = null;
@@ -1688,7 +1688,7 @@ maxWait = 3000`
         }finally {
             poolutils.close(pstm,con,res);
         }
-    }`
+    }```
 	
 	
 ### Spring JDBC：JDBC Template
