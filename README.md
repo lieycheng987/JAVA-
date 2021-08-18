@@ -1622,3 +1622,69 @@ classloader类中有getResource方法返回URL对象，通过url对象的getpath
         return false;
     }`
 	
+### jdbc控制事务
+  事务是一个包含多个步骤的业务操作，如果被事务管理则多个事务要么成功要么失败   
+  操作：
+	1.开启事务  setAUtoCommit（boolean autoCommit）调用该方法设置参数为false开启事务   
+	2.提交事务  commit（）  
+	3.回滚事务 rollback（）  
+       *在操作开始的时候开启事务，再结束时候提交事务，再catch中回滚事务
+	
+###数据库连接池  DataSource接口
+  DataSource接口：基本实现生成标准的Connection对象  
+   连接池实现生成自动参与连接池的connection对象，分布式事务实现，生成可用于分布式事务的Connection对象，并且几乎总是参与连接池
+   就是容器存放数据库连接的容器  
+ *当系统初始化后，容器被创建，容器中会申请一些连接对象，当用户来访问数据库时，从容器中获取连接对象，用户访问完后会归还容器   
+ 好处：节约资源，用户访问高效  
+ 方法：connection对象下的getconnection方法返回一个数据库连接池  
+ C3P0：数据库连接池  
+Druid：数据库连接池技术，由阿里巴巴提供  
+以上两个均实现了DataSource接口
+连接池需要做的事：getConnection和归还链接，并且如果对象从连接池中获取，那么调用close方法将不会关闭而是归还，不要忘记导入数据库驱动jar
+1.导入jar包  
+2.定义配置文件   
+`driverClassName = com.mysql.cj.jdbc.Driver
+url = jdbc:mysql://localhost:3306/db1
+username = root
+password = 1234567
+initialSize = 5
+maxActive = 10
+maxWait = 3000`  
+3.加载配置文件  
+4.获取数据库连接池对象通过工厂函数`DruidDataSourceFactory`类的`createDataSource`静态方法获取
+	
+2.定义工具类   
+提供方法  
+1.通过数据库连接池获取链接   
+2.提供静态代码块加载配置文件，初始化连接池对象  
+3.获取连接池的方法   
+工具类列子应用   
+` public static void main(String[] args) {
+        Connection con = poolutils.getconnection();
+        String sql = "INSERT INTO account VALUES(NULL,?,?)";
+        PreparedStatement pstm = null;
+        ResultSet res = null;
+        try {
+            pstm = con.prepareStatement(sql);
+            pstm.setString(1,"刘六");
+            pstm.setDouble(2,1992);
+            int count = pstm.executeUpdate();
+            if(count>0){
+                System.out.println("添加成功");
+                String sql1 = "SELECT NAME,balance FROM account WHERE NAME = ? GROUP BY NAME,balance";
+                pstm = con.prepareStatement(sql1);
+                pstm.setString(1,"刘六");
+                res = pstm.executeQuery();
+                while(res.next()){
+                    System.out.println(res.getString("name")+"  "+res.getDouble("balance"));
+                }
+            }else System.out.println("添加失败");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            poolutils.close(pstm,con,res);
+        }
+    }`
+	
+	
+### Spring JDBC：JDBC Template
