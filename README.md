@@ -1661,7 +1661,8 @@ maxWait = 3000`
 2.提供静态代码块加载配置文件，初始化连接池对象  
 3.获取连接池的方法   
 工具类列子应用    
-
+	
+	
 ` public static void main(String[] args) {
         Connection con = poolutils.getconnection();
         String sql = "INSERT INTO account VALUES(NULL,?,?)";
