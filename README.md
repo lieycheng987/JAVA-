@@ -1642,7 +1642,8 @@ Druid：数据库连接池技术，由阿里巴巴提供
 以上两个均实现了DataSource接口
 连接池需要做的事：getConnection和归还链接，并且如果对象从连接池中获取，那么调用close方法将不会关闭而是归还，不要忘记导入数据库驱动jar
 1.导入jar包  
-2.定义配置文件   
+2.定义配置文件    
+
 `driverClassName = com.mysql.cj.jdbc.Driver
 url = jdbc:mysql://localhost:3306/db1
 username = root
@@ -1650,6 +1651,7 @@ password = 1234567
 initialSize = 5
 maxActive = 10
 maxWait = 3000`  
+	  
 3.加载配置文件  
 4.获取数据库连接池对象通过工厂函数`DruidDataSourceFactory`类的`createDataSource`静态方法获取
 	
@@ -1658,7 +1660,8 @@ maxWait = 3000`
 1.通过数据库连接池获取链接   
 2.提供静态代码块加载配置文件，初始化连接池对象  
 3.获取连接池的方法   
-工具类列子应用   
+工具类列子应用    
+
 ` public static void main(String[] args) {
         Connection con = poolutils.getconnection();
         String sql = "INSERT INTO account VALUES(NULL,?,?)";
