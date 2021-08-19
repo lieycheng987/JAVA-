@@ -1692,3 +1692,24 @@ maxWait = 3000`
 	
 	
 ### Spring JDBC：JDBC Template
+1.通过spring封装的jdbc实现基本操作  
+导入jar包    
+`JdbcTemplate tem = new JdbcTemplate(datasource对象)`
+也就是要返回一个数据库连接池  
+调用jdbctemplate的方法完成CRUD操作  
+*update（）方法执行DML语句增删改  
+*queryForMap（）查询结果将结果集封装为map集合  注意结果集只能是1   
+*queryForList()查询结果集封装为list集合  将map集合装入list中
+*query（）将结果封装为JavaBean对象  需要传入rowmapper对象，改接口可以自己实现也可以用别人的  
+`new RowMapper<E>(){}`   
+官方的只需要 传入一个`new beanPropertyRowMapper<E>(E.class)`需要传入泛型和泛型的字节码文件  
+同时再自己定义类时候一定要用包装类不要直接用基本类，因为基本类不接受null而包装类可以
+*queryForObject()：查询结果封装为对象用于查询聚合函数的  需要用传入返回值类型的字节码文件
+	
+	
+	
+### XML  
+#### 可扩展性：标签都是自定义的  
+#### 功能
+#### html与XMl  
+ *w3c万
