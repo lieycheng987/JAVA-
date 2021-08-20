@@ -1775,3 +1775,27 @@ webLogic：oracle公司，大型的JavaEE服务器，支持所有的JavaEE规范
 webSphere：IBM公司的，大型的JavaEE服务器，支持所有的JavaEE规范，收费的  
 JBOss：JBOSS公司的大型javaEE服务器   
 Tomcat：APache基金组织的，中小型JavaEE服务i其，仅仅支持少量的JavaEE规范
+
+
+#### Tomcat  
+bin目录：二进制的可执行文件   
+config：配置文件    
+lib：依赖jar包  
+logs：日志文件，通过日志调控  
+temp：临时文件  
+webapps：存放web项目的  
+  startup.bat批处理文件
+简单部署：将项目打成一个war包再将war包部署到webapps下  
+也可以用虚拟目录  
+再serve文件下配置  再host标签体下配置  
+<context docBase ="文件目录" path="/虚拟路径">  
+或者再conf下的CataLina\locahost创建任意名称的xml文件  
+文件中编写<Context docBase = ”路径“ >虚拟路径就是文件名称   
+#### 静态项目于动态项目  
+目录结构：  
+java动态项目的目录结构  
+目录的根目录  
+    web-Inf目录  
+     ----web.xml：web的核心配置文件  
+     ----ckasses目录：放置字节码文件的目录  
+     ----lib目录防止依赖的jar包
