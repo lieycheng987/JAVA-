@@ -1722,7 +1722,56 @@ maxWait = 3000`
 	 规则：名称不能包含空格必须要有一个跟标签，属性必须用引号引起来，并且xml的标签区分大小写  
 	 id属性值是唯一的  
 	 约束 ：说明文档，规定xml文档的书写规则  
-dtd：约束文档  
- 内部文档dtd：卸载xml内部  
+dtd和schema：约束文档  （+表示一次或者多次*表示0此或者多次）  
+dtd文档：通过<!element>约束标签
+ 内部文档dtd：写在xml内部  
+ <!DOCTYPE students{
+  约束内容  
+  <!ELEMENT> stundets(student+)>
+  <!ELEMENT student(name,age,sex)>
+  <!ATTLIST student number ID #REQUIRED>
+}>
  外部：将约束规则卸载外都  
- 本地：<!DOCTYPE 跟标签名称>
+ 外部分为两种本地和网络：<!DOCTYPE 跟标签名称 system "dtd文件的位置">  
+ 网络上的:<!Doctype 跟标签 public "dtd文件名字" “dtd文件的位置URL>
+Schema:
+引入文档：1. 先要写跟标签引入xsi前缀  
+	 2. 引入xsd文件命名空间  
+	 3. 为每一个xsd约束声明一个前缀，作为标识其前缀是因为有可能引用多个文档   
+解析：操作xml文档，将文档中的数据读取到内存中  
+      写入：将内存中的数据保存
+解析xml的方式  
+1.DOM将标记语言文档加载进内存，形成一颗dom树所以可以同过document.getelementByid（）这种   
+同时可以对节点进行crud。但有一定缺点，dom一次加载进内存形成的dom树可能比源文件大一万倍   
+2.sax思想：逐行读取，基于事件驱动  
+优点：在内存中基本只有一行，占内存小    
+缺点：无法写人，读取一行就释放一行，所以不能增删改   
+xml的解析器   
+    1.JAXP sun公司提供的解析器，支持dom和sax的思想，但性能很低   
+    2.DOM4J 基于dom思想实现的   
+    3.Jsoup 基于java的html的解析器  
+    4.PULL Android内部操作系统解析器，基于sax的   
+	  
+Jsoup入门：可用来做爬虫 
+parse的重载可以放文件或者string甚至是url
+	*步骤
+	1.导入jar包  
+	2.获取DOcument对象  
+	3.获取对应的标签Element对象   
+       解析就是加载文档进内存获取dom对象    
+document对象：
+element对象：元素对象   
+node对象：节点对象  
+	
+XPath 再xml中查找的语言  
+//s  查找s下所有元素  
+	
+### web服务器  
+服务器：安装了服务器软件的计算机  
+服务器软件：接受用户的请求，处理请求，做出响应  
+web服务器软件：接受用户的请求，处理请求，做出响应  
+常见的java相关的web服务软件   
+webLogic：oracle公司，大型的JavaEE服务器，支持所有的JavaEE规范，收费的   
+webSphere：IBM公司的，大型的JavaEE服务器，支持所有的JavaEE规范，收费的  
+JBOss：JBOSS公司的大型javaEE服务器   
+Tomcat：APache基金组织的，中小型JavaEE服务i其，仅仅支持少量的JavaEE规范
