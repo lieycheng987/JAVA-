@@ -1833,4 +1833,9 @@ servlet没有调用自己执行的原因：
 3.通过ip可以扎到注意，通过虚拟目录找到项目，又通过path找到资源，找有没有url-pattion与路径相符，再通过name找到名字，再通过名字找到全类名  
 tomcat将全类名对应的字节码文件加载如内存，并且创建了对象，创建class。newInstance对象闯进新的对象，调用service方法，所以servlet的执行依赖于容器  
 这个容器就是服务器  
-       ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/servlet%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png)
+		
+		
+---
+![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/throw%E7%B1%BB.png)
+![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/servlet%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png)
+
