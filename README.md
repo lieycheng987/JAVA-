@@ -1814,7 +1814,7 @@ webapps：存放web项目的
   startup.bat批处理文件
 简单部署：将项目打成一个war包再将war包部署到webapps下  
 也可以用虚拟目录  
-可以从配置地方设置虚拟目录
+虚拟路径是项目的路径可以从配置地方设置虚拟目录
 再serve文件下配置  再host标签体下配置  
 <context docBase ="文件目录" path="/虚拟路径">  
 或者再conf下的CataLina\locahost创建任意名称的xml文件  
@@ -1880,4 +1880,4 @@ destroy:再服务器关闭时候执行，也只执行一次
 #### 注解配置servlet  
 在3.0之后支持注解配置  
 @Webservlet  
-value一般标识最重要的属性，当只有一个属性时候value又可以不写，所以直接@Webservlet（路径）
+value一般标识最重要的属性，当只有一个属性时候value又可以不写，所以直接@Webservlet（资源路径）
