@@ -11,7 +11,7 @@
 3.生命周期不一样
   局部变量随着方法进栈而诞生，同理随着出栈而消失  
   成员变量随着对象创建而诞生，随着JVM垃圾回收而消失
-  
+
 ### this
 谁调用方法谁就是this
 例如person.set() 那么this指向的pers
@@ -187,11 +187,11 @@ T t ：Type类型
 集合在定义时不知道使用什么类型所以使用E
 ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/2.png)  
 >> 创建集合对象，不使用泛型
->>>好处：集合不使用泛型，默认类型就是object类型，可存储任意类型数据  
->>>弊端：不安全，会引发异常  
->>集合对象使用泛型  
->>>好处：避免了类型转换的麻烦，存储的什么类型，取出的就是什么类型  
->>>弊端：反省是什么类型，只能存储什么类型  
+>> >好处：集合不使用泛型，默认类型就是object类型，可存储任意类型数据  
+>> >弊端：不安全，会引发异常  
+>> >集合对象使用泛型  
+>> >好处：避免了类型转换的麻烦，存储的什么类型，取出的就是什么类型  
+>> >弊端：反省是什么类型，只能存储什么类型  
 #### 泛型的方法
 泛型也可以用在方法上，定义在修饰符和返回值类型之间
 泛型方法如下`public <E> void method1(E m)`
@@ -217,7 +217,7 @@ T t ：Type类型
     // TODO Auto-generated method stub
     System.out.println(e);
   }
-  
+
 }`
 #### 泛型通配符
  ？代表任意的数据类型，使用方式，不能创建对象使用，只能作为方法的参数使用  
@@ -246,33 +246,33 @@ T t ：Type类型
 #### 可变参数原理 
 可变参数底层就是一个数组，根据传递参数个数不同，会创建不同长度的数组，来存储这些参数传递的参数个数。
 参数传 类型 ....arr
-*** 注意事项：1.一个方法的参数列表只能有一个可变参数  
+*** 注意事项：1.一个方法的参数列表只能有一个可变参数 
              2.如果方法参数有多个，只能把可变参数写在末尾。
              3.可以用object类来接受任意类型数据
 ### collections的工具类
  collections中有addall方法可添加多个元素
- sort方法排序。静态方法，默认升序，第一种方法要重写排序方法compareTo。  
+ sort方法排序。静态方法，默认升序，第一种方法要重写排序方法compareTo。 
                                  第二种方法自己new 一个compartor，然后直接覆盖重写方法
 ### map
-键值对，k必须唯一，及键唯一值可重复，键相当于坐标而值相对与数值，不同步多线程的。可以通过get（key）找v
-方法：  
-1.put方法把指定的键值对添加到map中 put（k，v）返回值v，若key不重复，返回null，若key重复返回被替换的v  
-2.remove方法把指定的建所对应的键值对元素在map中删除，返回删除元素  
-3.containskey 方法判断键值对中有无这个key，有返回true，没有返回false  
-4.keysey方法 遍历map集合，把map集合中的所有key取出来放到set集合中 set<k>keyset() 该方法返回一个set<k>类  增强for循环遍历即可
-5.Entry<k，v> 映射项，在map接口中有个内部接口entry,作用，党map集合一创建，在map集合中回创建一个Entry对象，用来记录键与值（键值对象，键与值的映射关系）  
-  可以用他来遍历map集合，该方法把map的Entry对象取出放到set集合中Entry是map类中的静态方法，会绑定map中的所有键值对，entryset是将返回的键值对存储到set中
- ### hashmap
+键值对，k必须唯一，及键唯一值可重复，键相当于坐标而值相对与数值，不同步多线程的。可以通过get（key）找value  
+put方法把指定的键值对添加到map中 put（k，v）返回值v,若key不重复，返回null,若key重复返回被替换的v  
+remove方法把指定的建所对应的键值对元素在map中删除，返回删除元素  
+containskey 方法判断键值对中有无这个key，有返回true，没有返回false  
+keysey方法 遍历map集合，把map集合中的所有key取出来放到set集合中 set<k>keyset() 该方法返回一个set<k>类  增强for循环遍历即可   
+Entry<k，v> 映射项，在map接口中有个内部接口entry,作用，党map集合一创建，在map集合中回 创建一个Entry对象，用来记录键与值（键值对象，键与值的映射关系）    
+可以用他来遍历map集合，该方法把map的Entry对象取出放到set集合中Entry是map类中的静态方法，会绑定map中的所有键值对，entryset是将返回的键值对存储到set中   
+
+####  hashmap
   hashmap中如果要用自己定义的类作为key，就必须重写equal和hashcode方法。
  ### hashtable  同步实现类（单线程）
   早期的双链集合，哈希table不能存储空，无论键和值都不能空，因为是单线程的集合所以速度很慢
-## Jdk9新特性
+##  Jdk9新特性
   List，map，set接口里面添加了一个静态方法of，可以给集合一次添加多个元素.  
   static<E> list <E> of(E ... element)  
   使用前提:当集合中存储的元素个数已经确定，不再进行改变了。（of方法只适用于set，list，map，但不适用于接口的实现类）  
           of方法的返回值是不能改变的集合，集合不能在使用add，put方法进行添加元素，否则会抛出异常    
           map和set在调用接口的of方法时，不能有任何重复元素，否则会抛出异常  
-  
+
   ### Debug调试程序  
   可以让大妈逐行执行，查看代码执行的过程，调试程序中出现的bug 
   执行程序 f8 ：逐行执行  
@@ -292,7 +292,7 @@ T t ：Type类型
  **1.jvm会根据异常的原因创建一个对象，这个对象包含了异常的产生（内容，原因，位置）  
   `new ArrayIndexOutOfBoundsException`（"3"）  
   2. 在方法中没有异常处理逻辑如（try catch），那么JVM会把异常对象抛出给方法的调用者，若调用者也没有，就在网上调用，最终返回给JVM，    
-  jvm接受这个异常对象（原因，位置，内容）打印到控制台然后中断当前执行的程序**  
+    jvm接受这个异常对象（原因，位置，内容）打印到控制台然后中断当前执行的程序**  
   #### 异常的处理
   throw关键字  
   作用：可以使用throw关键字在指定的方法中抛出异常  
@@ -319,7 +319,7 @@ T t ：Type类型
   public string getMessage()  获取异常的描述信息  
   public string tostring()  获取异常的类型和异常描述信息 （返回异常描述）默认调用   
   public void printStackTrace() 打印异常的跟踪栈信息并输出到控制台  异常信息最为全面  
-  
+
   #### final代码块  
   有一些特定的代码无论一场是否发生，都需要执行，另外，因为异常发生程序跳转，导致有些语句执行不到。而finally就是解决这个问题的，在finally代码块中存放的  
   代码块一定会被执行，try中出现异常会立即抛个catch，无法执行后面的，但finally可以  
@@ -329,8 +329,8 @@ T t ：Type类型
   2.多个异常一次捕获多次处理  
   3.多个异常一次捕获一次处理  
   2. 一个try可以对应多个catch  （一次捕获多次处理）**  catch定义的异常类中如果有父子关系，子类必须写在上面，父类在下面  
-  原因（多态性）抛出异常对象是会从上倒下一次赋值给catch中定义的异常变量 如下图  
-  ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.png)    
+    原因（多态性）抛出异常对象是会从上倒下一次赋值给catch中定义的异常变量 如下图  
+    ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.png)    
   
   3. 只要catch定义的异常可以处理任何try中的，即可，例如expection异常可以处理一切异常
   #### 父子类异常  
@@ -338,7 +338,7 @@ T t ：Type类型
   2.子类重写时，抛出父异常的子类  
   3.不抛出任何异常  
   4.父类没有抛出异常，子类重写父类方法时，不能声明式抛出，只能捕获异常（try catch）
-  
+
 #### 自定义异常  
 java提供的异常类，不够使用时，需要进行自己定义异常类格式
   `public class xxxxx extends Exception||RuntimeException
@@ -356,7 +356,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   public index(String message) {
     super(message);
   }//查看源码发现，所有异常类都会有一个带异常信息的构造方法，方法内部会调用父类带异常信息的构造方法，交给父类来处理
-  
+
 }
 `
  ### 多线程  
@@ -396,7 +396,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
           实现Runable接口的方式，把设置线程任务和开启新线程进行分离（解耦）
           实现类中重写run方法用来设置线程任务；
           尽量采用runable接口方式
-                        
+
 
  #### 线程安全
   当多线程访问共享数据可能会出现线程安全问题
@@ -463,9 +463,9 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
         // System.out.println("付钱吃包子");
         // }
         // finally{lock.unlock();}
-
+    
       }
-
+    
     }, "客户").start();
     new Thread(new Runnable() {
       @Override
@@ -498,7 +498,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
       }
     }, "boss").start();
   }`
-  
+
   objectde wait方法中可以传递毫秒参数，当毫秒到达没有被唤醒，则自动叫醒
   `notifyall`唤醒所有线程（对象锁上的所有线程） 
   #### 线程通信  
@@ -518,17 +518,17 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   3.调用ExecutorService中的submit方法，传递线程任务，开启线程，执行run方法   
   4.调用ExecutorService中的方法shutdown销毁  
   例子   
-  
-  
+
+
   `  public static void main(String[] args) {  
     ExecutorService se = Executors.newFixedThreadPool(2);  
    ` se.submit(new runnableimpl());   //线程池会一直开启，使用万会归还个线程所以可以继续使用`
     se.submit(new runnableimpl());  
     se.submit(new runnableimpl());  
   }`
-  
-  
-     
+
+
+​     
   ### Lambda表达式
   面向对象强调必须通过对象的心事来做事情，而函数式思想则尽量忽略面向对象的复杂语法--强调做什么而不是什么形式
   lambda标准格式有三部分组成
@@ -540,7 +540,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
         return p1.age-p2.age;
       }
     )`
-  
+
   正常要new Comparator从写campare排序方法
   lambda表达式省略规则，要代码只有一行return {}和;都可以省略要省略都省略  
  注意：使用lambda语法是必须要有接口，并且要求接口中有抽象方法，接口方法存在且唯一时才能使用。  
@@ -555,14 +555,14 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   ### io流
   顶层父类： InputStream（字节输入流）、Reader字符输入流
             OutputStream 字节输出流  Writer 字符输出流
-  
+
   字节输入流的使用步骤  
   1.创建FileOutputStream对象 
   2.会根据构造方法中传递的文件，创建一个空文件  
   3.会把该对象指向创建好的文件写入数据
   write方法写入数据
   再用close方法关闭流
-  
+
   ## 网络编程  
   c/s结构客户端和服务结构，B/S浏览器和服务器结构
   网络通信协议：Tcp/Ip协议和UDP协议
@@ -585,19 +585,19 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   Socket类：创建socket对象，向服务端发送连接请求，服务端响应请求（通信过程采用IO流对象，一般使用字节流对象）
   服务端必须明确两个问题：1.多个客户端同时与服务器交互时，在服务器上有个方法，叫accept客户端可以获取到请求的客户端对象 
   2. 第一个客户端与服务器交互，就需要使用多个IO流对象  
-  服务器没有IO流，可以获取到请求的客户端对象Socket使用每个客户端socket中提供的Io流和客户端进行交互 
-  server.accpet（）可以获取到请求的对像
-  客戶端实现步骤： 
-  1.创建一个客户端对象`Socket`，构造方法绑定为ip地址和端口号  
-  2.使用Socket对象中的getOutputStream方法获取网络字节输出流OutputStream
-  3.使用网络字节输出流Outputstream对象中的write方法给服务器发送数据  
-  4.使用socket对象中的方法getInputStream获取网络字节输入流InputStream对象  
-  5.使用网络字节输入流对象的read方法，读取服务器回写的数据  
-  6.释放资源  
-  注意事项：
-  1.客户端和服务器端进行交互，必须使用socket中提供的网络流不能使用自己创建的流对象  
-  2当我们创建客户端对象socket的时候，就会去请求服务器和服务器经过3粗握手建连接通路只是后如果服务器没有启动就会抛出异常  
-  
+    服务器没有IO流，可以获取到请求的客户端对象Socket使用每个客户端socket中提供的Io流和客户端进行交互 
+    server.accpet（）可以获取到请求的对像
+    客戶端实现步骤： 
+    1.创建一个客户端对象`Socket`，构造方法绑定为ip地址和端口号  
+    2.使用Socket对象中的getOutputStream方法获取网络字节输出流OutputStream
+    3.使用网络字节输出流Outputstream对象中的write方法给服务器发送数据  
+    4.使用socket对象中的方法getInputStream获取网络字节输入流InputStream对象  
+    5.使用网络字节输入流对象的read方法，读取服务器回写的数据  
+    6.释放资源  
+    注意事项：
+    1.客户端和服务器端进行交互，必须使用socket中提供的网络流不能使用自己创建的流对象  
+    2当我们创建客户端对象socket的时候，就会去请求服务器和服务器经过3粗握手建连接通路只是后如果服务器没有启动就会抛出异常  
+
   服务器端实现步骤：  
   1.创建服务器serversocket对象和系统要制定的端口号  
   2.使用serversocket对象中的方法accept，获取到请求的客户端对象socket  
@@ -629,7 +629,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   6.使用socket中的getinputstream，获取网络字节输入流  
   7.使用网络字节输入流的方法read读取服务器的数据  
   8.释放资源  
-  
+
   服务端  
   文件上传原理 ：
   明确：数据源，服务器目的地  
@@ -646,7 +646,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   10.释放资源  
   如若多个客户端同时访问需要用多线程来进行实现
   有一个客户端请求就开启一个线程完成文件上传new一个线程即可。
-  
+
   BS服务器：服务器要给客户端回写一个信息，回写以恶html页面  
   我们需要读取index。html文件，就必须得知道这个文件的地址  
   而这个地址就是请求信息的第一行，可以使用BufferedReader中的方法readLine读取一行 InputStream is = socket。getInputStream（）；
@@ -692,7 +692,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
     }
 
     }`
-  
+
   ## 函数式接口  
   函数式接口在java中指：有且只有一个抽象接口  
   函数式接口，适用于函数式编程场景的接口。而java中的函数式编程体现就是Lambda，有意函数式接口就是可以适用于Lambda的接口，只有确保   
@@ -710,7 +710,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
     public static void main(String[] args) {
         System.out.println(getstring(()-> "sssss"));
     }`
-  
+
 ### Consumer接口（消费型接口）
   使用accept方法吧置顶泛型的数据消费
  andThen 方法把两个consumer类型的对象组合在一起在进行同时消费还是要用accept方法返回 
@@ -754,7 +754,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   流式思想：拼接流式模型
   ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E6%B5%81%E5%BC%8F%E6%80%9D%E6%83%B3%E4%B8%BE%E4%BE%8B.png)
   ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E6%B5%81%E5%BC%8F%E6%80%9D%E6%83%B3%E7%A4%BA%E6%84%8F%E5%9B%BE.png) 
-  
+
   这里的filter、map都不是立即执行因为用到了map只有到cout后才执行
   注意**java中的stream并不会存储元素而是按照需要进行计算，其中流的数据来源可以是集合数组等。。。。
   与Collection中不同stream操作还有两个特征，
@@ -765,7 +765,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   1.获取数据源  
   2.数据转换  
   3.执行想要的结果  并且每次转换Stream对象不改变，返回一个新的Stream对象，这就有利于链式编程
-  
+
   jdk9.1后所有集合都可以通过默认Stream方法获取流对象可以将一个集合转换为一个流 （map不能直接这样用）必须是单列集合
   `        Stream<String> s = l.stream();
         Set<String> s1 = new HashSet<>();
@@ -797,7 +797,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   跳过六种的前几个元素，返回一个新的截取流作用基本与limi相似
   ##### concat 
   静态方法：可以将两个流合并为一个流
-  
+
   ### 方法引用  （只是对Lambda的再次简化）
   对Lambda表达式的简化我们实际传递进去的代码是一种解决方案，所以如果我们在Lambda表达式中所指定的方法，已经有了相同方案  
   那么是没有必要重复逻辑的 
@@ -832,8 +832,8 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   `//        int arr = createArray(10,length -> new int[length]).length;
         //方法引用优化Lambda表达式
         int arr = createArray(8,int[]::new).length;`
-  
-  
+
+
   # Java Web 
   内容：
   1.Junit单元测试  2.反射  3.注解  
@@ -856,11 +856,12 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
         Assert.assertEquals(3,new Calculator().add(2,3));
     }`
    * 红色代表成功绿色代表失败 注意要用断言方法Assert（期望的，实际的）而不是输出 
-  对于重复操作，通过注解before和after来完成  
-  before初始化方法：所有测试方法之前都执行这个方法
-  after释放资源方法：在所有测试方法执行完后都会自动执行该方法
-  无论上述方法是否出错，这两个方法一定执行  
-  `    @Before
+    对于重复操作，通过注解before和after来完成  
+    before初始化方法：所有测试方法之前都执行这个方法
+    after释放资源方法：在所有测试方法执行完后都会自动执行该方法
+    无论上述方法是否出错，这两个方法一定执行  
+    `    @Before
+
     public  void init (){
         System.out.println("用于资源申请");
     }
@@ -891,8 +892,8 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   反射的好处：
   1.在程序运行过程中，操作这些对象  
   2.内获取成员方法：（列入定义字符串，那么会将字符串对象字节码文件加载入内存，内存中有class对象 ，将所有方法封装为对象，将在数组中的方法展示出来即可）
-  3.解耦，降低程序的耦合度，增加扩展性
-  
+  3.解耦，降低程序的耦合度，增加扩展性   
+	
   ### Field
   getFIelds获取所有public修饰的成员变量  
   操作get或者set
@@ -931,13 +932,13 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
         method1.invoke(new Person(),"饭");`
   #### getName
   可以获取方法名称，返回字符串的方法名称 
-  
+
   #### Properties 类  
   Properties 类位于 java.util.Properties ，是Java 语言的配置文件所使用的类， Xxx.properties 为Java 语言常见的配置文件，如数据库的配置 jdbc.properties,  
   系统参数配置 system.properties。 这里，讲解一下Properties 类的具体使用。以key=value 的 键值对的形式进行存储值。 key值不能重复。JVM 中可以获取Properties, 
   来打印输出 JVM 所了解的属性值。
 用list() 方法，打印到控制台。
-  
+
   `@Test
 	public void printTest(){
 		Properties properties=System.getProperties();
@@ -978,8 +979,8 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   2.当已经加载进内存了，已经有了这个对象，那么在加载进内存后会有一个类名，可以通过类名的属性获取class类对象  类.class  （多用于参数传递）  
   3.通过对象的getclass的方法获取class对象 （多用于对象获取字节码的方式）  
   结论：同一个字节码文件（*.class）在一次程序运行过程中，只会被加载一次，不论通过哪一种方式获取的class对象始终是同一个
-  
-  
+
+
   ### class对象  
   调用构造方法的newInstance来创建对象
   ` Factory factory = new Factory();
@@ -989,7 +990,7 @@ Object obj = factory.newInstance();`
   1.获取成员变量们    getFields和getField  获取成员变量们 getDeclareFields（）获取所有的  
   2.获取构造方法们    getconstructor获取单个加s返回数组的  getDeckareFields获取所有的   
   3.获取成员方法们    getMethod获取单个加s获取所有的
-  
+
   ## 注解  
   概念：
   类似于注释，用文字去描述程序。给程序员看的而注解是说明程序的，是给计算机看的。  
@@ -1024,17 +1025,17 @@ Object obj = factory.newInstance();`
   1.在注解中可以用defalute来设置默认注解属性   
   2.如果只有一个属性需要复制，并且属性的名称是value，则value可以生省略，定义值即可   
   3.数组赋值时用大括号包裹，如果数组只有一个值则打括号可以省略 
-  
+
   ### 元注解  
   来描述注解的注解  
   jdk定义好的  
   *@Target：描述注解能够作用的位置 (TYPE表示作用于类上,Method表示作用域方法上,FIELD作用于成员变量上)   
   *Retention：描述注解被保留的阶段  (被保留的阶段)(对应于到底是保留到source,class,runtime三个阶段，一般自定义注解只作用
   于runtime，class时当前描述的注解会保留到class字节码文件中，并被jvm读取)  
-  
+
   *@Doucument：描述注解是否被抽取到api文档中  
   *@Inherited：描述注解是否被子类继承  （如果加入回子类会自动继承）
-  
+
 通过注解来生成框架模型  
   不需要通过Properties通过加载进内存获取字符流，可以通过注解的方式进行配置   
   首先配置自定注解  
@@ -1187,11 +1188,12 @@ alter table 表名 add 列名  数据类型  ;
 DQL查询语句  
 1.排序查询  
 * 排序语法  
-`order by 排序字段1，排序字段2 排序方式1，排序方式2`  
- 注意：如果不写排序方式默认为升序序列  ASE升序默认 DESC降序  
+	`order by 排序字段1，排序字段2 排序方式1，排序方式2`  
+	 注意：如果不写排序方式默认为升序序列  ASE升序默认 DESC降序  
       排序字段的先后表明了排序的优先顺序，优先级越高约在前面
 	`SELECT * FROM stu ORDER BY id,age DESC  ;`
 	
+
 2.聚合查询  
 将一列数据作为整体，进行纵向计算  
 1.count 计算个数  `selet count（ifNULL(列名,0)）from 表名`  如果不为0
@@ -1247,7 +1249,7 @@ sql等于就是= ，不等号可以用<>来表示
 	`SELECT * FROM stu WHERE NAME LIKE "___";`查询名字三个字的
 	%马%可以查到所有包含马的
 
-	
+
 ###约束
 概念：对表中的数据进行限定，保证数据的正确性、有效性、完整性
 分类：  
@@ -1264,20 +1266,20 @@ sql等于就是= ，不等号可以用<>来表示
     在创建表时候，可加not null
     再创建后添加`ALTER TABLE stu MODIFY NAME VARBINARY(32) NOT NULL;`   
     删除约束`ALTER TABLE stu MODIFY NAME VARBINARY(32) ;`   
-	
+    
     唯一约束：unique，  null还是可以多个     
     创建表时，添加唯一约束创建时删除，    
     删除唯一约束 不能用 modify只能用drop index`ALTER TABLE iphone DROP INDEX phone_number; `   
     创建后添加唯一约束 `ALTER TABLE iphone MODIFY phone_number VARCHAR(13) UNIQUE;`  
-	
+    
     外键约束：foreign key（多表应用）
     添加表时候可以添加外键  
     注意外键必须被关联到主键的列，如果不是会报错
     `create table（
-	...
+    ...
         外键列
         constraint 外键名称 foreign （外键列名） references 主要名称
-	）;`
+    ）;`
      删除外键名称：`alter table 表名 drop foreign key 外键名称`
      创建后添加`ALTER TABLE stu ADD CONSTRAINT 外键名字（随意起） FOREIGN KEY (主建列名) REFERENCES 关联表（列名）;`    
      ##### 外键的级联操作 
@@ -1325,7 +1327,7 @@ sql等于就是= ，不等号可以用<>来表示
 命令行：mysqldump -u用户名 -p 密码 》 保存的路径  
 	
        还原：登录，创建，使用执行文件。 source文件路径
-	
+
 ### 多表查询    	
 查询语法  
     sleect 列名 列表   from 表名列表  where
@@ -1333,26 +1335,27 @@ sql等于就是= ，不等号可以用<>来表示
     多表查询分类：  
    #### 1.内敛查询    
     隐式内连查询：用where消除无用数据 
-	`select * from emp,dept where emp.id=dept.id;`
+    `select * from emp,dept where emp.id=dept.id;`
         `SELECT emp.name,salary,dept.name FROM emp,dept WHERE emp.id=dept.id;`  
     同理可以用起别名的方法  
-	
-	`SELECT 
-	t1.name,salary,t2.name
-	FROM 
-	emp t1 ,dept t2
-	WHERE
-	t1.id = t2.id;` 
-   
+    
+    `SELECT 
+    t1.name,salary,t2.name
+    FROM 
+    emp t1 ,dept t2
+    WHERE
+    t1.id = t2.id;` 
+       
     显式内连接： 语法  
-	`select 字段列表 from 表名1 ineer ioin 表名2  on 条件`  
-	
-	` SELECT  t1.id, t2.name FROM emp t1 INNER JOIN dept t2 ON t1.id = t2.id;`
+    `select 字段列表 from 表名1 ineer ioin 表名2  on 条件`  
+    
+    ` SELECT  t1.id, t2.name FROM emp t1 INNER JOIN dept t2 ON t1.id = t2.id;`
     内连接查询总结： 
       1.从奶协表查询数据  
       2.条件是什么  
       3.查询哪些字段
-	
+
+
 	
 	
    #### 2.外连接查询    
@@ -1360,24 +1363,24 @@ sql等于就是= ，不等号可以用<>来表示
 	 语法：
 	`select 字段列表 from 表1 left[outer] join 表2 on 条件`
 	2.右外链接   
-        右外链接同理，查询右表所有记，将left 换成right即可  left左边是左表
+	    右外链接同理，查询右表所有记，将left 换成right即可  left左边是左表
    #### 3.子查询   
         查询中嵌套查询，并且称嵌套的查询为子查询    
         例如查询工资最高的人，这时候要先查最高是多少，再判断谁是这个   
-	` SELECT NAME FROM emp WHERE salary=(SELECT MAX(salary) FROM emp);`   
+    ` SELECT NAME FROM emp WHERE salary=(SELECT MAX(salary) FROM emp);`   
        不同种情况    
-	1.子查询结果是单行单列      
+    1.子查询结果是单行单列      
         * 子查询可以作为条件，使用运算符进行判断  例如使用in这种集合来判断   
-	
-	2.子查询结果是多行的单列的   
+    
+    2.子查询结果是多行的单列的   
          子查询的结果有两个可以用 in等运算符包含
-	
-	3.子查询的结果时多行多列
-	 *查询工资大于1900的所有员工名字俱乐部，和工资  
+    
+    3.子查询的结果时多行多列
+     *查询工资大于1900的所有员工名字俱乐部，和工资  
         将一个表作为虚拟秒（）用来查询
-	`SELECT t1.name,t2.name,salary FROM dept t1,(SELECT * FROM emp WHERE salary>1900) t2 WHERE t1.id = t2.id;`
+    `SELECT t1.name,t2.name,salary FROM dept t1,(SELECT * FROM emp WHERE salary>1900) t2 WHERE t1.id = t2.id;`
 ### 事物     
-	
+
 1.事物的基本介绍    
  概念： 如果一个包含多个步骤的业务操作，被事务管理，那么这些操作要么同时成功或者同时失败
  操作： 1.开启事物  start transaction;    
@@ -1460,16 +1463,16 @@ revoke 权限列表 on 数据库.表名 from '用户名'@'主机名'
 
 ###  2.快速入门    
 * 步骤:
-1.导入驱动jar包     
-** 复制到目录下  
+	1.导入驱动jar包     
+	** 复制到目录下  
    右键 add as libaray
-2.注册驱动  
-3.获取数据库链接对象 connection对象  
-4.定义sql语句  
-5.获取执行sql语句的对象 Statement  
-6.执行sql,接受返回结果   
-7.处理结果  
-8.释放资源
+	2.注册驱动  
+	3.获取数据库链接对象 connection对象  
+	4.定义sql语句  
+	5.获取执行sql语句的对象 Statement  
+	6.执行sql,接受返回结果   
+	7.处理结果  
+	8.释放资源
 	
 	
 	
@@ -1622,6 +1625,7 @@ classloader类中有getResource方法返回URL对象，通过url对象的getpath
         return false;
     }`
 	
+
 ### jdbc控制事务
   事务是一个包含多个步骤的业务操作，如果被事务管理则多个事务要么成功要么失败   
   操作：
@@ -1661,9 +1665,9 @@ maxWait = 3000`
 2.提供静态代码块加载配置文件，初始化连接池对象  
 3.获取连接池的方法   
 工具类列子应用    
+
 	
-	
-``` public static void main(String[] args) {
+` java
         Connection con = poolutils.getconnection();
         String sql = "INSERT INTO account VALUES(NULL,?,?)";
         PreparedStatement pstm = null;
@@ -1688,8 +1692,30 @@ maxWait = 3000`
         }finally {
             poolutils.close(pstm,con,res);
         }
-    }```
+    }`
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
 	
 ### Spring JDBC：JDBC Template
 1.通过spring封装的jdbc实现基本操作  
@@ -1707,7 +1733,8 @@ maxWait = 3000`
 *queryForObject()：查询结果封装为对象用于查询聚合函数的  需要用传入返回值类型的字节码文件
 	
 	
-	
+
+
 ### XML  
 #### 可扩展性：标签都是自定义的  
 #### 功能
@@ -1794,7 +1821,8 @@ webapps：存放web项目的
 文件中编写<Context docBase = ”路径“ >虚拟路径就是文件名称   
 #### 静态项目与动态项目  
 	静态页面就是设计者把页面上所有东西都设定好、做死了，然后放上去，不管是谁在任何时候看到的页面内容都是一样的，一成不变  
-	动态页面的内容一般都是依靠服务器端的程序来生成的，不同人、不同时候访问页面，显示的内容都可能不同。网页设计者在写好服务器端的页面程序后，不需要手工控制，  
+	动态页面的内容一般都是依靠服务器端的程序来生成的，不同人、不同时候访问页面，显示的内容都可能不同。网页设计者在写好服务器端  
+	的页面程序后，不需要手工控制，  
 	页面内容会按照页面程序的安排自动更改变换。
 目录结构：  
 java动态项目的目录结构  
@@ -1836,6 +1864,6 @@ tomcat将全类名对应的字节码文件加载如内存，并且创建了对�
 		
 		
 ---
-![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/throw%E7%B1%BB.png)
+
 ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/servlet%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png)
 
