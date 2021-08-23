@@ -1867,3 +1867,17 @@ tomcat将全类名对应的字节码文件加载如内存，并且创建了对�
 
 ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/servlet%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png)
 
+#### Servlet的生命周期  
+init方法：初始化方法，再servlet被创建时候执行，只会执行一次  
+ * 原则上应该是第一次访问时候创建，也可以配置执行servlet的创建时机  
+  再webxml中配置  
+  <load-on-startup>当启动时后加载（当值为负数时，标识第一次访问被创建，为正就会在服务器启动时候创建）  
+  init 方法只能执行一次说明，在内存中这个对象是单例的，只有一个，所以多个用户访问时候可能存在线程安全问题	
+  解决方法：尽量不要再servlet中定义任何成员变量，即使定义了成员变量不要对其修改值
+service方法:再每一次被访问是，执行，可执行多次  
+destroy:再服务器关闭时候执行，也只执行一次    
+
+#### 注解配置servlet  
+在3.0之后支持注解配置  
+@Webservlet  
+value一般标识最重要的属性，当只有一个属性时候value又可以不写，所以直接@Webservlet（路径）
