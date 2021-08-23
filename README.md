@@ -1787,11 +1787,15 @@ webapps：存放web项目的
   startup.bat批处理文件
 简单部署：将项目打成一个war包再将war包部署到webapps下  
 也可以用虚拟目录  
+可以从配置地方设置虚拟目录
 再serve文件下配置  再host标签体下配置  
 <context docBase ="文件目录" path="/虚拟路径">  
 或者再conf下的CataLina\locahost创建任意名称的xml文件  
 文件中编写<Context docBase = ”路径“ >虚拟路径就是文件名称   
-#### 静态项目于动态项目  
+#### 静态项目与动态项目  
+	静态页面就是设计者把页面上所有东西都设定好、做死了，然后放上去，不管是谁在任何时候看到的页面内容都是一样的，一成不变  
+	动态页面的内容一般都是依靠服务器端的程序来生成的，不同人、不同时候访问页面，显示的内容都可能不同。网页设计者在写好服务器端的页面程序后，不需要手工控制，  
+	页面内容会按照页面程序的安排自动更改变换。
 目录结构：  
 java动态项目的目录结构  
 目录的根目录  
@@ -1801,5 +1805,32 @@ java动态项目的目录结构
      ----lib目录防止依赖的jar包
 
 ### servlet:概念运行在服务端的小程序   
-本身就是一个接口，动态资源：逻辑性---代码来体现  
-本身就是java定义的一个抽象接口
+本身就是一个接口，  
+动态资源：逻辑性---代码来体现    
+比如判断请求者是谁（没有主方法的java类，由tomcat执行，所以servlet就是对于于此的接口）  
+servlet就是一个接口定义额java类被浏览器访问的规则
+本身就是java定义的一个抽象接口  
+#### 快速入门  ：
+1.创建javaee项目  
+2.定义一个类，实现servlet接口  
+3.实现接口方法  
+4.配置再web.xml中进行配置
+`<!--    配置servlet-->
+    <servlet>
+        <servlet-name>demo01</servlet-name>
+        <servlet-class>com.example.servlet.servletdemo01<servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>demo01</servlet-name>
+        <url-pattern>/demo01</url-pattern>
+    </servlet-mapping>`   
+注意由于Tomcat10中的Servlet-api依赖包与Maven导入的Servlet4.0.1不兼容，所以只能取一个   
+要么降级tomacat，要么将servlet依赖改为Timcat中的自带依赖，从库那里改正，删除maven的依赖  
+#### servlet原理
+servlet没有调用自己执行的原因：  
+1.首先在服务器中定义了一个类，实现了一些方法  
+2.又在webxml中配置了servlet文件，两个都在服务器中  
+3.通过ip可以扎到注意，通过虚拟目录找到项目，又通过path找到资源，找有没有url-pattion与路径相符，再通过name找到名字，再通过名字找到全类名  
+tomcat将全类名对应的字节码文件加载如内存，并且创建了对象，创建class。newInstance对象闯进新的对象，调用service方法，所以servlet的执行依赖于容器  
+这个容器就是服务器  
+[!image](https://github.com/lieycheng987/JAVA-/blob/master/picture/servlet%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png)
