@@ -1881,3 +1881,13 @@ destroy:再服务器关闭时候执行，也只执行一次
 在3.0之后支持注解配置  
 @Webservlet  
 value一般标识最重要的属性，当只有一个属性时候value又可以不写，所以直接@Webservlet（资源路径）
+servlet的体系结构：  
+  servket--接口  
+     ||   
+  子GenericServlet--抽象类   
+     ||  
+  孙HttpServlet --抽象类  
+
+genericServlet是一个抽象类，对其他servlet中的方法进行空实现，预留了service接口   
+而httpservlet是主要用与现阶段不用判断service中的get或post方法 只需要覆盖重写dopost和doget方法   
+主要对http协议的封装   
