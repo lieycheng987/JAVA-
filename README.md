@@ -1996,6 +1996,8 @@ request功能：
 	  ---  
 
 ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AEsetattrubite%E5%8E%9F%E7%90%86.png)
-	  
+	  object getattitude(string name)通过键获取值  
+	  removeattribute(string name)通过键移除键值对
 	  
 	  *获取servletContext
+          getServletContext（）
