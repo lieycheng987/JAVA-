@@ -1864,7 +1864,6 @@ tomcat将全类名对应的字节码文件加载如内存，并且创建了对�
 		
 		
 ---
-
 ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/servlet%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png)
 
 #### Servlet的生命周期  
@@ -1971,12 +1970,32 @@ request功能：
 	  1.getParameter（string name）根据参数名称获取参数值   
 	  2.getParameterValues（string name）根据参数名获取参数值的数组   
 	  3.Enumeration<string> getParameterNames（）获取所有参数名称    
-	  4.getParameterMap（）获取所有参数的map集合
-	  `        Map<String, String[]> map = request.getParameterMap();
-        Set<Map.Entry<String, String[]>> en = map.entrySet();
-        for (Iterator<Map.Entry<String, String[]>> iterator = en.iterator(); iterator.hasNext(); ) {
-            Map.Entry<String, String[]> next =  iterator.next();
-            System.out.println(next.getKey()+"------"+ Arrays.toString(next.getValue()));`
+	  4.getParameterMap（）获取所有参数的map集合   
+`Map<String, String[]> map = request.getParameterMap();
+ Set<Map.Entry<String, String[]>> en = map.entrySet();
+ for (Iterator<Map.Entry<String, String[]>> iterator = en.iterator(); iterator.hasNext(); ) {
+     Map.Entry<String, String[]> next =  iterator.next();
+     System.out.println(next.getKey()+"------"+ Arrays.toString(next.getValue()));
+     }`
+	  
+	  *中文乱码问题当出现乱码时候树妖设置流的字符集将设字符集设置为utf-8通过setcharacterEncoding（）
+ 
 	  *请求转发   
-	  *共享数据   
+	  定义：理解为在服务器内部的资源跳转方式  
+	  1.步骤通过request对象回去请求转发器对象 RequestDispatcher  通过getRequestDispatcher（string path）
+	  特点：  
+	   1.浏览器地址不发生任何变化   
+	   2.只能转发到当前服务器内部资源中  
+	   3.转发只是一次请求   
+	  
+	  
+	  *共享数据    
+	  *域对象：一个有作用范围的对象，可以在范围内共享数据  
+	  *request域：一次请求的域，一般用于请求转发的多个资源中共享数据  
+	   方法： setAttribute（string name object obj）存储数据与vuex类似   
+	  ---  
+
+![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AEsetattrubite%E5%8E%9F%E7%90%86.png)
+	  
+	  
 	  *获取servletContext
