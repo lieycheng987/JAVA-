@@ -1929,3 +1929,54 @@ hyper text transfer protocol  超文本传输协议
 	  
     3.请求空行   就是空行用于分割post请求的请求头和请求体  
     4.请求体    
+
+	  
+	  
+#### request对象   
+1.tomcat服务器会根据请求url中的资源路径，创建对应的ServketDemo对象   
+2.tomcat服务器会创建requset和response对象     
+3.tomcat将request和response对象传递给service方法，并且调用service 方法   
+5服务器在给浏览器做出相应之前，会从response对象中拿设置响应的消息   
+	  
+request继承的体系结构   
+	  
+servketReqest接口   
+	 |   
+	 |  
+	 |   
+httprequest --接口  
+	 |   
+	 |  
+	 |  
+由服务器实现上述接口   
+	  
+request功能：  
+   1.获取请求消息数据   
+	  *get /url  http/1.1    
+	  获取请求方式 string 类型的getMethod  
+	  获取虚拟目录：string类型的getcontextpath  
+	  获取servlet路径 、demo01  getservletPath   
+	  获取get请求参数  getQueryString   
+	  获取uri和url   getRequestURI 同理换成L即可  
+	  获取http协议版本号  getProtocol   
+	  获取客户ip地址  getremoteAddr
+   2.获取请求头数据     
+	  getHeader通过请求头的名称获取请求头的值   
+	  getheadername获取与所有请求头的名称
+   3.获取请求体数据  
+	  获取字符流数据   
+	  request.getReader（）是以字节流形式返回读取字节流即可  
+   4.其他功能   
+	  *获取请求参数  
+	  1.getParameter（string name）根据参数名称获取参数值   
+	  2.getParameterValues（string name）根据参数名获取参数值的数组   
+	  3.Enumeration<string> getParameterNames（）获取所有参数名称    
+	  4.getParameterMap（）获取所有参数的map集合
+	  `        Map<String, String[]> map = request.getParameterMap();
+        Set<Map.Entry<String, String[]>> en = map.entrySet();
+        for (Iterator<Map.Entry<String, String[]>> iterator = en.iterator(); iterator.hasNext(); ) {
+            Map.Entry<String, String[]> next =  iterator.next();
+            System.out.println(next.getKey()+"------"+ Arrays.toString(next.getValue()));`
+	  *请求转发   
+	  *共享数据   
+	  *获取servletContext
