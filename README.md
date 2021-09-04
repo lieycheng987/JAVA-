@@ -1891,3 +1891,41 @@ servlet的体系结构：
 genericServlet是一个抽象类，对其他servlet中的方法进行空实现，预留了service接口   
 而httpservlet是主要用与现阶段不用判断service中的get或post方法 只需要覆盖重写dopost和doget方法   
 主要对http协议的封装   
+
+Servket相关配置  
+  1.urlpattern: Servlet访问路径  
+   路径定义规则："/xxx","/xxx/xxx","*.do"正则表达式任意匹配    
+	  
+### HTTP  
+hyper text transfer protocol  超文本传输协议  
+分为客户端和服务器端，规定了请求和响应的格式及组成规则   
+特点：基于tcp/ip协议的高级协议，需要三次握手来确保通常    
+      默认端口号是80，及不需要再写端口号  
+      基于请求响应的模型，及响应请求一一对应   
+      无状态的：每次请求之间相互独立，不能相互交互   
+	  
+请求的格式：   
+    1.请求行     
+	*请求方式 请求url 请求协议/版本  
+	  get /url HTTP/1.1  
+	  http有7中请求方式
+	 *get
+	  请求参数再请求行出进行拼接   
+	  请求的url长度有限制
+	  不如post安全
+	 *post  
+	  请求参数在请求体中  
+	  请求的url长度无限制  
+	  相对于get安全
+	
+    2.请求头     
+	1.*常见的请求头：user-agent浏览器告诉服务器浏览器的版本信息   
+         可以在服务器中获取该头信息，解决浏览器的兼容性问题  
+	2.accept可解释的相应格式  
+	3.connection keepalive保持活跃   
+	4.Referer告诉服务器当前请求来自于哪里   
+	  作用：防盗和统计
+	  
+	  
+    3.请求空行   就是空行用于分割post请求的请求头和请求体  
+    4.请求体    
