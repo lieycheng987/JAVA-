@@ -2005,3 +2005,32 @@ request功能：
 #### 登录逻辑   
 ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E7%99%BB%E5%BD%95%E9%80%BB%E8%BE%91.png)
 	
+#### BeanUtils  
+*用于封装javaBean的  
+* javaBean就是标准的java类     
+方法  
+setProperty  
+getProperty    
+populate（object obj，map map）将map集合的键值对信息，封装到对应的JavaBean对象中也就是obj对象中
+要求：1.必须有空构造  
+      2.必须被public修饰   
+      3.成员变量必须被private修饰   
+      4.有setter和getter   
+功能：封装数据  
+属性：setter和getter方法截取后的产物 传递的其实是getter截取后的属性值，实际上时调用set方法   
+	  
+#### http响应消息   
+响应消息：   
+与请求对应   
+	1.相应行    
+	 格式组成：对应的协议及版本，响应的状态码   
+	 响应状态码：就是服务器告诉客户端浏览器本次请求和相应的一个状态，都是3位数字  
+	   1xx：服务器接收客户端消息但没有接受完 
+	   2xx：请求成功   
+	   3xx：重定向。代表的状态码位302也是资源跳转的一种方式比如a无法完成浏览器请求，告诉浏览器找c，这就是重定向过程  
+	   图片数据缓存到本地，服务器告诉浏览器访问缓存代码位304。  
+	   4xx：代表发客户端出现错误，路径写错，404  
+	   5xx：服务端错误
+	2.响应头  
+	3.响应空格   
+	4.响应体
