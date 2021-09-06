@@ -812,7 +812,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   注意  ：
   1.system.out对象已经存在  
   2.println方法也是存在的  
-  所以我们可以优化方法，使用system.out方法 
+  所以我们可以优化方法，使用system.out方法   
   #### `::`双冒号为引用运算符
   他所在的表达式被称为方法引用，如果Lambda表达式的函数方案已经存在于某个方法的实现中，那么则可以通过双冒号来引用该方法作为Lambda的代替者
   注意：*** Lambda表达式中传递的参数一定是方法引用中的哪个方法可以接受的类型，否则会抛出异常  
@@ -822,9 +822,9 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   #### 通过类名引用静态方法  
   类存在，静态成员方法存在，即可以继续使用
   ` int i= method(222,Math::abs)`
-  #### 通过super来调用父类的成员方法  
+  #### 通过super来调用父类的成员方法   
   `method(super::sayhellow);`
-  #### 通过this来调用子类的成员方法
+  #### 通过this来调用子类的成员方法    
   `method(this::sayhellow);`
   #### 类的构造器引用
   由于构造器名称与类名称完全一直，所以可以类的名称::new 的格式表示
@@ -850,7 +850,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
     *建议方法名+test 例如 testadd（）
     *建议无返回值，建议空参  
   3.给方法加注解@Test（加入注解）
-  4.导入Junit的依赖环境
+  4.导入Junit的依赖环境  
   `    @Test
     public  void  testAdd(){
         Assert.assertEquals(3,new Calculator().add(2,3));
@@ -1725,7 +1725,7 @@ maxWait = 3000`
 调用jdbctemplate的方法完成CRUD操作  
 *update（）方法执行DML语句增删改  
 *queryForMap（）查询结果将结果集封装为map集合  注意结果集只能是1   
-*queryForList()查询结果集封装为list集合  将map集合装入list中
+*queryForList()查询结果集封装为list集合  将map集合装入list中  
 *query（）将结果封装为JavaBean对象  需要传入rowmapper对象，改接口可以自己实现也可以用别人的  
 `new RowMapper<E>(){}`   
 官方的只需要 传入一个`new beanPropertyRowMapper<E>(E.class)`需要传入泛型和泛型的字节码文件  
@@ -2000,4 +2000,8 @@ request功能：
 	  removeattribute(string name)通过键移除键值对
 	  
 	  *获取servletContext
-          getServletContext（）
+          getServletContext（）  
+	  
+#### 登录逻辑   
+![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E7%99%BB%E5%BD%95%E9%80%BB%E8%BE%91.png)
+	
