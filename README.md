@@ -1953,7 +1953,7 @@ request功能：
    1.获取请求消息数据   
 	  *get /url  http/1.1    
 	  获取请求方式 string 类型的getMethod  
-	  获取虚拟目录：string类型的getcontextpath  
+	  获取虚拟目录：string类型的getcontextpath  （获取路径）  
 	  获取servlet路径 、demo01  getservletPath   
 	  获取get请求参数  getQueryString   
 	  获取uri和url   getRequestURI 同理换成L即可  
@@ -1982,7 +1982,8 @@ request功能：
  
 	  *请求转发   
 	  定义：理解为在服务器内部的资源跳转方式  
-	  1.步骤通过request对象回去请求转发器对象 RequestDispatcher  通过getRequestDispatcher（string path）
+	  1.步骤通过request对象回去请求转发器对象 RequestDispatcher  通过getRequestDispatcher（string path）  
+	  `request.getRequestDispatcher("/requestdemo1").forward(request,response);` 不需要加虚拟路径   
 	  特点：  
 	   1.浏览器地址不发生任何变化   
 	   2.只能转发到当前服务器内部资源中  
@@ -2029,8 +2030,59 @@ populate（object obj，map map）将map集合的键值对信息，封装到对�
 	   2xx：请求成功   
 	   3xx：重定向。代表的状态码位302也是资源跳转的一种方式比如a无法完成浏览器请求，告诉浏览器找c，这就是重定向过程  
 	   图片数据缓存到本地，服务器告诉浏览器访问缓存代码位304。  
-	   4xx：代表发客户端出现错误，路径写错，404  
-	   5xx：服务端错误
-	2.响应头  
+	   4xx：代表发客户端出现错误，路径写错，404 ,405没有正确的doxxx方法   
+	   5xx：服务端错误  服务器出现异常例如报异常  
+	2.响应头   
+	  头名称：值  
+	  常见的响应头：Content-type：服务器告诉客户端本次响应体数据格式及编码格式   
+	               Content-disposition：服务器告诉客户端以什么格式打开响应体数据   
+	  in-line:默认值，在当前页面打开   
+	  attachement；filename-xxx：以附件形式打开响应体
 	3.响应空格   
-	4.响应体
+	4.响应体  
+	  
+#### Respons对象  
+  功能设置响应消息  
+     设置响应行  
+     格式：HTTP/1.1 200
+	 设置状态码：setStatus（int sc）；
+     设置响应头  
+	  setHeader（string name，string value）  
+     设置响应体：  
+	 1.获取输出流  
+	 2.使用输出流，将数据输出到客户端浏览器  
+	  获取输出流 ProintWriter getWriter（）  
+	        在这里response获取的流不需要刷新，因为在完成一次相应后被销毁流会被关闭
+	            ServletOutputStream getOutputStream（）    
+	  使用输出流，将数据输出到客户端浏览器
+  #### 重定向  
+       两种方法  
+	1.直接设置响应头和状态码  
+  `response.setStatus(302);
+   response.setHeader("location","/day4/responsedemo02");`    
+	2.采用response的sendRedirect方法  
+       特点：与转发不同转发地址栏路径不变，而重定向与其相反  
+	  总结如下：地址栏改变   
+	           可以访问其他服务器的资源  
+	           是两次请求过程，不能用request共享
+ #### 路径写法：相对路径和绝对路径
+   绝对路径：通过绝对路径可以确定唯一资源  
+   相对路径：找到访问当前资源和目标资源当前   
+	  
+#### 获取字符输出流   
+response.getWriter()  
+     字符集乱码问题，浏览器默认gbk或者gb2312，所以服务器在中文情况下获取出来的流对象是tomcat返回出来的  
+  是iso编码，无法用gbk解码   
+     `//获取流对象前先设置默认编码
+        //response.setCharacterEncoding("utf-8");
+        //告诉浏览器服务器发送的消息体数据的编码
+        response.setHeader("content-type","text/html;charast=utf-8");
+        //或者用response直接设hicontent-type  
+        //获取流之前设置编码格式
+        response.setContentType("text/html;charast=utf-8");
+        PrintWriter pw = response.getWriter();
+        pw.write("<h1>你好 response<h1>");`  
+#### 获取字节输出流   
+     response.getOutputStream()  
+     一般来输出图片来进行。
+   验证码输出：防止恶意表单注册
