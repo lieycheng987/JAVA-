@@ -2086,3 +2086,53 @@ response.getWriter()
      response.getOutputStream()  
      一般来输出图片来进行。
    验证码输出：防止恶意表单注册
+#### servletcontext获取  
+  两种方式request获取，或者httpservlet获取   
+  可以获取mimetype和realpath即响应头文件类型和真实路径  
+	   response.setContentType("text/html;charast=utf-8");修改编码方式  
+`String filename = request.getParameter("filename");
+        System.out.println(filename);
+        //使用流将文件进内存
+        String realPath = this.getServletContext().getRealPath("/image/" + filename);
+        System.out.println(realPath);
+        FileInputStream fil = new FileInputStream(realPath+".png");
+        ServletOutputStream outputStream = response.getOutputStream();
+        String mimeType = this.getServletContext().getMimeType(filename+".png");
+        response.setContentType(mimeType);
+        System.out.println(mimeType);
+        response.setHeader("content-disposition","attachment;filename="+filename);
+        byte[] buff = new byte[1024];
+        int len = 0;
+        while ((len = fil.read(buff))!=-1){
+            outputStream.write(buff,0,len);
+        }
+        fil.close();`  
+ 下载时候的中文名称问题可以通过修改编码等方式解决  
+	 先获取user-agent请求头，使用工具类编码文件名即可   
+	  
+	  
+### 会话技术   
+    #### cookie   
+	 会话： 客户端和浏览器之间进行通信，多次请求和多次响应   
+	 一次会话：浏览器第一次给服务器资源发送请求，会话建立，直到有一方断开为止   
+	 功能：在一次会话过程中多次请求间，共享数据：因为每次请求和响应都是独立的，为了解决不同请求之间通信问题，需要会话技术。  
+	 客户端绘画技术：cookie   response.addcookie将new出来的cookie对象作为响应，同理reques.getcookie拿到cookie数组
+	 服务端：session     
+  cookie实现原理  
+	 将响应头设置为set-cookiehttp响应头规定如果收到set-cookie投，会将cookie信息保存到浏览器上，第二次请求时会将数据带过去    
+	 数据会被放到请求的消息头里，使用cookie消息头带过去（浏览器自动做），服务器可以通过request对象获取请求头相关信息（所有的都是在一次会话中进行的）   
+  发送多个cookie也是可以的   
+	  
+  cookie存在时间    
+	1.默认情况关闭后及被销毁      
+	2.持久化存储   
+	  setMaxAge（int seconds）
+	  1.正数：将cookie写到硬盘文件持续正数秒后删除      
+	  2.负数：默认值  
+	  3.0：删除cookie    
+ cookie存储中文数据   
+	 tomcat8之前不能直接存储中文，后面可以直接存储  
+	 8之前需要转码，一般采用url编码  
+ cookie范围  
+	 假设在一个tomcat服务器中，部署了多个项目，cookie是否能共享？  
+	 默认情况无法共享，setPath（string path）可以设置这个范围。如果没设置就是当前的虚拟目录
