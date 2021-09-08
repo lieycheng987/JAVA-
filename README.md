@@ -2136,3 +2136,9 @@ response.getWriter()
  cookie范围  
 	 假设在一个tomcat服务器中，部署了多个项目，cookie是否能共享？  
 	 默认情况无法共享，setPath（string path）可以设置这个范围。如果没设置就是当前的虚拟目录
+要注意导入的包，maven的包和tomcat不兼容   
+ cookie特点和作用   
+	1.cookie存储数据在客户端浏览器   
+	2.浏览器对于单个cookie的大小有限制（4kb），以及对于同一个赢下的总cookie数量也有限制（20个）  
+作用： 一般用于存取少量不太敏感的数据   
+      在不登陆情况下对客户端身份进行识别
