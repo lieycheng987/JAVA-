@@ -2124,7 +2124,7 @@ response.getWriter()
 	 数据会被放到请求的消息头里，使用cookie消息头带过去（浏览器自动做），服务器可以通过request对象获取请求头相关信息（所有的都是在一次会话中进行的）   
   发送多个cookie也是可以的   
 	  
-  cookie存在时间    
+#### cookie存在时间    
 	1.默认情况关闭后及被销毁      
 	2.持久化存储   
 	  setMaxAge（int seconds）
@@ -2143,3 +2143,41 @@ response.getWriter()
 	2.浏览器对于单个cookie的大小有限制（4kb），以及对于同一个赢下的总cookie数量也有限制（20个）  
 作用： 一般用于存取少量不太敏感的数据   
       在不登陆情况下对客户端身份进行识别
+
+	  
+### jsp java server pages  
+    java服务器端页面，既可以定义html标签也可以写java代码  
+    作用：简化书写   
+	  
+  原理：1服务器解析请求消息，找是否有index.jsp，找到了会将index.jsp转化位java，编译java生成字节码文件，有字节码文件提供访问  
+  一个java类要想被外部访问只能是servlet，所以jsp本质也是servlet（重要 ）  
+	  
+  jsp脚本：声明java代码的方式
+	  <% java代码 %>：转化成servlet后就在service方法中（可以写service方法的实现方法）   
+	  <%! java代码%>:转化成servlet后就是成员变量或者成员方法   
+          <%= java代码%>：输出语句会把写的java代码输出到页面上   
+ jsp内置对象：及转换成servlet的情况下有servlet的内置对象，不用定义例如：out对象字符输出流   
+		  
+  out对象和response.getoutputstream获取的对象的区别  
+   都有字符输出流且都有缓冲区，但tomcat总会先找response的缓冲区数据，在找out缓冲区数据   
+		  
+### session  
+   概念：服务器端会话技术，在一次会话的多次请求间共享数据，，将数据保存在服务器的对象中 httpSession（也是域对象）   
+   获取方式：
+   `HttpSession session = request.getSession();
+        session.setAttribute("msg","hellow");`  
+  跟cookie一致，都是一次会话技术   
+ 原理：服务器如何确保在一次会话范围内多次获取的session是一个对象    
+   session是依赖于cookie的，第一次获取session没有cookie，会在内存中创建一个新的session对象，将对象的id用map绑定后，  
+   response设置cookie投携带jsessionid，第二次请求时会携带cookie，同过cookie找内存中有无满足携带信息的session，来确保  
+   session是一个对象。   
+		  
+细节：当客户端关闭，服务器不关闭，两次获取session是否位同一个   
+     默认不是，可以通过cookie的方法让cookie存放在硬盘上通过setMaxage来完成相同。   
+	 new Cookie("JSESSIONID",session.getId)  
+	
+     2.客户端不关闭，服务器关闭后，两次获取的session是同一个码？    
+      对象不是同一个，但是session的数据不能丢失  
+	*session的钝化  
+
+     session 失效时间
