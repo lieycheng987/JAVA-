@@ -2156,10 +2156,50 @@ response.getWriter()
 	  <% java代码 %>：转化成servlet后就在service方法中（可以写service方法的实现方法）   
 	  <%! java代码%>:转化成servlet后就是成员变量或者成员方法   
           <%= java代码%>：输出语句会把写的java代码输出到页面上   
- jsp内置对象：及转换成servlet的情况下有servlet的内置对象，不用定义例如：out对象字符输出流   
+		  
+ jsp:指令：作用配置jsp页面，导入资源文件  
+     格式 ： <%@ 指令名称 属性名1=属性值1 属性名2=属性值2%>  
+     分类   
+     page：配置jsp页面      
+	  contentType:等同于response.setContentType（）  
+	  设置响应体的mime类型以及字符集   
+          设置当前jsp页面的编码，（只能是高级的ide）   
+	 pageEncoding设置编码格式   
+	 buffer设置缓冲区大小  
+	 import导包
+     include：页面包含的导入页面的资源   
+     taglib：导入资源 导入标签库
+     errorPage = 错误后的跳转页面	  
+     若标注了isErrorpage则可以使用exception对象
+		  
+		  	  
+		  
+		  
+		  
+		  
+ jsp内置对象：及转换成servlet的情况下有servlet的内置对象，不用定义例如：out对象字符输出流    
+  *pageContext  
+  *request  
+  *session  
+  *application  
+  *page   
+  *out   
+  *config   
+  *exception  
 		  
   out对象和response.getoutputstream获取的对象的区别  
    都有字符输出流且都有缓冲区，但tomcat总会先找response的缓冲区数据，在找out缓冲区数据   
+  		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
 		  
 ### session  
    概念：服务器端会话技术，在一次会话的多次请求间共享数据，，将数据保存在服务器的对象中 httpSession（也是域对象）   
@@ -2172,12 +2212,23 @@ response.getWriter()
    response设置cookie投携带jsessionid，第二次请求时会携带cookie，同过cookie找内存中有无满足携带信息的session，来确保  
    session是一个对象。   
 		  
-细节：当客户端关闭，服务器不关闭，两次获取session是否位同一个   
+####  细节：当客户端关闭，服务器不关闭，两次获取session是否位同一个   
      默认不是，可以通过cookie的方法让cookie存放在硬盘上通过setMaxage来完成相同。   
 	 new Cookie("JSESSIONID",session.getId)  
 	
      2.客户端不关闭，服务器关闭后，两次获取的session是同一个码？    
       对象不是同一个，但是session的数据不能丢失  
 	*session的钝化  
+     *在服务器启动之前，将session对象系列化到硬盘上    
+       *session的活化   
+     *在服务器启动后，将session文件转化为内存中的session对象     
+     通过以上两部来保证服务器的session不会丢失，可以通过tomcat实现，work文件存放转化成sevlet的jsp文件及session文件  
+     session 失效时间  
+  默认失效时间：30分钟 可以在web.xml文件中配置   
+  也可以通过调用invalidate方法完成释放     
 
-     session 失效时间
+#### 特点   
+		 
+ 1.session用于存储一次会话的多次请求数据，存在服务器     
+ 2.session可以存储任意类型，任意大小  
+ 3.与cookie区别，session在服务器端，大小没有限制，session相比cookie更安全
