@@ -2235,4 +2235,4 @@ response.getWriter()
    MVC：1.M：模型    业务操作，处理业务逻辑  javaBean   
           V：视图    jsp  
 	  C：Controller，控制器 分发  获取用户输入，调用模型，将数据交给视图层   
- 
+ ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/MVC%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84.png)
