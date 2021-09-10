@@ -2272,3 +2272,5 @@ list获取   $<list.list.1>
   2.业务逻辑层   service   
   3.数据访问层  dao     
 ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84.png) 
+		  
+		  
