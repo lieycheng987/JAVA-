@@ -2236,3 +2236,39 @@ response.getWriter()
           V：视图    jsp  
 	  C：Controller，控制器 分发  获取用户输入，调用模型，将数据交给视图层   
  ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/MVC%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84.png)
+ 架构模式   
+ 优点：耦合性低维护方便，利于分工，重用性比较高，生命周期成本低   
+ 缺点：没有明确定义，需要精心设置，结构复杂，不适用于小型项目   
+#### El表达式   
+ 概述：Expression Language表达式语言   
+ 作用：简化jsp中，java的编写  
+ 语法${表达式}  
+ 注意事项：默认支持EL表达式，当在page中配置isELIgnored为true时，忽略所有EL表达式，当然也可以忽略单个  
+ 在语法前加\即可  
+EL表达式的使用方式：运算和获取值   
+ 运算符：除法也可以用div取余也可以用mod，特别注意空运算符就是empty  
+ 空运算符：用于判断字符串集合数组对象是否为null${empty List}如果list为空返回true   
+ el表达式只能从jsp的域对象中获取值   
+ 语法：${域对象.域名}   
+ 域名：pageScope  从pageContext获取    
+      requestScope 从request 获取   
+      sessionScope 从 session中获取   
+      applicationscope 从 application（ServletContext）  
+     如果没获取到返回空字符串不会出现null    
+键名：表示从最小的域中查找是否有是否有该键的只，找到为止   即request域小于session 域所以先request   
+获取对象 ${requsetScope.u.属性}   
+		  
+list获取   $<list.list.1>   
+		  
+### JSTL  
+ 概念：jsp标准库，有Apache组织提供的开源的免费的jsp标签   
+ 常用的JSTL if  choose  foreach     、
+ if就是v-if   choose类似switch   
+		  
+		  
+### 三层架构  
+  软件设计架构，将软件分为三个层面
+  1.界面层  用户看得到的界面，用户可以通过界面上的组件和服务器交互  
+  2.业务逻辑层   service   
+  3.数据访问层  dao     
+![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84.png) 
