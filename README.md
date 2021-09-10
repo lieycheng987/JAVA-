@@ -2178,24 +2178,18 @@ response.getWriter()
 		  
 		  
  jsp内置对象：及转换成servlet的情况下有servlet的内置对象，不用定义例如：out对象字符输出流    
-  *pageContext  
-  *request  
-  *session  
-  *application  
-  *page   
-  *out   
-  *config   
-  *exception  
+  *pageContext    真实类型   PageContext     当前页面共享数据    
+  *request        真实类型   HttpServletRequest  一次请求访问多个资源   
+  *session        真实类型   HttpSession     一次会话的多个请求   
+  *application    真实类型   ServletContext   所有用户键共享数据
+  *page           真实类型   object           当前页面（servlet）对象   
+  *out            真实类型   JspWriter        输出对象，输出到页面上  
+  *config         真实类型   ServletConfig    servlet的配置对象   
+  *exception      真实类型   Throwable        异常
 		  
   out对象和response.getoutputstream获取的对象的区别  
    都有字符输出流且都有缓冲区，但tomcat总会先找response的缓冲区数据，在找out缓冲区数据   
   		  
-		  
-		  
-		  
-		  
-		  
-		  
 		  
 		  
 		  
@@ -2231,4 +2225,14 @@ response.getWriter()
 		 
  1.session用于存储一次会话的多次请求数据，存在服务器     
  2.session可以存储任意类型，任意大小  
- 3.与cookie区别，session在服务器端，大小没有限制，session相比cookie更安全
+ 3.与cookie区别，session在服务器端，大小没有限制，session相比cookie更安全   
+		  
+		  
+		  
+### MVC开发模式    
+   1.jsp演变历史：早期只有servlet，只能使用response输出标签数据，较为麻烦，，后来有了jsp简化了Servlet的开发
+   后来jsp过度使用，既写java又写html，有写js所以提出了MVC模式，再后来web开发借鉴MVC开发模式，使得程序设计更加合理   
+   MVC：1.M：模型    业务操作，处理业务逻辑  javaBean   
+          V：视图    jsp  
+	  C：Controller，控制器 分发  获取用户输入，调用模型，将数据交给视图层   
+ 
