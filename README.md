@@ -2274,3 +2274,31 @@ list获取   $<list.list.1>
 ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84.png) 
 		  
 		  
+### Filter  
+web中的过滤器：当访问服务器资源时，过滤器可以将请求拦截，完成一些特殊的功能    
+继承servlet类下的Filter类，重写doFilter方法即可，配置urlpatten，webfilter（“拦截路径 ”）    
+如若放行：调用filterchain对象的doFilter（）方法   
+web.xml配置方法    
+` <filter>
+        <filter-name>demo1</filter-name>
+        <filter-class>com.example.filter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>demo1</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>`  
+    两种配置方式  
+   对于Filter中，init周期用于加载资源而destory周期用于释放资源  
+   过滤器执行流程  
+   执行过滤器  
+   执行放行后的资源  
+   回来执行过略放行代码下边的代码  
+   拦截路径配置：  
+   1.具体路径资源  只有访问某个资源时才执行相关操作  
+   2.目录拦截  访问目录资源下全部拦截   
+   3.后缀名拦截 *.jsp访问所有后缀名为jsp时候执行  
+   4.拦截所有资源  访问所有资源都执行   
+   拦截方式：
+   注解配置：dispatcherTypes属性可以定义资源被访问的方式   
+   request：直接请求  forward：转发访问的资源  include 包含访问资源  error：错误跳转资源  async：异步访问资源   
+   过滤器先后顺序问题：1.注解配置：按类名进行字符串比较规则来比较，谁小谁先执行  而web.xml是谁先配置谁先执行，谁在前面谁先执行  
