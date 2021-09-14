@@ -2301,4 +2301,38 @@ web.xml配置方法
    拦截方式：
    注解配置：dispatcherTypes属性可以定义资源被访问的方式   
    request：直接请求  forward：转发访问的资源  include 包含访问资源  error：错误跳转资源  async：异步访问资源   
-   过滤器先后顺序问题：1.注解配置：按类名进行字符串比较规则来比较，谁小谁先执行  而web.xml是谁先配置谁先执行，谁在前面谁先执行  
+   过滤器先后顺序问题：1.注解配置：按类名进行字符串比较规则来比较，谁小谁先执行  而web.xml是谁先配置谁先执行，谁在前面谁先执行   
+   代理模式：增强对象功能典型代表动态代理  
+   动态代理概念：真实对象：被代理对象  
+   代理模式：代理对象代理真实对象，达到增强真实对象的功能  
+   实现方式： 
+   静态代理：.class文件描述代理模式   
+   动态代理：在内存中形成代理类    
+   实现步骤：大力对象和真实对象实现相同的接口  
+   代理对象 =  Proxy.newIntstance  
+   三个参数：1.类加载器2接口数组，真实对象3.处理器 new InvocationHanler（）  
+  其中  new InvocationHandler中有invoke方法，该方法通过反射加载进内存，所有代理对象的方法均会触发该方法   
+getDeclaringClass方法返回类内部的类    
+method:代理对象调用的方法封装的对象   
+proxy：代理对象   
+args：代理对象调用的方法时传入的参数  
+代理对象通过拿到真实对象的method方法传入参数在invoke方法中调用传入method的invoke方法来执行，本身并不具备执行方法能力    
+代理对象增强方式：  
+增强参数列表    	  
+增强方法体   
+增强返回值    
+`Salecomputer com = new computer();
+        Salecomputer prox_com = (Salecomputer) Proxy.newProxyInstance(com.getClass().getClassLoader(), com.getClass().getInterfaces(), new InvocationHandler() {
+            @Override
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                if (method.getName().equals("sale")) {
+                    double money = (double) args[0];
+                    money = money * 0.85;
+                    Object obj = method.invoke(com, money);
+                    return obj;
+                }
+                return null;
+            }
+        });
+        String sale = prox_com.sale(8000);
+        System.out.println(sale);` 		  
