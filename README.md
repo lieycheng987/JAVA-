@@ -2413,6 +2413,12 @@ args：代理对象调用的方法时传入的参数
             当writeValue参数1为文件时候，将json字符串写入某个文件  
             list转json就是数组格式  
             @JsonIgnore：排除属性忽略某属性     
-      ### redis  
-           gain
             @JsonFormat（partten=“yyyy-mm-dd）
+  ### redis  
+  非关系型数据库（NoSql）,redis,hbase,magodb  
+  无表，存的就是ksy：value，存在内存中  
+  1.数据无关系  
+  2.数据存储在内存中   
+  原因操作关系型数据库十分耗时
+  
+	
