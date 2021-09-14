@@ -2335,4 +2335,46 @@ args：代理对象调用的方法时传入的参数
             }
         });
         String sale = prox_com.sale(8000);
-        System.out.println(sale);` 		  
+        System.out.println(sale);` 	 
+		  
+过滤案例  
+`    private List<String> l = new ArrayList<>();
+    public void init(FilterConfig config) throws ServletException {
+        System.out.println("初始化");
+        try {
+            ServletContext servletContext = config.getServletContext();
+            String realPath = servletContext.getRealPath("/WEB-INF/b.txt");
+            BufferedReader br = new BufferedReader(new FileReader(realPath));
+            String line = null;
+            while ((line=br.readLine())!=null){
+                l.add(line);
+            }
+            br.close();
+            System.out.println(l);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+   @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
+        ServletRequest prox_req = (ServletRequest) Proxy.newProxyInstance(request.getClass().getClassLoader(), request.getClass().getInterfaces(), new InvocationHandler() {
+            @Override
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                if(method.getName().equals("getParameter")){
+                    String s = (String) method.invoke(request, args);
+                    if(s!=null){
+                        for (String str : l) {
+                            if(s.contains(str)){
+                                s=s.replaceAll(str,"***");
+                            }
+                        }
+                    }
+                    return  s;
+                }
+                return method.invoke(request,args);
+            }
+        });
+        chain.doFilter(prox_req,response);
+    }`
