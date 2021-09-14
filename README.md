@@ -2378,3 +2378,41 @@ args：代理对象调用的方法时传入的参数
         });
         chain.doFilter(prox_req,response);
     }`
+
+    ### Lister：监听器  
+        事件监听机制
+        事件：一件事情  
+        事件源：事件发生的地方  
+        监听器：一个对象   
+        注册监听：将事件、事件源、监听器绑定在一起。当时事件源上发生磨个时间后，执行监听器代码   
+        ServletContextListener：
+            监听ServletContext对象创建，该对象在服务器启动后自动创建  
+            *void contextDestroyed（servletcontextevent sce）对象销毁调用    
+            *同理也有创建时调用的方法  
+		 ### JSON：
+          概念Ljavascript object notation js对象表示法  
+          JSON多用于存储和交换文本信息的语法  
+          语法数据在名称/值章：json数据是由键值对构成  
+          值得取值的类型：  
+           1.数字  
+           2.字符串  
+           3.逻辑值  
+           4.数组用[]表示    
+           5.对象用花括号表示    
+           6.null    
+      ** JSON数据和java的转换  
+          java对象转换json，最麻烦的无非键值名拼  
+          解析器：jsonlib官方提供的接口  springmvc内置的jackson解析器   
+          使用步骤  
+            1.导入jackson的相关jar包  
+            2.创建jackson核心对象 ObjectMapper  
+            3.调用Objectmapper的相关方法
+          objectmapper方法 
+            writeValue（参数1，参数2）其中参数一有多种重载：File，writer outputstream  
+            writeValueAsString 直接转换为json字符串  
+            当writeValue参数1为文件时候，将json字符串写入某个文件  
+            list转json就是数组格式  
+            @JsonIgnore：排除属性忽略某属性     
+      ### redis  
+           gain
+            @JsonFormat（partten=“yyyy-mm-dd）
