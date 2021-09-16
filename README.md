@@ -2428,3 +2428,4 @@ args：代理对象调用的方法时传入的参数
 ### jedis  
 创建连接池对象   
 调用getResource 获取jedis对象  
+创建配置对象   new JedisPoolConfig（）对象右set方法maxtotal最大连接数，maxidle最大空闲连接   
