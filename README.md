@@ -2421,4 +2421,10 @@ args：代理对象调用的方法时传入的参数
   2.数据存储在内存中   
   原因操作关系型数据库十分耗时
   
-	
+	### jedis  
+  基本操作和redis基本一致
+  字符串哪里可以设时间消失   
+ setex（key,seconds,value）   
+### jedis  
+创建连接池对象   
+调用getResource 获取jedis对象  
