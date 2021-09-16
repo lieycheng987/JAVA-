@@ -148,7 +148,8 @@ java9之后可以定义私有方法可定义普通私有或者静态私有
 数据分为基本数据类型和引用数据类型，基本数据类型没有对应的方法来操作这些数据，我们可以通过一个类吧一个基本类型数据包装起来，  
 在包装类中我们可以定义一些方法，用来操作基本类型的数据 （基本数据类型4类八种）
 包装类用处比如字符串转int或者其他 除了char类型其他类型从字符串转换都可以用类型+parse类型
-    `String s1 = "100";
+    ` java
+    String s1 = "100";
     int a = Integer.valueOf(s1);
     int a = Integer.parseInt(s1)
     `  
@@ -201,16 +202,19 @@ T t ：Type类型
 }`
 #### 抽象接口方法
 实现方法：可以选择直接实现类或继续使用泛型
-第一种实现方法`public class impl implements iterfa<String> {
+第一种实现方法
+``` java
+public class impl implements iterfa<String> {
 
   @Override
   public void method2(String s) {
     // TODO Auto-generated method stub
     System.out.println(s);
   }
-`
+```
 第二种实现方法： 
-`public class impl1<E> implements iterfa<E>{
+``` java
+public class impl1<E> implements iterfa<E>{
 
   @Override
   public void method2(E e) {
@@ -218,7 +222,8 @@ T t ：Type类型
     System.out.println(e);
   }
 
-}`
+}
+```
 #### 泛型通配符
  ？代表任意的数据类型，使用方式，不能创建对象使用，只能作为方法的参数使用  
  定义一个方法，能遍历所有类型的ArrayList集合，这时候我们不知道ArrayList集合使用什么类型的数据，可以采用泛型的通配符来接受数据类型
@@ -431,7 +436,8 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
     Condition condition = lock.newCondition();`
   在需要等待的程序中调用 `condition.await`在需要唤醒的地方调用`newCondition`的`signal`或`signalAll`方法  
   列子
-  ``` public static void main(String[] args) {
+  ``` java
+  public static void main(String[] args) {
     Object obj = new Object();
     Lock lock = new ReentrantLock();
     Condition condition = lock.newCondition();
@@ -521,12 +527,14 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   例子   
 
 
-  `  public static void main(String[] args) {  
+  ``` java
+  public static void main(String[] args) {  
     ExecutorService se = Executors.newFixedThreadPool(2);  
    ` se.submit(new runnableimpl());   //线程池会一直开启，使用万会归还个线程所以可以继续使用`
     se.submit(new runnableimpl());  
     se.submit(new runnableimpl());  
-  }`
+  }
+  ```
 
 
 ​     
@@ -536,11 +544,13 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   1.一些参数2.一个箭头3.一段代码
   （参数列表）->{一些重写方法}例如排序题  
 
-  `   Arrays.sort(arr,
+  ``` java
+  Arrays.sort(arr,
       (Person p1,Person p2)->{
         return p1.age-p2.age;
       }
-    )`
+    )
+  ```
 
   正常要new Comparator从写campare排序方法
   lambda表达式省略规则，要代码只有一行return {}和;都可以省略要省略都省略  
@@ -655,7 +665,8 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   可以使用String类的方法split切割字符串，获取中间的部分  arr[l] 使用Stringsubstring方法获取html文件的路径
   服务器创建本地的字节输入流根据获取到的文件路径，读取html文件  
   服务器端使用网络字节输出流把读取到的文件，写道客户端（浏览器）显示
-  ``` public class htmlServe {
+  ``` java 
+  public class htmlServe {
     public static void main(String[] args) throws IOException {
         ServerSocket serve = new ServerSocket(8080);
         while (true) {
@@ -705,30 +716,36 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
  由于Lambda表达式延迟执行，所以满足条件时才执行相关方法
   ### Supplier接口  
   生产型接口，指定泛型是什么类型，get方法就会生产什么类型的数据名字叫什么就可以用Lambda优化什么
-  `    private static String getstring( Supplier<String>sup){
+  ``` java
+  private static String getstring( Supplier<String>sup){
         return sup.get();
     }
 
     public static void main(String[] args) {
         System.out.println(getstring(()-> "sssss"));
-    }`
+    }
+  ```
 
 ### Consumer接口（消费型接口）
   使用accept方法吧置顶泛型的数据消费
  andThen 方法把两个consumer类型的对象组合在一起在进行同时消费还是要用accept方法返回 
  ### Predicate接口对某种类型的数据进行判断，从而得到一个Boolean值
-  `    public static boolean check(String s, Predicate<String> pre){
+  ``` java
+  public static boolean check(String s, Predicate<String> pre){
         return pre.test(s);
     }
 
     public static void main(String[] args) {
         String s = "aasssssss";
         System.out.println(check(s, s1->s1.length()>111));
-    }`
+    }
+  ```
   and方法`pre.test(s)&&pre.text(s)`==`pre.and(pre2).test(s)`
   同理还有 or方法和negate方法也就是或和非
   ### Function接口抽象发发为apply方法，用来根据一个类型的数据的到另一个类型的数据，前者称为前置条件，后者成为后置条件  
-  使用`    public static  void change(String s , Function<String,Integer> fun){
+  使用 
+  ``` java
+  public static  void change(String s , Function<String,Integer> fun){
         int i = fun.apply(s);
         System.out.println(i);
     }
@@ -736,11 +753,13 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
     public static void main(String[] args) {
         String s = "123456";
         change(s,(s1)-> Integer.parseInt(s1));
-    }`
+    }
+  ```
   同样function接口中也有默认方法andThen，用来组合。
   ### Stream流 
   集合数据的过滤例如
-  `    public static void main(String[] args) {
+  ``` java
+  public static void main(String[] args) {
         List<String> l = new ArrayList<>();
         l.add("Messi");
         l.add("Xavi");
@@ -752,7 +771,8 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
         l.stream().filter(name->name.startsWith("M")).filter(name->name.length()<7).forEach(name->
                 System.out.println(name.getClass().equals(new String().getClass())));//类型检测
 
-    }`
+    }
+  ```
   流式思想：拼接流式模型
   ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E6%B5%81%E5%BC%8F%E6%80%9D%E6%83%B3%E4%B8%BE%E4%BE%8B.png)
   ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/%E6%B5%81%E5%BC%8F%E6%80%9D%E6%83%B3%E7%A4%BA%E6%84%8F%E5%9B%BE.png) 
@@ -769,7 +789,8 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   3.执行想要的结果  并且每次转换Stream对象不改变，返回一个新的Stream对象，这就有利于链式编程
 
   jdk9.1后所有集合都可以通过默认Stream方法获取流对象可以将一个集合转换为一个流 （map不能直接这样用）必须是单列集合
-  `        Stream<String> s = l.stream();
+  ``` java
+  Stream<String> s = l.stream();
         Set<String> s1 = new HashSet<>();
         Stream<String> s2 = s1.stream();
         Map<String,String> m = new HashMap<>();
@@ -777,7 +798,8 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
         Collection<String> l2 = m.values();
         Stream<String> s4 = l2.stream();
         Set<Map.Entry<String,String>> en = m.entrySet();
-        Stream<Map.Entry<String,String>> s5 = en.stream();`
+        Stream<Map.Entry<String,String>> s5 = en.stream();
+  ```
   #### Stream常用方法  
   延迟方法：返回值任然是Stream是支持链式调用  
   终结方法：返回值不再是Stream接口自身的类型方法，及不再支持StringBuilder那样的链式调用包括forEach和cout
@@ -788,8 +810,10 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   所以第一个流不能再此使用了
   ##### map 方法如果需要将流中的元素映射到另一个流中可以使用map方法
   其中map方法中传递的参数是Function接口 
-  `        Stream<String> s = Stream.of("1","2","3","4");
-        s.map(s1->Integer.parseInt(s1)).forEach(intt-> System.out.println(intt));`
+  ``` java
+  Stream<String> s = Stream.of("1","2","3","4");
+        s.map(s1->Integer.parseInt(s1)).forEach(intt-> System.out.println(intt));
+  ```
   ##### count 
   相当于集合中的size统计Stream中流元素的个数，终结方法，返回值是long类型的整数，所以不能再调用任何Stream中的方法了
   ##### limit 方法可以对流进行截取  
@@ -803,13 +827,15 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   ### 方法引用  （只是对Lambda的再次简化）
   对Lambda表达式的简化我们实际传递进去的代码是一种解决方案，所以如果我们在Lambda表达式中所指定的方法，已经有了相同方案  
   那么是没有必要重复逻辑的 
-  `    public  static  void printString (String s,Printable p){
+  ``` java
+  public  static  void printString (String s,Printable p){
         p.print(s);
     }
 
     public static void main(String[] args) {
         printString("hellow",s-> System.out.println(s));
-    }`
+    }
+  ```
   Lambda表达式的目的，打印参数传递的字符串，把参数s传递给了cout对象，调用out对象中的方法println对字符串进行输出  
   注意  ：
   1.system.out对象已经存在  
@@ -831,9 +857,11 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   #### 类的构造器引用
   由于构造器名称与类名称完全一直，所以可以类的名称::new 的格式表示
   #### 数组构造器引用首先必须满足是函数接口，其次才可以简化Lambda表达式
-  `//        int arr = createArray(10,length -> new int[length]).length;
+  ``` java
+  //        int arr = createArray(10,length -> new int[length]).length;
         //方法引用优化Lambda表达式
-        int arr = createArray(8,int[]::new).length;`
+        int arr = createArray(8,int[]::new).length;
+  ```
 
 
   # Java Web 
@@ -853,17 +881,19 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
     *建议无返回值，建议空参  
   3.给方法加注解@Test（加入注解）
   4.导入Junit的依赖环境  
-  `    @Test
+  ``` java
+  @Test
     public  void  testAdd(){
         Assert.assertEquals(3,new Calculator().add(2,3));
-    }`
+    }
+  ```
    * 红色代表成功绿色代表失败 注意要用断言方法Assert（期望的，实际的）而不是输出 
     对于重复操作，通过注解before和after来完成  
     before初始化方法：所有测试方法之前都执行这个方法
     after释放资源方法：在所有测试方法执行完后都会自动执行该方法
     无论上述方法是否出错，这两个方法一定执行  
-    `    @Before
-
+  ``` java
+  @Before
     public  void init (){
         System.out.println("用于资源申请");
     }
@@ -879,7 +909,8 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
     @Test
     public  void testSub(){
         Assert.assertEquals(3,new Calculator().sub(5,2));
-    }`
+    }
+  ```
   ## 反射：框架设计的灵魂  
    * 框架：半成品软件。可以在框架的基础上进行软件开发，简化编码  
      主要用于框架 
@@ -899,21 +930,24 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   ### Field
   getFIelds获取所有public修饰的成员变量  
   操作get或者set
-  `        Class person = Person.class;
+  ``` java
+  Class person = Person.class;
 //        Field[] fields = person.getFields();
         Field a = person.getField("s");
         Person p = new Person();
          Object va = a.get(p);
          a.set(p,"ssssw");
-        System.out.println(p+" "+va);`
+        System.out.println(p+" "+va);
+  ```
   getfiled（对象名字） getDeclareFields（）获取所有成员变量
   反射面前没有私有公用，都可一访问修改（很重要）在需要访问不是public的需要忽略访问权限修饰符的安全检查  
-  `的。setAccessible（true ）`
+  的。`setAccessible（true ）`
   setAccessible（true）不管是反射的那几个对象都拥有几个方法
     ### 构造方法  
   根据传递的参数判断根据不同参数的class对象进行判别
   （构造方法就是用来创建对象的）创建对象：用构造器 newInstance
-  `        Class person = Person.class;
+  ``` java
+  Class person = Person.class;
         Constructor con = person.getConstructor(String.class);
         Constructor con1 = person.getConstructor();
         System.out.println(con);
@@ -921,17 +955,20 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
         System.out.println(con1);
         var p = con.newInstance("zhangsan");
         System.out.println(con1.newInstance());
-        System.out.println(p);`
+        System.out.println(p);
+  ```
   若用空参数方法构造创建对象，操作可以进行简化可以使用Class对象的newInstance不需要在通过Class类的getConstruct方法获取构造器方法了
   ### 获取成员方法  
   不带Declared只能获取公共的，带的可以通过setAccessible访问私有的
   #### invoke
   获取成员方法的目的也是为了执行，所以invoke方法可以执行方法  
-  invoke（Objet obj，Object ...args）
-  `        Method method = person.getMethod("eat");
+  `invoke（Objet obj，Object ...args）`
+  ``` java
+  Method method = person.getMethod("eat");
         method.invoke(new Person());
         Method method1 = person.getMethod("eat",String.class);
-        method1.invoke(new Person(),"饭");`
+        method1.invoke(new Person(),"饭");
+  ```
   #### getName
   可以获取方法名称，返回字符串的方法名称 
 
@@ -941,12 +978,13 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   来打印输出 JVM 所了解的属性值。
 用list() 方法，打印到控制台。
 
-  `@Test
+  ``` java
+  @Test
 	public void printTest(){
 		Properties properties=System.getProperties();
 		properties.list(System.out);
 	}
-`
+```
 
   实现：
   1.配置文件 
@@ -958,7 +996,8 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   4.创建对象  
   5.执行方法
   框架的基本思路 
-  `        //加载配置文件
+  ``` java
+  //加载配置文件
         //1.创建Properties对象
         Properties pro = new Properties();//Properties是map的一个子类，所以是一个双链集合
         //加载配置文件，转换为一个集合
@@ -975,7 +1014,8 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
         //4.创建对象
         var obj = cls.newInstance();
         Method method = cls.getMethod(methodName);
-        method.invoke(obj);`
+        method.invoke(obj);
+  ```
   ### 反射中获取class类对象的三种方式
   1.在源代码阶段，如果还没有进内存需要手动加载进内存生成字节码对象需要通过Class.forName("传全类名")该方法会将字节码文件加入内存并返回一个class  （用于配置文件，读取文件加载类）  
   2.当已经加载进内存了，已经有了这个对象，那么在加载进内存后会有一个类名，可以通过类名的属性获取class类对象  类.class  （多用于参数传递）  
@@ -1049,7 +1089,8 @@ Object obj = factory.newInstance();`
   6.通过getmethod方法获取该方法
   7.通过method类中的invoke（）方法将对象放入后实现
   代码案例  
-  `@Pro(className = "ReflectText.Student",methodName = "sleep")
+  ``` java
+  @Pro(className = "ReflectText.Student",methodName = "sleep")
 public class annotation {
     public static void main(String[] args) throws Exception {
         Class<annotation> clss = annotation.class;
@@ -1063,7 +1104,7 @@ public class annotation {
         method.invoke(obj);
     }
 }
-`
+```
 ## mysql
 	my.ini配置  
 	`[client]
@@ -1514,7 +1555,8 @@ DriverManager有getconnection方法可以连接数据库"jdbc:mysql://localhost:
 	    1.int类型表示列的编号从1开始  
 	    2.string类型表示列名
       DQL查询代码
-	` public static void main(String[] args) {
+	``` java
+  public static void main(String[] args) {
         Connection ctn = null;
         Statement sttm = null;
         ResultSet res = null;
@@ -1544,7 +1586,8 @@ DriverManager有getconnection方法可以连接数据库"jdbc:mysql://localhost:
                 throwables.printStackTrace();
             }
         }
-    }`
+    } 
+ ```
     一般这种可以封装为泛型类然后继承object类，用方法来引入增加可复用性
 	ResultSetMetaData rsmt=rs.getMetaData();
 
@@ -1560,14 +1603,17 @@ rs.getMetaData().getColumnCount()可以获得列数
 3.抽取方法释放资源
 
 获取当前路径下的文件方式 --->classLoader可以加载字节码文件进内存，同时也可以获取src文件下的路径 
-`   ClassLoader classLoader = util.class.getClassLoader();
+``` java   
+  ClassLoader classLoader = util.class.getClassLoader();
             URL resource = classLoader.getResource("jdbc.properties");//统一资源定位符
             String path = resource.getPath();           
 	    url = pro.getProperty("url");
             System.out.println(resource);
             user = pro.getProperty("user");
             password = pro.getProperty("password");
-            driver = pro.getProperty("driver");`
+            driver = pro.getProperty("driver");
+  
+```
 classloader类中有getResource方法返回URL对象，通过url对象的getpath方法可以进行绝对定位   
 其中pro对象的put方法可以将值作为map数组存放如pro对象，而getproperty方法可以根据键找值
 	
@@ -1584,7 +1630,8 @@ classloader类中有getResource方法返回URL对象，通过url对象的getpath
       给？赋值：方法setXxx（参数1，参数2）其中参数1是？的位置，参数二是参数的值  
       而再执行sql时候preparedstatement是不需要传递sql语句的
 案列
-	` public static void main(String[] args) {
+	``` java
+  public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入账号");
         String s = scanner.nextLine();
@@ -1625,7 +1672,8 @@ classloader类中有getResource方法返回URL对象，通过url对象的getpath
             util.close(res,pre,con);
         }
         return false;
-    }`
+    }
+  ```
 	
 
 ### jdbc控制事务
@@ -1650,13 +1698,15 @@ Druid：数据库连接池技术，由阿里巴巴提供
 1.导入jar包  
 2.定义配置文件    
 
-`driverClassName = com.mysql.cj.jdbc.Driver
+``` java
+  driverClassName = com.mysql.cj.jdbc.Driver
 url = jdbc:mysql://localhost:3306/db1
 username = root
 password = 1234567
 initialSize = 5
 maxActive = 10
-maxWait = 3000`  
+maxWait = 3000
+```  
 	  
 3.加载配置文件  
 4.获取数据库连接池对象通过工厂函数`DruidDataSourceFactory`类的`createDataSource`静态方法获取
@@ -1669,7 +1719,7 @@ maxWait = 3000`
 工具类列子应用    
 
 	
-` java
+``` java
         Connection con = poolutils.getconnection();
         String sql = "INSERT INTO account VALUES(NULL,?,?)";
         PreparedStatement pstm = null;
@@ -1694,31 +1744,15 @@ maxWait = 3000`
         }finally {
             poolutils.close(pstm,con,res);
         }
-    }`
+    }
+  ```
 	
 	
 	
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
-	
+
 ### Spring JDBC：JDBC Template
 1.通过spring封装的jdbc实现基本操作  
 导入jar包    
@@ -1845,7 +1879,8 @@ servlet就是一个接口定义额java类被浏览器访问的规则
 2.定义一个类，实现servlet接口  
 3.实现接口方法  
 4.配置再web.xml中进行配置
-`<!--    配置servlet-->
+``` XML
+  <!--    配置servlet-->
     <servlet>
         <servlet-name>demo01</servlet-name>
         <servlet-class>com.example.servlet.servletdemo01<servlet-class>
@@ -1853,7 +1888,8 @@ servlet就是一个接口定义额java类被浏览器访问的规则
     <servlet-mapping>
         <servlet-name>demo01</servlet-name>
         <url-pattern>/demo01</url-pattern>
-    </servlet-mapping>`   
+    </servlet-mapping>
+```   
 注意由于Tomcat10中的Servlet-api依赖包与Maven导入的Servlet4.0.1不兼容，所以只能取一个   
 要么降级tomacat，要么将servlet依赖改为Timcat中的自带依赖，从库那里改正，删除maven的依赖  
 #### servlet原理
@@ -1973,12 +2009,14 @@ request功能：
 	  2.getParameterValues（string name）根据参数名获取参数值的数组   
 	  3.Enumeration<string> getParameterNames（）获取所有参数名称    
 	  4.getParameterMap（）获取所有参数的map集合   
-`Map<String, String[]> map = request.getParameterMap();
+``` java
+    Map<String, String[]> map = request.getParameterMap();
  Set<Map.Entry<String, String[]>> en = map.entrySet();
  for (Iterator<Map.Entry<String, String[]>> iterator = en.iterator(); iterator.hasNext(); ) {
      Map.Entry<String, String[]> next =  iterator.next();
      System.out.println(next.getKey()+"------"+ Arrays.toString(next.getValue()));
-     }`
+     }
+```
 	  
 	  *中文乱码问题当出现乱码时候树妖设置流的字符集将设字符集设置为utf-8通过setcharacterEncoding（）
  
@@ -2092,7 +2130,8 @@ response.getWriter()
   两种方式request获取，或者httpservlet获取   
   可以获取mimetype和realpath即响应头文件类型和真实路径  
 	   response.setContentType("text/html;charast=utf-8");修改编码方式  
-`String filename = request.getParameter("filename");
+``` java 
+    String filename = request.getParameter("filename");
         System.out.println(filename);
         //使用流将文件进内存
         String realPath = this.getServletContext().getRealPath("/image/" + filename);
@@ -2108,7 +2147,8 @@ response.getWriter()
         while ((len = fil.read(buff))!=-1){
             outputStream.write(buff,0,len);
         }
-        fil.close();`  
+        fil.close();
+```  
  下载时候的中文名称问题可以通过修改编码等方式解决  
 	 先获取user-agent请求头，使用工具类编码文件名即可   
 	  
@@ -2281,14 +2321,15 @@ web中的过滤器：当访问服务器资源时，过滤器可以将请求拦�
 继承servlet类下的Filter类，重写doFilter方法即可，配置urlpatten，webfilter（“拦截路径 ”）    
 如若放行：调用filterchain对象的doFilter（）方法   
 web.xml配置方法    
-` <filter>
+``` <filter>
         <filter-name>demo1</filter-name>
         <filter-class>com.example.filter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>demo1</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>`  
+    </filter-mapping>
+```  
     两种配置方式  
    对于Filter中，init周期用于加载资源而destory周期用于释放资源  
    过滤器执行流程  
@@ -2323,7 +2364,8 @@ args：代理对象调用的方法时传入的参数
 增强参数列表    	  
 增强方法体   
 增强返回值    
-`Salecomputer com = new computer();
+``` java  
+        Salecomputer com = new computer();
         Salecomputer prox_com = (Salecomputer) Proxy.newProxyInstance(com.getClass().getClassLoader(), com.getClass().getInterfaces(), new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -2337,10 +2379,12 @@ args：代理对象调用的方法时传入的参数
             }
         });
         String sale = prox_com.sale(8000);
-        System.out.println(sale);` 	 
+        System.out.println(sale);
+``` 	 
 		  
 过滤案例  
-`    private List<String> l = new ArrayList<>();
+``` java
+    private List<String> l = new ArrayList<>();
     public void init(FilterConfig config) throws ServletException {
         System.out.println("初始化");
         try {
@@ -2379,7 +2423,8 @@ args：代理对象调用的方法时传入的参数
             }
         });
         chain.doFilter(prox_req,response);
-    }`
+    }
+```
 
     ### Lister：监听器  
         事件监听机制
@@ -2431,7 +2476,8 @@ args：代理对象调用的方法时传入的参数
 创建连接池对象   
 调用getResource 获取jedis对象  
 创建配置对象   new JedisPoolConfig（）对象右set方法maxtotal最大连接数，maxidle最大空闲连接    
-```         pro.load(rs);
+``` java
+            pro.load(rs);
             JedisPoolConfig jpc = new JedisPoolConfig();
             jpc.setMaxIdle(Integer.parseInt(pro.getProperty("maxIdle")));
             jpc.setMaxTotal(Integer.parseInt(pro.getProperty("maxTotal")));
