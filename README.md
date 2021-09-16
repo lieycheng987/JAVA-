@@ -497,7 +497,8 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
         }
       }
     }, "boss").start();
-  }```
+  } 
+  ```
 
   objectde wait方法中可以传递毫秒参数，当毫秒到达没有被唤醒，则自动叫醒
   `notifyall`唤醒所有线程（对象锁上的所有线程） 
@@ -654,7 +655,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   可以使用String类的方法split切割字符串，获取中间的部分  arr[l] 使用Stringsubstring方法获取html文件的路径
   服务器创建本地的字节输入流根据获取到的文件路径，读取html文件  
   服务器端使用网络字节输出流把读取到的文件，写道客户端（浏览器）显示
-  ```public class htmlServe {
+  ``` public class htmlServe {
     public static void main(String[] args) throws IOException {
         ServerSocket serve = new ServerSocket(8080);
         while (true) {
@@ -691,7 +692,8 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
         }
     }
 
-    }```
+    } 
+  ```
 
   ## 函数式接口  
   函数式接口在java中指：有且只有一个抽象接口  
@@ -2428,4 +2430,10 @@ args：代理对象调用的方法时传入的参数
 ### jedis  
 创建连接池对象   
 调用getResource 获取jedis对象  
-创建配置对象   new JedisPoolConfig（）对象右set方法maxtotal最大连接数，maxidle最大空闲连接   
+创建配置对象   new JedisPoolConfig（）对象右set方法maxtotal最大连接数，maxidle最大空闲连接    
+```         pro.load(rs);
+            JedisPoolConfig jpc = new JedisPoolConfig();
+            jpc.setMaxIdle(Integer.parseInt(pro.getProperty("maxIdle")));
+            jpc.setMaxTotal(Integer.parseInt(pro.getProperty("maxTotal")));
+            jp = new JedisPool(jpc,pro.getProperty("host"), Integer.parseInt(pro.getProperty("port")));
+```
