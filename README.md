@@ -431,7 +431,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
     Condition condition = lock.newCondition();`
   在需要等待的程序中调用 `condition.await`在需要唤醒的地方调用`newCondition`的`signal`或`signalAll`方法  
   列子
-  ` public static void main(String[] args) {
+  ``` public static void main(String[] args) {
     Object obj = new Object();
     Lock lock = new ReentrantLock();
     Condition condition = lock.newCondition();
@@ -497,7 +497,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
         }
       }
     }, "boss").start();
-  }`
+  }```
 
   objectde wait方法中可以传递毫秒参数，当毫秒到达没有被唤醒，则自动叫醒
   `notifyall`唤醒所有线程（对象锁上的所有线程） 
@@ -654,7 +654,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
   可以使用String类的方法split切割字符串，获取中间的部分  arr[l] 使用Stringsubstring方法获取html文件的路径
   服务器创建本地的字节输入流根据获取到的文件路径，读取html文件  
   服务器端使用网络字节输出流把读取到的文件，写道客户端（浏览器）显示
-  `public class htmlServe {
+  ```public class htmlServe {
     public static void main(String[] args) throws IOException {
         ServerSocket serve = new ServerSocket(8080);
         while (true) {
@@ -691,7 +691,7 @@ java提供的异常类，不够使用时，需要进行自己定义异常类格�
         }
     }
 
-    }`
+    }```
 
   ## 函数式接口  
   函数式接口在java中指：有且只有一个抽象接口  
