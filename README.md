@@ -2483,3 +2483,41 @@ args：代理对象调用的方法时传入的参数
             jpc.setMaxTotal(Integer.parseInt(pro.getProperty("maxTotal")));
             jp = new JedisPool(jpc,pro.getProperty("host"), Integer.parseInt(pro.getProperty("port")));
 ```
+### Maven  
+	  项目管理工具，包含项目对象模型POM，一组标准集合，一个项目生命周期，一个依赖管理系统，和用来运行定义在生命周期阶段   
+    中插件目标的逻辑    
+    解决的问题：jar包引入过多，解决bug，项目测试，和方便打包   
+    maven的依赖管理：传统工程jar包在项目中，而maven不会再项目中，统一放在jar包仓库中，通过jar包坐标来找到jar包    
+    总结就是maven工程对jar包的管理过程    
+    一键构建：普通项目要经历编译，测试，运行，打包，安装，部署而maven只需要一个命令   
+    pom.xml放置的jar包的坐标     
+    #### maven仓库   
+          中央仓库、本地仓库、私服
+         在maven安装目录中找到settings.xml文件中找到用户目录在.m2文件夹下的repository下创建仓库   
+          默认在系统盘找本地仓库jar包就放在这里，再联网后通过中央仓库直接下载jar包   
+          一般会再创建远程仓库（私服）确保电脑与私服再同一个网段，可以很方便的获取jar包，一部分本地一部分中央仓库  
+          当然可以通过`<localRepository>/path/to/local/repo</localRepository>`来修改本地仓库的配置路径    
+    #### maven标准目录结构   
+          核心代码部分   
+          配置文件部分   
+          测试代码部分  
+          测试配置文件部分    
+          标准目录结构   
+            src/main/java核心代码  
+            src/main/resource 配置文件  
+            src/test/java 测试代码  
+            src/test/resource  测试文件   
+            src/main/webapp 页面资源 js，css，图片   
+     #### maven常用命令   
+          mvn clean 删除target目录  清楚编译信息   
+          mvn compile 编译后会在右target目录   其中class里面放的是字节码文件  是将main下的核心代码进行编译  
+          mvn test 测试  
+          mvn package  打包对test和核心代码都进行编译    再pom中可以设置打包类型     
+          mvn install 打包后将包放在本地仓库    
+     #### maven生命周期   
+          清理生命周期   
+          默认生命周期  后面的会自动执行前面的   
+          站点生命周期   
+![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/maven%E6%A6%82%E5%BF%B5%E6%A8%A1%E5%9E%8B.png)    
+            
+          
