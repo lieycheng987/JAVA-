@@ -1,3 +1,4 @@
+# Java进阶web及spring框架
 ## JAVA - 
 - [局部变量和成员变量的区别](#局部变量和成员变量的区别)
 - [collection集合集合是java中提供的一种容器可以用来存储多个数据](#collection集合集合是java中提供的一种容器可以用来存储多个数据)
@@ -2527,3 +2528,29 @@ args：代理对象调用的方法时传入的参数
 ### Linux  
 Linux的版本分为两种：内核版本和发行版本，内核版本是linus领导下发行的版本   
 vmware:虚拟机软件  
+            
+            
+            
+## spring  
+spring是分层的JavaSE/EE应用full-stack轻量级开源框架以loc（反转控制）和AOP（面向切面编程）为内核   
+提供展现层springMVC和吃惊曾SpringJDBCTemplate以及业务逻辑层spring等众多的企业级技术应用，还能整合开源世界众多  
+第三方知名框架和类库，主键成为使用最多的JavaEE开源框架    
+###spring发展  
+    IBM提出了EJB的思想，sun制定了标准规范  
+    优势L:方便解耦简化开发，通过spring提供的loc容器，可以将对象间的依赖关系交由Spring控制，避免硬编码造成的过度耦合，用户也不必再为单列模式类  
+          属性文件解析等编写代码，可以专注上层应用   
+     AOP编程支持：通过spring的aop功能蛮方便进行面向切面编程，旭东不容易用传统oop实现的功能可以通过aop实现   
+     声明式事务支持，方便程序的测试        
+![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/spring%E8%BF%90%E8%A1%8C%E6%97%B6%E6%A1%86%E6%9E%B6%E7%BB%93%E6%9E%84%E5%9B%BE.png)  
+     core container就是ioc容器   
+ ### spring快速入门   
+     例如service层实现的impl方法要拿到dao层的般采用new对象的方法，而spring通过xml配置文件拿到全包名，引入spring框架后通过反射再内部构造出基础对象，不在需要new出这个   
+     即可实现   
+            ```java 
+            UserDao ud = new UserDaoimpl();
+            UserDao ud = Spring客户端.getBean(id标识)
+            ```
+	  spring通过读取xml文件根据id标识获得Bean权限名，根据id标识获得Bean全限定名，通过反射newInstance创建对象，并返回给调用者   
+    遇到新的对象只需要再tomcat中改变id标识即可完成 
+![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/spring%E5%BC%80%E5%8F%91%E6%AD%A5%E9%AA%A4.png)  
+      
