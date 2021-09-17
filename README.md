@@ -2518,6 +2518,9 @@ args：代理对象调用的方法时传入的参数
           清理生命周期   
           默认生命周期  后面的会自动执行前面的   
           站点生命周期   
-![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/maven%E6%A6%82%E5%BF%B5%E6%A8%A1%E5%9E%8B.png)    
+![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/maven%E6%A8%A1%E5%9E%8B%E5%9B%BE.png)    
             
-          
+          项目对象模型：项目自身信息   
+		  项目运行所依赖的jar信息   
+		  项目运行环境信息jdk、tomcat   
+		  
