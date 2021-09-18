@@ -2554,8 +2554,8 @@ spring是分层的JavaSE/EE应用full-stack轻量级开源框架以loc（反转�
     遇到新的对象只需要再tomcat中改变id标识即可完成 
 ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/spring%E5%BC%80%E5%8F%91%E6%AD%A5%E9%AA%A4.png)  
       再创建了maven工程后，配置pom.xml文件  
-   ```
-		<dependency>
+   ``` XML
+   <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>5.3.9</version>
@@ -2563,7 +2563,7 @@ spring是分层的JavaSE/EE应用full-stack轻量级开源框架以loc（反转�
    ```  
      新建xml文件ApplicationContext.xml文件  
  ``` XML 
-     <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
@@ -2576,3 +2576,27 @@ spring是分层的JavaSE/EE应用full-stack轻量级开源框架以loc（反转�
         UserDao userdao = (UserDao) app.getBean("userdao");
         userdao.save();
  ```
+id作为唯一标识再bean内部不允许重复，默认情况下反射是通过无参构造来创建对象newInstance（）所以bean内部需要有无参构造  
+#### Bean标签范围配置  
+scope：指的对象的作用范围取值如下   
+singleton：默认值，单列  特点：当加载配置文件时候加载进内存就创建     可以通过new不同的来测试是否一致
+prototype：多列   但是多列不同，当调用getBean方法时候进行创建对象与默认方法不同     
+request：web项目中srping创建的bean的对象，将对象存到request中   
+session：同理request，但是存放在session域中   
+global session：全局session，应用再Portlet环境，如果没有Portlet环境那么globalSession相当于session   
+当取值为默认时候，Bean是实列化个数1个，核心文件加载及实列化，当应用卸载，销毁容器时，对象被销毁。  
+当取值为多列时候：Bean实列化个数为多个，当调用getBean方法时候实例化Bean，当长期不用时被jvm进行垃圾回收    
+    
+ #### Bean生命周期配置  
+       init-method：指定类中的初始化方法名称  
+       destory-method：指定类中销毁方法名称    
+ #### Bean实例化的方式  
+      1.无参构造
+      2.工厂静态方法创建对象   ：方法通过工厂类加载进内存，通过invoke执行其相关静态方法 factiry-method="方法名称 "
+      3. 工厂实例化  
+      例如工厂实例化方法   
+         ```XML
+    <bean id="factory" class="Dao.impl.factory" />
+    <bean id="userdao" factory-bean="factory" factory-method="getUserDao"/>
+         ```  
+     然后直接getBean（"userdao"）也能拿到对象
