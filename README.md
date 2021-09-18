@@ -2553,4 +2553,26 @@ spring是分层的JavaSE/EE应用full-stack轻量级开源框架以loc（反转�
 	  spring通过读取xml文件根据id标识获得Bean权限名，根据id标识获得Bean全限定名，通过反射newInstance创建对象，并返回给调用者   
     遇到新的对象只需要再tomcat中改变id标识即可完成 
 ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/spring%E5%BC%80%E5%8F%91%E6%AD%A5%E9%AA%A4.png)  
-      
+      再创建了maven工程后，配置pom.xml文件  
+   ```
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.3.9</version>
+    </dependency>
+   ```  
+     新建xml文件ApplicationContext.xml文件  
+ ``` XML 
+     <?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="userdao" class="Dao.impl.UserDaoImpl"></bean>
+</beans>
+ ```
+将对向交给spring的bean对象管理，通过反射管理此对象，紧接着通过getBean方法拿到   
+ ``` java 
+        ApplicationContext app = new ClassPathXmlApplicationContext("ApplicationContext.xml");
+        UserDao userdao = (UserDao) app.getBean("userdao");
+        userdao.save();
+ ```
