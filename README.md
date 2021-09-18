@@ -2595,8 +2595,8 @@ global session：全局session，应用再Portlet环境，如果没有Portlet环
       2.工厂静态方法创建对象   ：方法通过工厂类加载进内存，通过invoke执行其相关静态方法 factiry-method="方法名称 "
       3. 工厂实例化  
       例如工厂实例化方法   
-         ```XML
+   ``` XML
     <bean id="factory" class="Dao.impl.factory" />
     <bean id="userdao" factory-bean="factory" factory-method="getUserDao"/>
-         ```  
+   ```  
      然后直接getBean（"userdao"）也能拿到对象
