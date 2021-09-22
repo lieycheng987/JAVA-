@@ -2660,4 +2660,5 @@ global session：全局session，应用再Portlet环境，如果没有Portlet环
 通过import标签进行加载  通过import标签的resource属性引用其他的xml配置文件完成分模块开发
 `  <import resource="applicationContext-user.xml"></import> `
 ### Spring相关API  
- 
+ ApplicationContext的继承体系紫色是接口，浅绿色是抽象类，绿色的是实现类  
+![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/ApplicationContext%E7%9A%84%E7%BB%A7%E6%89%BF%E4%BD%93%E7%B3%BB.png)  
