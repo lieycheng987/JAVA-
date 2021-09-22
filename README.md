@@ -2650,3 +2650,5 @@ global session：全局session，应用再Portlet环境，如果没有Portlet环
 ```
 #### Spring引入其他配置文件（分模块开发）  
       
+实际开发中，Spring的配置内容非常多这就导致Spring配置很繁杂，体积很大，所以，可以将部分配置拆解到其他配置文件中，而在Spring主配置文件   
+通过import标签进行加载
