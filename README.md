@@ -2577,7 +2577,8 @@ spring是分层的JavaSE/EE应用full-stack轻量级开源框架以loc（反转�
         userdao.save();
  ```
 id作为唯一标识再bean内部不允许重复，默认情况下反射是通过无参构造来创建对象newInstance（）所以bean内部需要有无参构造  
-#### Bean标签范围配置  
+#### Bean标签范围配置   
+class：要是例化的Bean全类名   
 scope：指的对象的作用范围取值如下   
 singleton：默认值，单列  特点：当加载配置文件时候加载进内存就创建     可以通过new不同的来测试是否一致
 prototype：多列   但是多列不同，当调用getBean方法时候进行创建对象与默认方法不同     
@@ -2611,6 +2612,11 @@ global session：全局session，应用再Portlet环境，如果没有Portlet环
        注入方式两种：  
            1.构造方法    
             需要设置构造方法  
+``` XML 
+    <bean id="userservice" class="Service.UserServiceimpl">
+        <constructor-arg name="userDao" ref="userdao"></constructor-arg>
+    </bean>
+```
            2.set方法  将set方法设置值后，通过容器bean将userdao赋值给userservice    
             在配置文件中配置依赖 以属性的方式对其进行设置，设置的是set的属性 
             ` <property name="userDao" ref="userdao"></property>`将userdao配置为userserve的依赖   
@@ -2651,4 +2657,7 @@ global session：全局session，应用再Portlet环境，如果没有Portlet环
 #### Spring引入其他配置文件（分模块开发）  
       
 实际开发中，Spring的配置内容非常多这就导致Spring配置很繁杂，体积很大，所以，可以将部分配置拆解到其他配置文件中，而在Spring主配置文件   
-通过import标签进行加载
+通过import标签进行加载  通过import标签的resource属性引用其他的xml配置文件完成分模块开发
+`  <import resource="applicationContext-user.xml"></import> `
+### Spring相关API  
+ 
