@@ -2599,4 +2599,54 @@ global session：全局session，应用再Portlet环境，如果没有Portlet环
     <bean id="factory" class="Dao.impl.factory" />
     <bean id="userdao" factory-bean="factory" factory-method="getUserDao"/>
    ```  
-     然后直接getBean（"userdao"）也能拿到对象
+     然后直接getBean（"userdao"）也能拿到对象  
+            
+	  当serivce层用了通过spring获取的dao层的对象，所以可以再Bean容器中将dao设置再userservice的内部  
+ #### 依赖注入 
+       Dependency Injection   
+       是spring框架的核心IOC的具体实现  
+       再编写程序时，通过控制反转，把对象的创建交给spring，但是代码中不可能出现没有依赖的情况，IOC解耦只是降低他们的依赖关系，但不会消除，列如业务层一定   
+       会调用持久层的方法，那这种一五层和持久层的依赖关系，再使用了spring之后，交由spring来维护，简单的说，就是等框架把持久层对象传入业务层，而不用我们   
+       自行获取。  
+       注入方式两种：  
+           1.构造方法    
+            需要设置构造方法  
+           2.set方法  将set方法设置值后，通过容器bean将userdao赋值给userservice    
+            在配置文件中配置依赖 以属性的方式对其进行设置，设置的是set的属性 
+            ` <property name="userDao" ref="userdao"></property>`将userdao配置为userserve的依赖   
+            name为属性名就是set后面变小写的名字，ref为引用对象名；  
+            也可以通过p命名空间的方式完成  
+            需要引入p命名空间  ` xmlns:p = "http://www.springframework.org/schema/p" `
+            `<bean id="userservice" class="Service.UserServiceimpl" p:userDao-ref="userdao">`  
+   #### Bean的依赖注入的数据类型  
+         Bean注入的数据类型   
+          1.普通数据类型  `<bean id="userdao" class="Dao.impl.UserDaoImpl" p:username="zhangsan" p:age="18"/>`  
+          2.引用数据类型  `<bean id="userservice" class="Service.UserServiceimpl" p:userDao-ref="userdao">`  
+          3.集合数据类型  
+        以上的操作都是注入的引用Bean，除了对象的引用可以注入，普通数据类型，集合等亦可 
+         ```  XML
+    <bean id="userdao" class="Dao.impl.UserDaoImpl" p:username="zhangsan" p:age="18" >
+        <property name="l">
+            <list>
+
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </list>
+        </property>
+        <property name="m">
+            <map>
+                <entry key="liming" value-ref="user"/>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="user1">
+                    value
+                </prop>
+            </props>
+        </property>
+    </bean>
+       ```  
+#### Spring引入其他配置文件（分模块开发）  
+      
