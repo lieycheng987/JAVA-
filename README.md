@@ -2662,3 +2662,15 @@ global session：全局session，应用再Portlet环境，如果没有Portlet环
 ### Spring相关API  
  ApplicationContext的继承体系紫色是接口，浅绿色是抽象类，绿色的是实现类  
 ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/ApplicationContext%E7%9A%84%E7%BB%A7%E6%89%BF%E4%BD%93%E7%B3%BB.png)  
+#### ApplicationContext实现类  
+ClassPathXmlApplicationContext：从类的根路径下加载配置文件，推荐使用   （就是rusoures根目录下的文件进行加载）   
+FileSystemXmlApplicationContext：从磁盘路径上加载配置文件绝对路径加载，配置文件可以在磁盘的任意位置   
+AnnotationConfigXmlApplicationContext：用注解配置容器对象时，需要使用此类来创建spring容器，它用来读取注解相关信息   
+### getBean方法   
+    可以传入string或者class，string代表标识，class代表字节码文件，但当需要像同类不同对象时候，class无法分清    
+### spring配置数据源   
+    1.1数据源（连接池）的作用  
+    常见的数据源 DBCP、C3P0、Druid   
+    1.导入jar包  
+    2.创建数据源对象配置相关xml文件   
+    3.设置数据源的基本链接数据  
