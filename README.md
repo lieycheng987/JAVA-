@@ -2624,8 +2624,8 @@ global session：全局session，应用再Portlet环境，如果没有Portlet环
           2.引用数据类型  `<bean id="userservice" class="Service.UserServiceimpl" p:userDao-ref="userdao">`  
           3.集合数据类型  
         以上的操作都是注入的引用Bean，除了对象的引用可以注入，普通数据类型，集合等亦可 
-         ```  XML
-    <bean id="userdao" class="Dao.impl.UserDaoImpl" p:username="zhangsan" p:age="18" >
+```  XML
+  <bean id="userdao" class="Dao.impl.UserDaoImpl" p:username="zhangsan" p:age="18" >
         <property name="l">
             <list>
 
@@ -2646,7 +2646,7 @@ global session：全局session，应用再Portlet环境，如果没有Portlet环
                 </prop>
             </props>
         </property>
-    </bean>
-       ```  
+    </bean> 
+```
 #### Spring引入其他配置文件（分模块开发）  
       
