@@ -2674,3 +2674,7 @@ AnnotationConfigXmlApplicationContext：用注解配置容器对象时，需要�
     1.导入jar包  
     2.创建数据源对象配置相关xml文件   
     3.设置数据源的基本链接数据  
+#### Spring抽取jdbc配置文件  
+applicationContext.xml加载配置文件   
+首先，需要引入context命名空间和约束路径   
+在context命名空间中
