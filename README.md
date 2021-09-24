@@ -2675,9 +2675,20 @@ AnnotationConfigXmlApplicationContext：用注解配置容器对象时，需要�
     2.创建数据源对象配置相关xml文件   
     3.设置数据源的基本链接数据  
 #### Spring抽取jdbc配置文件  
+`<context:property-placeholder location="classpath:druid.properties"/>`将配置文件抽取到spring容器中  
 applicationContext.xml加载配置文件   
 首先，需要引入context命名空间和约束路径   
 在context命名空间中
 ### Spring源注解开发   
 ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/spring%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE.png)
-		  
+***注意，在使用注解开发时，需要在applicationContext.xml中配置组件扫描，作用是指定哪个包及其子包下的Bean需要进行扫描一遍识别使用   
+注解配置的类和字段方法  
+`<context:component-scan base-package="com"></context:component-scan>`实在context命名空间下的component-scan   
+如果致谢@Autowired按照数据类型从spring容器中进行匹配，但如果有多个Bean就不能知道有哪个了就必须加上名称匹配，@Qualifier会按照id匹配  
+但@Qualifier必须和@autowired一起使用    
+而@Resource相当于上两个之和：`@Resource(name = "userdao")`   
+### spring 新注解  
+非自定义的Bean比如jar包的   
+加载properties文件的配置   
+组件扫描的配置  
+引入其他文件的<import>
