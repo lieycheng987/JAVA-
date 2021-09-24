@@ -2692,3 +2692,4 @@ applicationContext.xml加载配置文件
 加载properties文件的配置   
 组件扫描的配置  
 引入其他文件的<import>
+![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/spring%E6%96%B0%E6%B3%A8%E8%A7%A3.png)
