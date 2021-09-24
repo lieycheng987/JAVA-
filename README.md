@@ -2693,3 +2693,36 @@ applicationContext.xml加载配置文件
 组件扫描的配置  
 引入其他文件的<import>
 ![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/spring%E6%96%B0%E6%B3%A8%E8%A7%A3.png)
+用注解开发时候需要配置核心配置文件，引入其他配置的相关文件  
+``` java
+@Configuration
+@ComponentScan("com")
+@PropertySource("classpath:JDBC.properties")
+public class DatasourceConfig {
+    @Value("${driver}")
+    private String driver;
+    @Value("${url}")
+    private String url;
+    private String username ="root";
+    @Value("${password}")
+    private String password;
+
+    @Bean("datasource")
+    public DataSource getdatasource(){
+        DruidDataSource dataSource = new DruidDataSource();
+        dataSource.setDriverClassName(driver);
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+        return dataSource;
+    }
+}
+		  
+
+@Configuration
+@ComponentScan("com")
+@Import({DatasourceConfig.class})
+public class SpringConfiguration {
+
+}
+```
