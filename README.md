@@ -2678,3 +2678,6 @@ AnnotationConfigXmlApplicationContext：用注解配置容器对象时，需要�
 applicationContext.xml加载配置文件   
 首先，需要引入context命名空间和约束路径   
 在context命名空间中
+### Spring源注解开发   
+![image](https://github.com/lieycheng987/JAVA-/blob/master/picture/spring%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE.png)
+		  
