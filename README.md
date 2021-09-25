@@ -2725,4 +2725,32 @@ public class DatasourceConfig {
 public class SpringConfiguration {
 
 }
+```  
+### spring集成Junit  
+测试比较繁琐，所以让springJunit来负责创建测试的容器，将需要进行测试bean直接在测试类中进行注入  
+步骤：  
+1.导入spring继承junit坐标   
+2.使用@runwith注解替换原来的运行期  
+3.使用contextconfiguration指定配置文件或配置类   
+4.使用@autowired注入需要测试的对象   
+5.创建测试方法进行测试   
+``` java 
+/**
+ * 注解配置
+ */
+@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration("classpath:applicationContext.xml")
+@ContextConfiguration(classes ={SpringConfiguration.class} )
+public class SpringJunitTest {
+    @Autowired
+    private UserServiceImpl userService;
+    @Autowired
+    private DruidDataSource dataSource;
+    @Test
+    public void test() throws SQLException {
+        userService.save();
+        System.out.println(dataSource);
+    }
+}
 ```
+ 
